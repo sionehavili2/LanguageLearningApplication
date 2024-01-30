@@ -17,8 +17,20 @@ const Layout = () => {
           <li>
             <Link to="/Account">Account</Link>
           </li>
-        </ul>
 
+          <li>
+            <Link to="/Register">Register</Link>
+          </li>
+
+          <li>
+            <Link to="/Reset">Reset</Link>
+          </li>
+
+          <li>
+            <Link to="/Dashboard">Dashboard</Link>
+          </li>
+
+        </ul>
       </nav>
 
       <Outlet />
