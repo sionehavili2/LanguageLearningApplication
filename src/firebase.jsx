@@ -25,7 +25,6 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const analytics = getAnalytics(app);
 
-
 const googleProvider = new GoogleAuthProvider();
 
 // Logging in with Google Email and Password

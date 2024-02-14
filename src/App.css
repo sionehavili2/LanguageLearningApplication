@@ -1,11 +1,26 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
   padding: 2rem;
   text-align: center;
   border:4px solid red;
+  
+  background-image: url("./SpencerAndLiah.JPG");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100vw;
+  height: 100vh;
 }
 
+h1 {
+  border:5px solid aqua;
+
+}
+
+/* 
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -36,7 +51,7 @@
 
 .card {
   padding: 2em;
-}
+} */
 
 .read-the-docs {
   color: #888;

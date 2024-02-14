@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
+import ContentDropdown from "../UI/ContentDropdown";
 
 function Dashboard() 
 {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate("/Login");
 
   const fetchUserName = async () => 
   {
@@ -27,26 +28,27 @@ function Dashboard()
     }
   };
 
-
   useEffect(() => 
   {
     if (loading) return;
     //If user login data does not exist, Navigate user back to login page
-    if (!user) return navigate("/");
+    if (!user) return navigate();
     fetchUserName();
   }, [user, loading]);
 
   return (
-    <div className="dashboard">
+    <>
+      <div>You are at the dashboard</div>
+      <ContentDropdown/>
+      <div className="dashboard">
        <div className="dashboard__container">
         Logged in as
          <div>{name}</div>
          <div>{user?.email}</div>
-         <button className="dashboard__btn" onClick={logout}>
-          Logout
-         </button>
+         <button className="dashboard__btn" onClick={logout}>Logout</button>
        </div>
-     </div>
+      </div>
+    </>
   );
 }
 export default Dashboard;

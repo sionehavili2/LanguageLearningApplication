@@ -14,9 +14,11 @@ import Dashboard from './components/Dashboard.jsx';
 
 function App() 
 {
-
   return (
-    <>
+    <div style={{ 
+      backgroundImage: `url("src\assets\SpencerAndLiah.JPG")` 
+    }}>
+      <h1>Language Learning App</h1>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout/>}>
@@ -24,12 +26,12 @@ function App()
             <Route exact path="/Login" element={<Login/>}/>
             <Route exact path="/Account" element={<Account/>}/>
             <Route exact path="/Register" element={<Register />} />
-            <Route exact path="/Reset" element={<Reset />} />
+            <Route path="/Reset" element={<Reset />} />
             <Route exact path="/Dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 
