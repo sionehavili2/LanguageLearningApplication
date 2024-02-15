@@ -10,9 +10,6 @@ const Flashcards = (props) =>
     const arrayLength = props.exampleArray.length;
     const displayInfo = exampleArray[arrayIndex].map((string, index) => (<li key={index}>{string}</li>))
     
-    const handleIncrement = (newValue) => {setArrayIndex(currentValue => currentValue + newValue)};
-
-
     return (
         <div className={classes.mainContainer}>
             <ul className={classes.unorderedList}>{displayInfo}
