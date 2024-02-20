@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./Section.module.css";
 import classes from "./Section.module.css";
+import { Link } from "react-router-dom";
+import { clearIndexedDbPersistence } from "firebase/firestore";
 
-const Section = ({sectionNumber, title, content, isOpen, toggleSection }) => 
+const Section = ({sectionNumber, title, subSections, isOpen, toggleSection, onUserSelected,}) => 
 {
   const arrow = "&#9650;";
-
-  const displaySubSections = content.map((str, index) => (<li key={index}>{str}</li>));
+  const displaySubSections = subSections.map((str, index) => (<li key={index}><button onClick={()=>onUserSelected(index)}>{str}</button></li>));
   
   return (
     <>

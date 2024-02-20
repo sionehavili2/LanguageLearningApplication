@@ -11,14 +11,12 @@ import Account from './pages/Account.jsx';
 import Register from './components/Register.jsx';
 import Reset from './components/Reset.jsx';
 import Dashboard from './components/Dashboard.jsx';
+import StudySession from './UI/StudySession.jsx';
 
 function App() 
 {
   return (
-    <div style={{ 
-      backgroundImage: `url("src\assets\SpencerAndLiah.JPG")` 
-    }}>
-      <h1>Language Learning App</h1>
+    <div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout/>}>
@@ -27,12 +25,14 @@ function App()
             <Route exact path="/Account" element={<Account/>}/>
             <Route exact path="/Register" element={<Register />} />
             <Route path="/Reset" element={<Reset />} />
-            <Route exact path="/Dashboard" element={<Dashboard />} />
+            <Route exact path="/Dashboard" element={<Dashboard />}>
+              <Route path="/Dashboard/StudySession"/>
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
     </div>
-  )
+  );
 }
 
 export default App;

@@ -1,4 +1,6 @@
 .dashboard {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,7 +9,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: gray;
+  background-color: #dcdcdc;
   padding: 30px;
 }
 .dashboard__btn {
