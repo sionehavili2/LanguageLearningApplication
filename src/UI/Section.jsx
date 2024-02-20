@@ -7,7 +7,7 @@ import { clearIndexedDbPersistence } from "firebase/firestore";
 const Section = ({sectionNumber, title, subSections, isOpen, toggleSection, onUserSelected,}) => 
 {
   const arrow = "&#9650;";
-  const displaySubSections = subSections.map((str, index) => (<li key={index}><button onClick={()=>onUserSelected(index)}>{str}</button></li>));
+  const displaySubSections = subSections.map((str, index) => (<li key={index}><button onClick={()=>onUserSelected(index)}><Link to="/Dashboard/StudySession">{str}</Link></button></li>));
   
   return (
     <>

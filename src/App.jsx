@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route , Outlet} from "react-router-dom";
 
 //Link for User Authentication Tutorial
 //https://blog.logrocket.com/user-authentication-firebase-react-apps/
@@ -26,11 +26,12 @@ function App()
             <Route exact path="/Register" element={<Register />} />
             <Route path="/Reset" element={<Reset />} />
             <Route exact path="/Dashboard" element={<Dashboard />}>
-              <Route path="/Dashboard/StudySession"/>
+              <Route path="/Dashboard/StudySession" element={<StudySession />}/>
             </Route>
           </Route>
         </Routes>
       </BrowserRouter>
+                <Outlet/>
     </div>
   );
 }

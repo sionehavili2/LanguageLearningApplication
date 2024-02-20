@@ -57,9 +57,9 @@ const Home = () =>
     <>
       <h2>You are on the Home Page Welcome, <>{user?.email}</></h2>
       <div>Head to the <Link to="/Dashboard"> Dashboard </Link>to begin learning!</div>
-      <StringDisplayCard string={Module0[0].intro}/>
+      {/* <StringDisplayCard string={Module0[0].intro}/> */}
       <div>----</div>
-      <Flashcards exampleArray={Module0[0].examples}/>
+      {/* <Flashcards exampleArray={Module0[0].examples}/> */}
       <div className="dashboard">
         <div className="dashboard__container">
           <button className="dashboard__btn" onClick={logout}>Logout</button>

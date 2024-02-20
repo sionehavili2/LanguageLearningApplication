@@ -35,7 +35,7 @@ const Module0 =
             [
                 ["The 'i' and 'e' contrast","feitu'u : place", "fetu'u : star"],
                 ["The 'i' and 'e' contrast","vai : water", "vae : divide"],
-                ["The 'i' and 'e' contrast","toi", "hide", "toe : "],
+                ["The 'i' and 'e' contrast","toi : hide", "toe : again"],
                 ["The 'u' and  'o' contrast","lao : law", "lau : read"],
                 ["The 'u' and  'o' contrast","pou : post, pole" ,"pō : night"],
                 ["The 'u' and 'o' contrast", "kaokao : The side of a boat", "kaukau : bathe"],

@@ -1,6 +1,6 @@
 import { count } from "firebase/firestore";
 import classes from "./Flashcards.module.css"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Flashcards = (props) => 
 {
