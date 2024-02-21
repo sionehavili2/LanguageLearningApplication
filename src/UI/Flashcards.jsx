@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const Flashcards = (props) => 
 {
-
     const [arrayIndex, setArrayIndex] = useState(0);
     const exampleArray = props.exampleArray;
     const arrayLength = props.exampleArray.length;
@@ -16,8 +15,9 @@ const Flashcards = (props) =>
                 <button onClick={()=>{setArrayIndex(currentIndex => currentIndex - 1)}} disabled={arrayIndex <= 0}>Previous Example</button>
                 <button onClick={()=>{setArrayIndex(currentIndex => currentIndex + 1)}}  disabled={arrayIndex >= arrayLength - 1}>Next Example</button>
             </ul>
+            <div className={classes.exampleCounter}>Example {arrayIndex + 1}/{props.exampleArray.length}</div>
         </div>
-    )
+    );
 
 }
 

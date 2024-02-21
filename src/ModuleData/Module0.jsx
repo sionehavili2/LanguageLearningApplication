@@ -6,6 +6,7 @@ const Module0 =
     [ 
         "Vowels",
         "Dipthong Contrasts",
+        "Lengthened Vowel Contrast",
     ],
 
     lessons :     
@@ -39,6 +40,17 @@ const Module0 =
                 ["The 'u' and  'o' contrast","lao : law", "lau : read"],
                 ["The 'u' and  'o' contrast","pou : post, pole" ,"pō : night"],
                 ["The 'u' and 'o' contrast", "kaokao : The side of a boat", "kaukau : bathe"],
+            ]
+        },        
+        
+        {
+            intro : "Distinguish carefully between the long and the short vowel",
+            examples : 
+            [
+               ["Contrast the Following","Mānava : breathe, breath","manava : womb"],
+               ["Contrast the Following", "māvae : to depart","mavae : to wean"],
+               ["Contrast the Following", "kaka : to climb", "kakā : parrot","kākā : deceit, to decieve"],
+               ["Contrast the Following", "langa : to build, built, pain", "langā : to be in labor with a child"],
             ]
         },
     ]
