@@ -13,7 +13,7 @@ import Module0 from "../ModuleData/Module0";
 import Module1 from "../ModuleData/Module1";
 
 const allModules = [Module0,Module1];
-const moduleTitles = allModules.map((module)=>(module.moduleTitle))
+const moduleTitles = allModules.map((module)=>(module.moduleTitle));
 const lessonTitles = allModules.map((module)=>(module.lessonTitles));
 const testData = 
 [
@@ -73,7 +73,14 @@ function Dashboard()
 
   return (
       <div>
-        {userSelection === false ? <ContentDropdown moduleTitles={moduleTitles} lessonTitles={lessonTitles} onUserSelection={(moduleIndex, lessonIndex)=>setUserSelection([moduleIndex, lessonIndex])}/> : <StudySession moduleIndex={userSelection[0]} lessonIndex={userSelection[1]} moduleData={allModules[userSelection[0]]} />}
+
+        <>
+          {userSelection === false ? 
+            <ContentDropdown moduleTitles={moduleTitles} lessonTitles={lessonTitles} onUserSelection={(moduleIndex, lessonIndex)=>setUserSelection([moduleIndex, lessonIndex])}/> 
+            : 
+            <StudySession moduleIndex={userSelection[0]} lessonIndex={userSelection[1]} moduleData={allModules} />}
+        </>
+
         <UserLogStatus name={name} user={user} logout={logout}/>
       </div>
 

@@ -8,10 +8,7 @@ const StudySession = (props) =>
        <div className={classes.mainContainer}>
             
             <>
-                <h2>Flashcard Component</h2>
-                <h3>{props.moduleData.moduleTitle}</h3>
-                <h4>{props.moduleData.lessons[props.lessonIndex].intro}</h4>
-                <Flashcards exampleArray={props.moduleData.lessons[props.lessonIndex].examples}/>
+                <Flashcards lessonIndex={props.lessonIndex}  currentModuleData={props.moduleData[props.moduleIndex]}/>
             </>
 
        </div>
