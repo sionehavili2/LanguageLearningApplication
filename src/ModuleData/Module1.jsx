@@ -1,13 +1,15 @@
 const Module1 =
 {
     
-    moduleTitle : "Common Greetings, Expressions & Farewells", 
+    moduleTitle : "Greetings, Expressions & Farewells", 
     moduleDescription : "The following is a list of helpful common expressions. It is best to memorize them as soon as possible as they will be used often.",
     lessonTitles : 
     [
-        "Greetings", 
+        "Common Greetings", 
         "(Classroom) Expressions",
         "Farewells",
+        "Simple Greeting Exchange",
+        "Simple Greeting Exchange Part 2",
     ],
 
     lessons :
@@ -73,7 +75,41 @@ const Module1 =
                 ["Faka'au ā ē!", "Goodbye! (Polite form, plural)"],
             ]
         },
+
+        {
+            intro : "Practice a typical scenario of 2 speakers exchanging greetings",
+            examples : 
+            [
+                ["Mālō e leilei!" , "Hello! (Congratulations on being well)"],
+                ["'Io mālō e lelei.","yes, hello (responding to hello)."],
+                ["Fēfē hake?","How are you? (idiomatic)"],
+                ["Sai pē", "Just Fine!"],                
+            ]
+        },
+
+        {
+            intro : "Review and understand the meanings of basic greetings",
+            examples : 
+            [
+                ["'Io","is the appropriate response for all greetings, compliments, and farewells. It may standalone or accompany a more specific response."],
+                ["Nofo ā ē", "is good-bye, said to the person who is about to stay."],
+                ["'Alu ā ē ","is good-bye, said to the person who is about to leave. Note the sharp rising intonation of the 'ē' at the end"],
+            ],
+        },
     ],
 };
 
 export default Module1;
+
+/**** Empty Bracket *** /
+    
+    {
+        intro : "",
+        examples : 
+        [
+            
+        ]
+    },
+
+
+*/
