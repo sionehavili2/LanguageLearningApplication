@@ -1,0 +1,15 @@
+
+.mainContainer {
+    border: 5px solid darkblue;
+    display: flex;
+    justify-content: center;
+}
+
+.unorderedList {
+    border: 5px solid wheat;
+    text-align: justify;
+}
+
+.exampleCounter {
+    border: 5px solid khaki;
+}
