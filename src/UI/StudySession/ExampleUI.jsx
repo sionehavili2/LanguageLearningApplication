@@ -1,11 +1,9 @@
 import { count } from "firebase/firestore";
-import classes from "./Flashcards.module.css"
+import classes from "./ExampleUI.module.css"
 import { useState } from "react";
 
-const Flashcards = (props) => 
-{
-    console.log(props.currentModuleData);
-    
+const ExampleUI = (props) => 
+{    
     const [arrayIndex, setArrayIndex] = useState(0);
     const exampleArray = props.currentModuleData.lessons[props.lessonIndex].examples;
     const arrayLength  = props.currentModuleData.lessons[props.lessonIndex].examples.length;
@@ -13,7 +11,7 @@ const Flashcards = (props) =>
     
     return (
         <>
-            <h2>Flashcard Component</h2>
+            <h2>Example Component</h2>
             <h2>Module Title : {props.currentModuleData.moduleTitle}</h2>
             <h3>Lesson Title : {props.currentModuleData.lessonTitles[props.lessonIndex]}</h3>
             <h4>Intro : {props.currentModuleData.lessons[props.lessonIndex].intro}</h4>
@@ -30,4 +28,4 @@ const Flashcards = (props) =>
 
 }
 
-export default Flashcards;
+export default ExampleUI;

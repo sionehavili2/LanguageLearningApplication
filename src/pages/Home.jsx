@@ -4,9 +4,7 @@ import { auth, db, logout } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Login from "./Login";
-import StringDisplayCard from "../UI/StringDisplayCard";
-import Flashcards from "../UI/Flashcards";
-import Module0 from "../ModuleData/Module0";
+
 
 const Home = () => 
 {

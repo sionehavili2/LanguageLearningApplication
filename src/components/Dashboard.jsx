@@ -6,7 +6,7 @@ import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import ContentDropdown from "../UI/ContentDropdown";
 import UserLogStatus from "../UI/UserLogStatus";
-import StudySession from "../UI/StudySession";
+import StudySession from "../UI/StudySession/StudySession";
 
 //Importing Data Modules
 import Module0 from "../ModuleData/Module0";

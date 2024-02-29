@@ -11,7 +11,7 @@ import Account from './pages/Account.jsx';
 import Register from './components/Register.jsx';
 import Reset from './components/Reset.jsx';
 import Dashboard from './components/Dashboard.jsx';
-import StudySession from './UI/StudySession.jsx';
+import StudySession from './UI/StudySession/StudySession.jsx';
 
 function App() 
 {
