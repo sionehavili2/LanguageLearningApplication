@@ -7,15 +7,13 @@ function getSides ( exampleArray )
     let side2 = null;
     if(exampleArray.length === 3) 
     {
-        console.log(exampleArray[0]);
         side1 = (<><li>{exampleArray[0]}</li><li>{exampleArray[1]}</li></>);
         side2 = (<><li>{exampleArray[0]}</li><li>{exampleArray[2]}</li></>);
 
     }
     else if (exampleArray.length === 2)
     {
-        console.log("length is 2");
-        console.log(exampleArray);
+
         side1 = (<li>{exampleArray[0]}</li>);
         side2 = (<li>{exampleArray[1]}</li>);
     }

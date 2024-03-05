@@ -9,7 +9,6 @@ function isInteger(arg) {
 const ExampleUI = (props) => 
 {    
 
-    console.log(props.lessonData.exampleTitles);
     const [arrayIndex, setArrayIndex] = useState(0);
 
     const exampleArr = props.lessonData.examples;

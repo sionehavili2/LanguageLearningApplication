@@ -14,7 +14,7 @@ const StudySession = (props) =>
 
     return (
         <>
-            <div className={classes.mainContainer}>
+            {/* <div className={classes.mainContainer}>
                     
                     <>
                         <ExampleUI {...lessonInfo}/>
@@ -28,7 +28,7 @@ const StudySession = (props) =>
                         <Flashcard {...lessonInfo}/>
                     </>
 
-            </div>
+            </div> */}
                         
             <div className={classes.mainContainer}>
                     
