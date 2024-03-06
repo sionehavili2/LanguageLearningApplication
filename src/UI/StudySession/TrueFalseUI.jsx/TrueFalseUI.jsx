@@ -1,13 +1,7 @@
 import { useHref } from "react-router-dom";
 import classes from "./TrueFalseUI.module.css";
 import { useState, useEffect} from "react";
-
-function getRandomInt(min, max) 
-{
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+import { getRandomInt } from "../../../computeFunctions";
 
 function setupTrueFalse(isQuestionTrue, allExamples, allExamplesIndex)
 {
@@ -24,7 +18,7 @@ function setupTrueFalse(isQuestionTrue, allExamples, allExamplesIndex)
        firstIndex = 1;
        secondIndex = 2;
     }
-    else console.log("Error! [TrueFalseUI.jsx] function setupTrueFalse() has an array length it was not expecting");
+    else console.log("Error! [TrueFalseUI.jsx] function setupTrueFalse() has an array length it was not expecting : " + singleExampleArr.length);
 
     let comparee;
     if(isQuestionTrue === true) {comparee = singleExampleArr[secondIndex];}
@@ -49,7 +43,8 @@ const TrueFalseUI = (props) =>
     const [userSelected, setUserSelected] = useState(null);
     const [exampleIndex, setExampleIndex] = useState(0);
     const [displayExamples, setDisplayExamples] = useState();
-    const exampleArr = props.lessonData.examples;
+    const [exampleArr] = useState(props.lessonData.examples);
+
 
     function handleNextQuestion() 
     {
@@ -90,9 +85,8 @@ const TrueFalseUI = (props) =>
                 </>
 
                 <div>{exampleIndex + 1}/{exampleArr.length}</div>
-            </div>
 
-            
+            </div>
         </>
     );
 }

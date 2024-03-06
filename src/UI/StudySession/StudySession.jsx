@@ -1,8 +1,10 @@
 import ExampleUI from "./ExampleUI.jsx";
 import Flashcard from "./Flashcard.jsx";
 import TrueFalseUI from "./TrueFalseUI.jsx/TrueFalseUI.jsx";
+import MultipleChoiceUI from "./MultipleChoice/MultipleChoiceUI.jsx";
 
 import classes from "./StudySession.module.css";
+
 
 const StudySession = (props) => 
 {
@@ -28,12 +30,27 @@ const StudySession = (props) =>
                         <Flashcard {...lessonInfo}/>
                     </>
 
-            </div> */}
+            </div>
                         
             <div className={classes.mainContainer}>
                     
                     <>
                         <TrueFalseUI lessonIndex={props.lessonIndex}  currentModuleData={props.moduleData[props.moduleIndex]} {...lessonInfo}/>
+                    </>
+
+            </div> */}
+            <div className={classes.mainContainer}>
+                    
+                    <>
+                        <TrueFalseUI lessonIndex={props.lessonIndex}  currentModuleData={props.moduleData[props.moduleIndex]} {...lessonInfo}/>
+                    </>
+
+            </div>
+
+            <div className={classes.mainContainer}>
+                    
+                    <>
+                        <MultipleChoiceUI lessonIndex={props.lessonIndex}  currentModuleData={props.moduleData[props.moduleIndex]} {...lessonInfo}/>
                     </>
 
             </div>
