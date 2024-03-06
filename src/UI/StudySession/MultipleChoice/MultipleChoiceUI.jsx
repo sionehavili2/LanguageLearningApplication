@@ -32,64 +32,50 @@ const MultipleChoiceUI = (props) =>
 {
     const [exampleIndex, setExampleIndex] = useState(0);
     const [exampleArr] = useState(props.lessonData.examples);
-    const [questionSolutions, setQuestionSolutions] = useState(null);
-    const [displayExamples, setDisplayExamples] = useState(setupMultipleChoice(exampleArr, exampleIndex));
-    const [selectedOption, setSelectedOption] = useState('');
+    const [allSolutions, setAllSolutions] = useState(null);
+    const [comparee, setComparee] = useState(null);
+    const [answer, setAnswer] = useState(null);
+    const [result, setResult] = useState(null)
+    const [examples, setExamples] = useState(setupMultipleChoice(exampleArr, exampleIndex));
 
-    const handleOptionChange = (event) => {setSelectedOption(event.target.value)};
+    function handleNextQuestion()
+    {
+        let newIndex = exampleIndex + 1;
+        setExampleIndex(newIndex);
+        setAllSolutions(null);
+        setComparee(null);
+        setAnswer(null);
+        setResult(null);
+        setExamples(setupMultipleChoice(exampleArr, newIndex));
+    }
 
     useEffect(()=>
     {
-        console.log(displayExamples);
-        let comparee = displayExamples[0];
-        let solution = displayExamples[1];
-        let AllSolutions = displayExamples.slice(1);
-        const shuffledSolutions = shuffle(AllSolutions);
-        console.log(shuffledSolutions);
-        setQuestionSolutions(shuffledSolutions);
+        setComparee(examples[0]);
+        setAnswer(examples[1]);
+        setAllSolutions(shuffle(examples.slice(1)));
 
-    },[displayExamples]);
+    },[examples]);
 
     return (
         <div>
-        
             <h2>MultipeChoiceUI Component</h2>
             <h2>Module Title : {props.moduleTitle}</h2>
             <h3>Lesson Title : {props.lessonTitle}</h3>
             <h4>Intro : {props.lessonData.intro}</h4>
-
-            <h4>Multiple choice. Please select the correct Translation</h4>
-
+            <div>Result: {result}</div>
+            <h3>Multiple choice. Please select the correct translation for : {comparee}</h3>
             <div className={classes.mainContainer}>
 
-                <>{questionSolutions && questionSolutions.map((singleSolution,index) => (<li key={index}><button>{singleSolution}</button></li>))}</>
+                <>{allSolutions && allSolutions.map((singleSolution,index) => (<li key={index}><button value={singleSolution} onClick={(e)=>{setResult(answer === e.target.value ? true : false)}} disabled={result != null}>{singleSolution}</button></li>))}</>
    
 
             </div>
-
-            <p>Selected option: {selectedOption}</p>
+            <>{result != null && (result === true ? <div className={classes.rightAnswer}>"Correct!"</div> : <div className={classes.wrongAnswer}>"Incorrect. Correct answer is :"{answer}</div>)}</>
+            <>{result != null && <button onClick={handleNextQuestion}>Next Question</button>}</> 
             <div>{exampleIndex + 1}/{exampleArr.length}</div>
         </div>
-
-        /* 
-
-
-        <form>
-            <label>
-                <input type="radio" value="option1" checked={selectedOption === 'option1'} onChange={handleOptionChange}/>
-                <>Option 1</>
-            </label>
-
-            <br />
-
-            <label>
-                <input type="radio" value="option2" checked={selectedOption === 'option2'} onChange={handleOptionChange}/>
-                <>Option 2</>
-            </label>
-            
-        </form>
-        */
     );
-    }
+}
 
 export default MultipleChoiceUI;

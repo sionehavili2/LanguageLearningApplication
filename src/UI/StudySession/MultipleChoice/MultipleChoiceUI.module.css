@@ -1,3 +1,11 @@
 .mainContainer {
     border: 5px solid maroon;
 }
+
+.rightAnswer {
+    color: green;
+}
+
+.wrongAnswer {
+    color: red;
+}
