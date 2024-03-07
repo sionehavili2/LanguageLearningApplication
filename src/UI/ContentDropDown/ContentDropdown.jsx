@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Section from "./Section";
+import Section from "../Section/Section";
 import classes from "./ContentDropdown.module.css";
 
 

@@ -1,6 +1,5 @@
 import classes from "./MultipleChoiceUI.module.css";
-import { useState, useEffect, useSyncExternalStore } from "react";
-import { getRandomInt } from "../../../computeFunctions";
+import { useState, useEffect } from "react";
 import  shuffle  from "lodash/shuffle";
 
 function setupMultipleChoice (allExamples, allExamplesIndex) 
@@ -25,7 +24,6 @@ function setupMultipleChoice (allExamples, allExamplesIndex)
         singleExampleArr.push(newVal[secondIndex])
     }
     return [...singleExampleArr];
-
 }
 
 const MultipleChoiceUI = (props) => 
@@ -35,7 +33,7 @@ const MultipleChoiceUI = (props) =>
     const [allSolutions, setAllSolutions] = useState(null);
     const [comparee, setComparee] = useState(null);
     const [answer, setAnswer] = useState(null);
-    const [result, setResult] = useState(null)
+    const [result, setResult] = useState(null);
     const [examples, setExamples] = useState(setupMultipleChoice(exampleArr, exampleIndex));
 
     function handleNextQuestion()
@@ -54,7 +52,6 @@ const MultipleChoiceUI = (props) =>
         setComparee(examples[0]);
         setAnswer(examples[1]);
         setAllSolutions(shuffle(examples.slice(1)));
-
     },[examples]);
 
     return (
@@ -68,7 +65,7 @@ const MultipleChoiceUI = (props) =>
             <div className={classes.mainContainer}>
 
                 <>{allSolutions && allSolutions.map((singleSolution,index) => (<li key={index}><button value={singleSolution} onClick={(e)=>{setResult(answer === e.target.value ? true : false)}} disabled={result != null}>{singleSolution}</button></li>))}</>
-   
+                
 
             </div>
             <>{result != null && (result === true ? <div className={classes.rightAnswer}>"Correct!"</div> : <div className={classes.wrongAnswer}>"Incorrect. Correct answer is :"{answer}</div>)}</>

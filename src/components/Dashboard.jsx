@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import ContentDropdown from "../UI/ContentDropdown";
-import UserLogStatus from "../UI/UserLogStatus";
+import UserLogStatus from "../UI/UserLogStatus/UserLogStatus";
 import StudySession from "../UI/StudySession/StudySession";
+import ContentDropdown from "../UI/ContentDropDown/ContentDropdown";
 
 //Importing Data Modules
 import Module0 from "../ModuleData/Module0";
@@ -15,25 +15,7 @@ import Module1 from "../ModuleData/Module1";
 const allModules = [Module0,Module1];
 const moduleTitles = allModules.map((module)=>(module.moduleTitle));
 const lessonTitles = allModules.map((module)=>(module.lessonTitles));
-const testData = 
-[
-    {
-      title: "Basic Fundamentals",
-      subSections: ["Spellings, Sounds, and Pronunciations", "Pre-Lesson (Basics)"],
-    },
-    {
-      title: "Educational Achievements",
-      subSections: ["Spellings, Sounds, and Pronunciations", "Pre-Lesson (Basics)"],
-    },
-    {
-      title: "Technical Proficiency",
-      subSections: ["Spellings, Sounds, and Pronunciations", "Pre-Lesson (Basics)"],
-    },
-    {
-      title: "Aspirations and Problem-Solving Approach",
-      subSections: ["Spellings, Sounds, and Pronunciations", "Pre-Lesson (Basics)"],
-    }
-];
+
 
 function Dashboard() 
 {
