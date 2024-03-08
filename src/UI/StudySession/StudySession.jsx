@@ -2,6 +2,7 @@ import ExampleUI from "./Example/ExampleUI.jsx";
 import Flashcard from "./Flashcard/Flashcard.jsx";
 import TrueFalseUI from "./TrueFalse/TrueFalseUI.jsx";
 import MultipleChoiceUI from "./MultipleChoice/MultipleChoiceUI.jsx";
+import Matching from "../Matching/Matching.jsx";
 
 import classes from "./StudySession.module.css";
 
@@ -54,6 +55,14 @@ const StudySession = (props) =>
                     </>
 
             </div> */}
+
+            <div className={classes.mainContainer}>
+                    
+                <>
+                    <Matching {...lessonInfo}/>
+                </>
+
+            </div>
         </>
        
     );

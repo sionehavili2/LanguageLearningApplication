@@ -69,10 +69,9 @@ const Module1 =
                 ["'Alu ā ē!'", "Goodbye! (To the person going)"],
                 ["Nofo ā ē!'", "Goodbye! (To the person staying)"],
                 ["Mou ō ā ē!'", "Goodbye! (To serveral persons going)"],
-                ["Mou nofo ō ā ē!'", "Goodbye! (To serveral persons going)"],
                 ["Mou nofo ō ā ē!'", "Goodbye! (To serveral persons staying)"],
                 ["Faka'au ā ē!", "Goodbye! (Polite form, singular)"],
-                ["Faka'au ā ē!", "Goodbye! (Polite form, plural)"],
+                ["Mou Faka'au ā ē!", "Goodbye! (Polite form, plural)"],
             ]
         },
 

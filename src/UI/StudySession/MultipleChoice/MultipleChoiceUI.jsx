@@ -15,7 +15,7 @@ function setupMultipleChoice (allExamples, allExamplesIndex)
     else if(singleExampleArr.length === 3){ secondIndex = 2;}
     else console.log("Error! [TrueFalseUI.jsx] function setupTrueFalse() has an array length it was not expecting : " + singleExampleArr.length);
 
-    // //Retrieves 3 other possible answers
+    //3. Retrieves 3 other possible answers
     let currentIndex = allExamplesIndex;
     while(singleExampleArr.length < 5)
     {
