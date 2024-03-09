@@ -6,6 +6,9 @@ import Matching from "../Matching/Matching.jsx";
 
 import classes from "./StudySession.module.css";
 
+import { auth, db, logout } from "../../firebase.jsx";
+import { query, collection, getDocs, where } from "firebase/firestore";
+
 
 const StudySession = (props) => 
 {

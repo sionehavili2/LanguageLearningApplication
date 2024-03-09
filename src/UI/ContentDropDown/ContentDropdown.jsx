@@ -2,7 +2,6 @@ import { useState } from "react";
 import Section from "../Section/Section";
 import classes from "./ContentDropdown.module.css";
 
-
 const ContentDropdown = (props) =>
 {   
   const [openSections, setOpenSections] = useState([]);
@@ -32,7 +31,7 @@ const ContentDropdown = (props) =>
       </div>
 
       <>
-        {props.moduleTitles.map((titleString, index) => (
+        {props.userProgress && (props.moduleTitles.map((titleString, index) => (
           <Section
             key={index}
             sectionNumber={index}
@@ -41,8 +40,9 @@ const ContentDropdown = (props) =>
             isOpen={openSections.includes(index)}
             toggleSection={() => toggleSection(index)}
             onUserSelected={(indexValue) => props.onUserSelection(index,indexValue)}
+            progression={props.userProgress[index].moduleLessons}
           />
-        ))}
+        )))}
       </>
 
     </div>

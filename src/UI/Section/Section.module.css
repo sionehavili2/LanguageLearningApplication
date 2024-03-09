@@ -47,3 +47,14 @@
     color: rgb(128,128,128,1);
     font-size: x-large;
 }
+
+.list {
+  border: 5px solid firebrick;
+}
+
+.listItem {
+  border: 6px solid powderblue;
+  display: flex;
+  justify-content: space-between;
+  width: fit-content;
+}
