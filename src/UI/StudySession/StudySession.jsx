@@ -1,71 +1,23 @@
-import ExampleUI from "./Example/ExampleUI.jsx";
-import Flashcard from "./Flashcard/Flashcard.jsx";
-import TrueFalseUI from "./TrueFalse/TrueFalseUI.jsx";
-import MultipleChoiceUI from "./MultipleChoice/MultipleChoiceUI.jsx";
-import Matching from "../Matching/Matching.jsx";
+import CheckpointUI from "../Checkpoint/CheckpointUI.jsx";
+import BeginStudySession from "./BeginStudySession.jsx";
 
 import classes from "./StudySession.module.css";
-
-import { auth, db, logout } from "../../firebase.jsx";
-import { query, collection, getDocs, where } from "firebase/firestore";
-
+import { useState, useTransition } from "react";
 
 const StudySession = (props) => 
 {
+    const[checkpointSelected, setCheckpointSelected] = useState(null);
     const modTitle = props.moduleData[props.moduleIndex].moduleTitle;
     const lessonTitle = props.moduleData[props.moduleIndex].lessonTitles[props.lessonIndex];
     const lessonArr =  props.moduleData[props.moduleIndex].lessons[props.lessonIndex];
 
     const lessonInfo = { moduleTitle:modTitle, lessonTitle:lessonTitle, lessonData:lessonArr};
 
+
     return (
         <>
-            {/* <div className={classes.mainContainer}>
-                    
-                    <>
-                        <ExampleUI {...lessonInfo}/>
-                    </>
-
-            </div>
-
-            <div className={classes.mainContainer}>
-                    
-                    <>
-                        <Flashcard {...lessonInfo}/>
-                    </>
-
-            </div>
-                        
-            <div className={classes.mainContainer}>
-                    
-                    <>
-                        <TrueFalseUI lessonIndex={props.lessonIndex}  currentModuleData={props.moduleData[props.moduleIndex]} {...lessonInfo}/>
-                    </>
-
-            </div> 
-            <div className={classes.mainContainer}>
-                    
-                    <>
-                        <TrueFalseUI lessonIndex={props.lessonIndex}  currentModuleData={props.moduleData[props.moduleIndex]} {...lessonInfo}/>
-                    </>
-
-            </div>
-
-            <div className={classes.mainContainer}>
-                    
-                    <>
-                        <MultipleChoiceUI lessonIndex={props.lessonIndex}  currentModuleData={props.moduleData[props.moduleIndex]} {...lessonInfo}/>
-                    </>
-
-            </div> */}
-
-            <div className={classes.mainContainer}>
-                    
-                <>
-                    <Matching {...lessonInfo}/>
-                </>
-
-            </div>
+            <CheckpointUI progressData={props.userProgress[props.moduleIndex].moduleLessons[props.lessonIndex].exercisesFinished} onSelectedCheckpoint={(cpIndex)=>{setCheckpointSelected(cpIndex)}}/>
+            {checkpointSelected != null && <BeginStudySession {...lessonInfo} selectedIndex={checkpointSelected}/>}
         </>
        
     );

@@ -22,23 +22,23 @@ const progressStruct =
   {
     moduleLessons : 
     [
-      {exercisesFinished : [false,true,true,true,true,true,true]},
+      {exercisesFinished : [true,true,true,true,true,true,true]},
+      {exercisesFinished : [true,true,true,true,true,true,false]},
       {exercisesFinished : [true,true,true,true,true,false,false]},
       {exercisesFinished : [true,true,true,true,false,false,false]},
-      {exercisesFinished : [false,true,true,false,true,false,false]},
-      {exercisesFinished : [true,false,true,false,false,false,false]},
       {exercisesFinished : [true,true,true,false,false,false,false]},
+      {exercisesFinished : [true,true,false,false,false,false,false]},
     ]
   },
 
   {
     moduleLessons : 
     [
-      {exercisesFinished : [true,true,true,false,true,true,true]},
-      {exercisesFinished : [true,true,true,true,true,true,false]},
-      {exercisesFinished : [false,true,true,false,true,false,false]},
-      {exercisesFinished : [true,true,false,true,true,false,false]},
-      {exercisesFinished : [true,false,true,true,false,false,false]},
+      {exercisesFinished : [true,true,false,false,false,false,false]},
+      {exercisesFinished : [true,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
     ]
   },
   
@@ -63,51 +63,35 @@ function Dashboard()
       const userData = doc.docs[0].data();
       setName(userData.name);
 
-      // userData && userData.userProgression ? setUserProgressData(userData.userProgression) : alert('User has no user progression.');
-      let tempArr = [];
-      userData.userProgression.forEach(element => {tempArr.push(element)});
-      setUserProgressData([...tempArr]);
-    if (doc.empty) 
-    {
-      // If the query doesn't return any documents, it means the user document doesn't exist yet
-      // Create a new user document with the provided data
-      await setDoc(docRef(db, "users", user?.uid), { userProgression: progressStruct });
-      console.log("New user document created with user progression data");
-    } 
-    else 
-    {
-      // If the query returns a document, update the existing user document with the provided data
-      const userDocRef = doc.docs[0].ref;
-      await updateDoc(userDocRef, { userProgression: progressStruct });
-      console.log("User progression data updated successfully");
-    }
-
-      /**** Post User Progression Data ***
-        
-
+      if(userData && userData.userProgression) 
+      {
+        let tempArr = [];
+        userData.userProgression.forEach(element => {tempArr.push(element)});
+        setUserProgressData([...tempArr]);
+      }
+      else 
+      {
         if (doc.empty) 
         {
           // If the query doesn't return any documents, it means the user document doesn't exist yet
           // Create a new user document with the provided data
-          await setDoc(docRef(db, "users", user?.uid), { userProgression: newStruct });
+          await setDoc(docRef(db, "users", user?.uid), { userProgression: progressStruct });
           console.log("New user document created with user progression data");
         } 
         else 
         {
           // If the query returns a document, update the existing user document with the provided data
           const userDocRef = doc.docs[0].ref;
-          await updateDoc(userDocRef, { userProgression: newStruct });
+          await updateDoc(userDocRef, { userProgression: progressStruct });
           console.log("User progression data updated successfully");
         }
-
-
-      ***********************/
-
+        setUserProgressData(progressStruct);
+      }
     } 
     catch (err) 
     {
       console.error(err);
-      alert("An error occured while fetching user data");
+      alert("An error occured while fetching user data [Dashboard.jsx]");
     }
   };
 
@@ -123,12 +107,11 @@ function Dashboard()
 
   return (
       <div>
-
         <>
           {userSelection === false ? 
             <ContentDropdown userProgress={userProgressData} moduleTitles={moduleTitles} lessonTitles={lessonTitles} onUserSelection={(moduleIndex, lessonIndex)=>setUserSelection([moduleIndex, lessonIndex])}/> 
             : 
-            <StudySession moduleIndex={userSelection[0]} lessonIndex={userSelection[1]} moduleData={allModules} />}
+            <StudySession userProgress={userProgressData} moduleIndex={userSelection[0]} lessonIndex={userSelection[1]} moduleData={allModules}  />}
         </>
 
         <UserLogStatus name={name} user={user} logout={logout}/>

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./Section.module.css";
 import classes from "./Section.module.css";
 import { Link } from "react-router-dom";
-import ProgressionUI from "../Progression/ProgressionUI";
+import CheckpointUI from "../Checkpoint/CheckpointUI";
+import SectionsCompletedCounter from "./SectionsCompletedCounter/SectionsCompletedCounter";
 
 const Section = ({progression, sectionNumber, title, subSections, isOpen, toggleSection, onUserSelected,}) => 
 {
-  // console.log(progression[0]);
 
   const displaySubSections = subSections.map((str, index) => (
   
@@ -14,7 +14,7 @@ const Section = ({progression, sectionNumber, title, subSections, isOpen, toggle
       <button onClick={()=>onUserSelected(index)}>
         <Link to="/Dashboard/StudySession">{str}</Link>
       </button>
-      <ProgressionUI progressData={progression[index].exercisesFinished}/>
+      <SectionsCompletedCounter progressData={progression[index].exercisesFinished}/>
     </li>));
   
   return (

@@ -31,7 +31,7 @@ function App()
           </Route>
         </Routes>
       </BrowserRouter>
-                <Outlet/>
+      <Outlet/>
     </div>
   );
 }
