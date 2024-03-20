@@ -79,6 +79,10 @@ const Matching = (props) =>
         
         setTimeout(() => {setDisplayResponse(null)}, 1000);
     }
+
+    useEffect(()=>{if(displayResponse === null && allValuesTrue(disabledCompareeBtns)){props.onFinished(true)}},[displayResponse])
+
+
     
     return (
         <>
@@ -90,7 +94,7 @@ const Matching = (props) =>
             </div>
             <>{displayResponse != null && (displayResponse === true ? <h2 className={classes.rightAnswer}>Correct!</h2> : <h2 className={classes.wrongAnswer}>Incorrect. Try Again.</h2>)}</>
             <>{displayWarning != null && (<h2 className={classes.warning}>Select from the left column first, then select it's answer from the left column</h2>)}</>
-            <>{allValuesTrue(disabledCompareeBtns) && <h1>You are Finished !</h1>}</>
+            <>{allValuesTrue(disabledCompareeBtns) && <h2>You are Finished !<button onClick={()=>{props.onReturnToCheckPointSelection()}}>Return to Checkpoint Selection</button></h2>}</>
         </>
     );
 

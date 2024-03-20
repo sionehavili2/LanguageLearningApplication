@@ -1,6 +1,6 @@
 import { count } from "firebase/firestore";
 import classes from "./ExampleUI.module.css"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function isInteger(arg) {
   return typeof arg === 'number' && Number.isInteger(arg);
@@ -15,8 +15,9 @@ const ExampleUI = (props) =>
     const exampleArrLength  = props.lessonData.examples.length;
 
 
-    const mapExamples = exampleArr[arrayIndex].map((string, index)=>(<li key={index}>{string}</li>))
+    const mapExamples = exampleArr[arrayIndex].map((string, index)=>(<li key={index}>{string}</li>));
     
+    useEffect(()=>{if(arrayIndex + 1 === exampleArrLength){props.onFinished(true)}},[arrayIndex]);
     
     return (
         <>
@@ -33,7 +34,8 @@ const ExampleUI = (props) =>
                     <button onClick={()=>{setArrayIndex(currentIndex => currentIndex + 1)}}  disabled={arrayIndex >= exampleArrLength - 1}>Next Example</button>
                 </ul>
                 <div className={classes.exampleCounter}>Example {arrayIndex + 1}/{exampleArr.length}</div>
-                {arrayIndex + 1 === exampleArr.length && <button onClick={()=>{props.onFinished()}}>Finish and return to checkpoint selection</button>}
+                {arrayIndex + 1 === exampleArr.length && <button onClick={()=>{props.onReturnToCheckPointSelection()}}>Return to Checkpoint Selection</button>
+}
             </div>
         </>
     );

@@ -57,7 +57,12 @@ const TrueFalseUI = (props) =>
 
     useEffect(()=>{setDisplayExamples(setupTrueFalse(isQuestionTrue, exampleArr, exampleIndex));},[displayExamples]);
 
-    useEffect(()=>{if(userSelected != null && userSelected === isQuestionTrue){setCorrectAnswerCnt(correctAnswerCnt + 1)}},[userSelected]);
+    useEffect(()=>{if(userSelected != null && userSelected === isQuestionTrue)
+    {
+        setCorrectAnswerCnt(correctAnswerCnt + 1);
+        if(exampleIndex + 1 === exampleArr.length) {props.onFinished(correctAnswerCnt / exampleArr.length >= .75 ? true : false)}
+    }},[userSelected]);
+
 
     return (
         <>
@@ -86,7 +91,7 @@ const TrueFalseUI = (props) =>
 
                                 <>
                                     <>{correctAnswerCnt / exampleArr.length >= .75 ? <h3 className={classes.rightAnswer}>PASS</h3> : <h3 className={classes.wrongAnswer}>You Did not pass the Challenge</h3>}</>
-                                    <button onClick={()=>{correctAnswerCnt / exampleArr.length >= .75 ? props.onFinished() : props.onDNF()}}>Finish Challenge</button>
+                                    <button onClick={()=>{props.onReturnToCheckPointSelection()}}>End Challenge</button>
                                 </>
 
                             }</>

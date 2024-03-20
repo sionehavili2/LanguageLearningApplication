@@ -17,25 +17,52 @@ const allModules = [Module0,Module1];
 const moduleTitles = allModules.map((module)=>(module.moduleTitle));
 const lessonTitles = allModules.map((module)=>(module.lessonTitles));
 
+// const progressStruct = 
+// [
+//   {
+//     moduleLessons : 
+//     [
+//       {exercisesFinished : [true,true,true,true,true,true,true]},
+//       {exercisesFinished : [true,true,true,true,true,true,false]},
+//       {exercisesFinished : [true,true,true,true,true,false,false]},
+//       {exercisesFinished : [true,true,true,true,false,false,false]},
+//       {exercisesFinished : [true,true,true,false,false,false,false]},
+//       {exercisesFinished : [true,true,false,false,false,false,false]},
+//     ]
+//   },
+
+//   {
+//     moduleLessons : 
+//     [
+//       {exercisesFinished : [true,true,false,false,false,false,false]},
+//       {exercisesFinished : [true,false,false,false,false,false,false]},
+//       {exercisesFinished : [false,false,false,false,false,false,false]},
+//       {exercisesFinished : [false,false,false,false,false,false,false]},
+//       {exercisesFinished : [false,false,false,false,false,false,false]},
+//     ]
+//   },
+  
+// ];
+
 const progressStruct = 
 [
   {
     moduleLessons : 
     [
-      {exercisesFinished : [true,true,true,true,true,true,true]},
-      {exercisesFinished : [true,true,true,true,true,true,false]},
-      {exercisesFinished : [true,true,true,true,true,false,false]},
-      {exercisesFinished : [true,true,true,true,false,false,false]},
-      {exercisesFinished : [true,true,true,false,false,false,false]},
-      {exercisesFinished : [true,true,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
     ]
   },
 
   {
     moduleLessons : 
     [
-      {exercisesFinished : [true,true,false,false,false,false,false]},
-      {exercisesFinished : [true,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
       {exercisesFinished : [false,false,false,false,false,false,false]},
       {exercisesFinished : [false,false,false,false,false,false,false]},
       {exercisesFinished : [false,false,false,false,false,false,false]},

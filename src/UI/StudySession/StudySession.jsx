@@ -24,9 +24,8 @@ const StudySession = (props) =>
             {
                 checkpointSelected != null ?
 
-                    <BeginStudySession {...lessonInfo} selectedIndex={checkpointSelected} onCompletedSession={(finishedCpIndex)=> 
-                    {
-                        setCheckpointSelected(null);
+                    <BeginStudySession {...lessonInfo} selectedIndex={checkpointSelected} onReturnToCheckPointSelection={()=>{setCheckpointSelected(null)}} onCompletedSession={(finishedCpIndex)=> 
+                    {    
                         if(finishedCpIndex === -1)
                         {
                             console.log("It was not finished")
@@ -37,6 +36,7 @@ const StudySession = (props) =>
                             progressArr[finishedCpIndex] = true;
                             props.onUpdateProgress([...progressArr]);
                         }
+                        else console.log("section is already finished");
                     }}/>
                 :
                     <CheckpointUI progressData={progressArr} onSelectedCheckpoint={(cpIndex)=>{setCheckpointSelected(cpIndex)}}/>

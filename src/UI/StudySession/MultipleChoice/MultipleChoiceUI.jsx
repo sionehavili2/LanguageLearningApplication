@@ -35,6 +35,8 @@ const MultipleChoiceUI = (props) =>
     const [answer, setAnswer] = useState(null);
     const [result, setResult] = useState(null);
     const [examples, setExamples] = useState(setupMultipleChoice(exampleArr, exampleIndex));
+    const [correctAnswerCnt, setCorrectAnswerCnt] = useState(0);
+
 
     function handleNextQuestion()
     {
@@ -54,13 +56,14 @@ const MultipleChoiceUI = (props) =>
         setAllSolutions(shuffle(examples.slice(1)));
     },[examples]);
 
+    useEffect(()=>{if(result != null && result === true){setCorrectAnswerCnt(currntCnt => currntCnt+1)}},[result]);
+
     return (
         <div>
             <h2>MultipeChoiceUI Component</h2>
             <h2>Module Title : {props.moduleTitle}</h2>
             <h3>Lesson Title : {props.lessonTitle}</h3>
             <h4>Intro : {props.lessonData.intro}</h4>
-            <div>Result: {result}</div>
             <h3>Multiple choice. Please select the correct translation for : {comparee}</h3>
             <div className={classes.mainContainer}>
 
@@ -69,8 +72,10 @@ const MultipleChoiceUI = (props) =>
 
             </div>
             <>{result != null && (result === true ? <div className={classes.rightAnswer}>"Correct!"</div> : <div className={classes.wrongAnswer}>"Incorrect. Correct answer is :"{answer}</div>)}</>
-            <>{result != null && <button onClick={handleNextQuestion}>Next Question</button>}</> 
-            <div>{exampleIndex + 1}/{exampleArr.length}</div>
+            <>{result != null && (exampleIndex + 1 != exampleArr.length ? <button onClick={handleNextQuestion}>Next Question</button> :                                     <button onClick={()=>{correctAnswerCnt / exampleArr.length >= .75 ? props.onFinished() : props.onDNF()}}>Finish Challenge</button>
+)}</> 
+            <div>Question {exampleIndex + 1}/{exampleArr.length}</div>
+            <div>Total Correct : {correctAnswerCnt} / {exampleArr.length}</div>
         </div>
     );
 }
