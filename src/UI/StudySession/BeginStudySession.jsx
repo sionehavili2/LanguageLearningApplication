@@ -10,8 +10,8 @@ const BeginStudySession = (props) =>
     switch(props.selectedIndex)
     {
         case 0 : return <ExampleUI {...props} onFinished={()=>{props.onCompletedSession(0)}}/>
-        case 1 : return <TrueFalseUI {...props} onFinished={()=>{props.onCompletedSession(1)}} />
-        case 2 : return <MultipleChoiceUI {...props} onFinished={()=>{props.onCompletedSession(2)}}/>
+        case 1 : return <TrueFalseUI {...props} onFinished={()=>{props.onCompletedSession(1)}} onDNF={()=>{props.onCompletedSession(-1)}}/>
+        case 2 : return <MultipleChoiceUI {...props} onFinished={()=>{props.onCompletedSession(2)}} onDNF={()=>{props.onCompletedSession(-1)}}/>
         case 3 : return <Matching {...props} onFinished={()=>{props.onCompletedSession(3)}}/>
         case 4 : return <Flashcard {...props} onFinished={()=>{props.onCompletedSession(4)}}/>
         case 5 : return <div>Quiz Master still needs to be finished...</div>

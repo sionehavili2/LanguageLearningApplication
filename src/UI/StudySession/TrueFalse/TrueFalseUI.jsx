@@ -43,6 +43,7 @@ const TrueFalseUI = (props) =>
     const [userSelected, setUserSelected] = useState(null);
     const [exampleIndex, setExampleIndex] = useState(0);
     const [displayExamples, setDisplayExamples] = useState();
+    const [correctAnswerCnt, setCorrectAnswerCnt] = useState(0);
     const [exampleArr] = useState(props.lessonData.examples);
 
 
@@ -56,6 +57,8 @@ const TrueFalseUI = (props) =>
 
     useEffect(()=>{setDisplayExamples(setupTrueFalse(isQuestionTrue, exampleArr, exampleIndex));},[displayExamples]);
 
+    useEffect(()=>{if(userSelected != null && userSelected === isQuestionTrue){setCorrectAnswerCnt(correctAnswerCnt + 1)}},[userSelected]);
+
     return (
         <>
             <h2>TrueFalseUI Component</h2>
@@ -67,7 +70,6 @@ const TrueFalseUI = (props) =>
             <div className={classes.mainContainer}>
 
                 <h4>{displayExamples ? displayExamples : "Loading..."}</h4>
-
                 <>
                 {
                     userSelected === null ?
@@ -80,6 +82,14 @@ const TrueFalseUI = (props) =>
                         <>
                             <>{userSelected === isQuestionTrue ? <div className={classes.rightAnswer}>CORRECT</div> : <div className={classes.wrongAnswer}>That is NOT Correct</div>}</>
                             <>{exampleIndex < exampleArr.length - 1 && <button onClick={handleNextQuestion}>Next Question</button>}</>
+                            <>{exampleIndex === exampleArr.length - 1 && 
+
+                                <>
+                                    <>{correctAnswerCnt / exampleArr.length >= .75 ? <h3 className={classes.rightAnswer}>PASS</h3> : <h3 className={classes.wrongAnswer}>You Did not pass the Challenge</h3>}</>
+                                    <button onClick={()=>{correctAnswerCnt / exampleArr.length >= .75 ? props.onFinished() : props.onDNF()}}>Finish Challenge</button>
+                                </>
+
+                            }</>
                         </>
                 }
                 </>
@@ -87,6 +97,7 @@ const TrueFalseUI = (props) =>
                 <div>{exampleIndex + 1}/{exampleArr.length}</div>
 
             </div>
+            <div>Total Correct : {correctAnswerCnt} / {exampleArr.length}</div>
         </>
     );
 }
