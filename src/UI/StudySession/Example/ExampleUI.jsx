@@ -33,6 +33,7 @@ const ExampleUI = (props) =>
                     <button onClick={()=>{setArrayIndex(currentIndex => currentIndex + 1)}}  disabled={arrayIndex >= exampleArrLength - 1}>Next Example</button>
                 </ul>
                 <div className={classes.exampleCounter}>Example {arrayIndex + 1}/{exampleArr.length}</div>
+                {arrayIndex + 1 === exampleArr.length && <button onClick={()=>{props.onFinished()}}>Finish and return to checkpoint selection</button>}
             </div>
         </>
     );

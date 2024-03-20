@@ -52,9 +52,10 @@ function Dashboard()
   const navigate = useNavigate("/Login");
   const navigateStartSession = useNavigate("/Dashboard/StudySession");
   const [userProgressData, setUserProgressData] = useState();
+  const [userDocRef, setUserDocRef] = useState();
 
   // //Retreives User Data from Backend
-  const fetchUserName = async () => 
+  const fetchUserData = async () => 
   {
     try 
     {
@@ -62,6 +63,7 @@ function Dashboard()
       const doc = await getDocs(q);
       const userData = doc.docs[0].data();
       setName(userData.name);
+      setUserDocRef(doc.docs[0].ref);
 
       if(userData && userData.userProgression) 
       {
@@ -86,6 +88,7 @@ function Dashboard()
           console.log("User progression data updated successfully");
         }
         setUserProgressData(progressStruct);
+
       }
     } 
     catch (err) 
@@ -93,7 +96,10 @@ function Dashboard()
       console.error(err);
       alert("An error occured while fetching user data [Dashboard.jsx]");
     }
+
   };
+
+  console.log(userProgressData);
 
   //Use Efffect for loading info from backend
   useEffect(() => 
@@ -102,16 +108,33 @@ function Dashboard()
     //If user login data does not exist, Navigate user back to login page
     if (!user) return navigate();
     if (user && userSelection) return navigateStartSession();
-    fetchUserName();
+    fetchUserData();
   }, [user, loading]);
+
 
   return (
       <div>
         <>
-          {userSelection === false ? 
+          {userSelection === false ?
+
             <ContentDropdown userProgress={userProgressData} moduleTitles={moduleTitles} lessonTitles={lessonTitles} onUserSelection={(moduleIndex, lessonIndex)=>setUserSelection([moduleIndex, lessonIndex])}/> 
             : 
-            <StudySession userProgress={userProgressData} moduleIndex={userSelection[0]} lessonIndex={userSelection[1]} moduleData={allModules}  />}
+            <StudySession userProgress={userProgressData} moduleIndex={userSelection[0]} lessonIndex={userSelection[1]} moduleData={allModules} onUpdateProgress={(updatedArray)=>
+              {
+                const updatedUserProgress = [...userProgressData];
+                updatedUserProgress[userSelection[0]].moduleLessons[userSelection[1]].exercisesFinished = updatedArray;
+
+                // Update the document in Firestore with the modified user progress data
+                const updateProgress = async ()=>
+                {
+                  await updateDoc(userDocRef, { userProgression: updatedUserProgress })
+                  .then(() => {console.log("User progress data updated successfully");})
+                  .catch((error) => {console.error("Error updating user progress data:", error);});
+                }
+
+                updateProgress();
+                
+              }}/>}
         </>
 
         <UserLogStatus name={name} user={user} logout={logout}/>
@@ -120,5 +143,7 @@ function Dashboard()
   );
 }
 export default Dashboard;
+
+    // const allUserProgress = props.userProgress[props.moduleIndex].moduleLessons[props.lessonIndex].exercisesFinished;
 
 
