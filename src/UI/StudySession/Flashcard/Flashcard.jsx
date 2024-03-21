@@ -1,5 +1,5 @@
 import classes from "./Flashcard.module.css"
-import { useState, } from "react";
+import { useState,useEffect } from "react";
 
 function getSides ( exampleArray ) 
 {
@@ -26,11 +26,14 @@ const Flashcard = (props) =>
 {
     const [exampleArrayIndex, setArrayIndex] = useState(0);
     const [isCardFront, setIsCardFront] = useState(false);
+    const [isFinished, setIsFinished] = useState(false);
 
     const exampleArr = props.lessonData.examples;
     const exampleArrLength  = props.lessonData.examples.length;
 
     const sidesOfCard = getSides(props.lessonData.examples[exampleArrayIndex]);
+
+        useEffect(()=>{ if((exampleArrayIndex + 1) === exampleArr.length){setIsFinished(true);props.onFinished(true);}},[exampleArrayIndex]);
 
     return (
         <>
@@ -47,6 +50,7 @@ const Flashcard = (props) =>
                 <div className={classes.exampleCounter}>Flashcard {exampleArrayIndex + 1}/{exampleArr.length}</div>
                 <button onClick={()=>{setArrayIndex(currentIndex => currentIndex - 1); setIsCardFront(false);}} disabled={exampleArrayIndex <= 0}>Previous Flashcard</button>
                 <button onClick={()=>{setArrayIndex(currentIndex => currentIndex + 1); setIsCardFront(false);}}  disabled={exampleArrayIndex >= exampleArrLength - 1}>Next Flashcard</button>
+                <>{isFinished &&  <h2>You are Finished !<button onClick={()=>{props.onReturnToCheckPointSelection()}}>Return to Checkpoint Selection</button></h2>}</>
             </div>
             
         </>

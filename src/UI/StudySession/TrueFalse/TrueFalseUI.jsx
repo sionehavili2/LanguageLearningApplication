@@ -91,7 +91,7 @@ const TrueFalseUI = (props) =>
 
                                 <>
                                     <>{correctAnswerCnt / exampleArr.length >= .75 ? <h3 className={classes.rightAnswer}>PASS</h3> : <h3 className={classes.wrongAnswer}>You Did not pass the Challenge</h3>}</>
-                                    <button onClick={()=>{props.onReturnToCheckPointSelection()}}>End Challenge</button>
+                                    <button onClick={()=>{props.onReturnToCheckPointSelection()}}>Finish challenge and return to checkpoint selection</button>
                                 </>
 
                             }</>

@@ -154,7 +154,7 @@ function Dashboard()
     return()=>{console.log("cleanup...");}
   }, [user, loading]);
 
-
+ //User progression still need to be done for flashcard and multiple choice. 
   return (
       <div>
         <>

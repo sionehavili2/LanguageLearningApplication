@@ -56,7 +56,12 @@ const MultipleChoiceUI = (props) =>
         setAllSolutions(shuffle(examples.slice(1)));
     },[examples]);
 
-    useEffect(()=>{if(result != null && result === true){setCorrectAnswerCnt(currntCnt => currntCnt+1)}},[result]);
+    useEffect(()=>{
+    if(result != null)
+    {
+        if(result === true){setCorrectAnswerCnt(currntCnt => currntCnt+1)};
+        if((exampleIndex + 1) === exampleArr.length){props.onFinished(correctAnswerCnt / exampleArr.length >= .75 ? true : false);}
+    }},[result]);
 
     return (
         <div>
@@ -72,8 +77,7 @@ const MultipleChoiceUI = (props) =>
 
             </div>
             <>{result != null && (result === true ? <div className={classes.rightAnswer}>"Correct!"</div> : <div className={classes.wrongAnswer}>"Incorrect. Correct answer is :"{answer}</div>)}</>
-            <>{result != null && (exampleIndex + 1 != exampleArr.length ? <button onClick={handleNextQuestion}>Next Question</button> :                                     <button onClick={()=>{correctAnswerCnt / exampleArr.length >= .75 ? props.onFinished() : props.onDNF()}}>Finish Challenge</button>
-)}</> 
+            <>{result != null && (exampleIndex + 1 != exampleArr.length ? <button onClick={handleNextQuestion}>Next Question</button> : <button onClick={()=>{props.onReturnToCheckPointSelection()}}>Finish challenge and return to checkpoint selection</button>)}</> 
             <div>Question {exampleIndex + 1}/{exampleArr.length}</div>
             <div>Total Correct : {correctAnswerCnt} / {exampleArr.length}</div>
         </div>
