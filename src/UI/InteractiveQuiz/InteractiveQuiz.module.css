@@ -1,0 +1,54 @@
+
+.examplesContainer {
+    border: 10px solid blue;
+    display: flex;
+    justify-content: space-between;
+}
+
+.compareesContainer {
+    border: 5px solid red;
+
+}
+
+.solutionsContainer {
+    border: 5px solid green;
+}
+
+.selectedSolutionsContainer {
+    border: 5px dotted red;
+}
+
+.unSelectedBtn
+{
+    background-color: purple;
+}
+
+.selectedBtn
+{
+    background-color: blue;
+}
+
+.rightAnswer {
+    color: green;
+}
+
+.wrongAnswer {
+    color: red;
+}
+
+.warning {
+    color: yellow;
+    animation: growAndShrink 0.5s ease-in-out; /* Adjust duration and timing function as needed */
+}
+
+@keyframes growAndShrink {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

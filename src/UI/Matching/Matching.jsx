@@ -37,7 +37,8 @@ const Matching = (props) =>
     const [exampleArr] = useState(props.lessonData.examples);
     const [examplePairs, setExamplePairs] = useState(setupMatches(exampleArr));
     // State to track the index of the currently clicked button
-    const [clickedIndex, setClickedIndex] = useState(null);
+    const [leftClickedIndex, setLeftClickedIndex] = useState(null);
+    const [rightClickedIndex, setRightClickedIndex] = useState(null);
     // State to track clicked buttons (comparees) 
     const [disabledCompareeBtns, setDisabledCompareeBtns] = useState(new Array(exampleArr.length).fill(false));
     // State to track clicked buttons (solutions)
@@ -60,6 +61,8 @@ const Matching = (props) =>
         let secondIndex = getIndexes(thisArr)[1];
         let actualValue = thisArr[secondIndex];
 
+        console.log(thisArr);
+
         if(userSelectedValue === actualValue)
         {
             const newCompareeBtns = [...disabledCompareeBtns];
@@ -75,11 +78,13 @@ const Matching = (props) =>
         {
             setDisplayResponse(false);
         }
-        setClickedIndex(null);
+        setLeftClickedIndex(null);
+        setRightClickedIndex(null);
         
         setTimeout(() => {setDisplayResponse(null)}, 1000);
     }
 
+    //Updates user progression to parent component when all have been finished
     useEffect(()=>{if(displayResponse === null && allValuesTrue(disabledCompareeBtns)){props.onFinished(true)}},[displayResponse])
 
 
@@ -89,8 +94,8 @@ const Matching = (props) =>
             <h3>Matching Component</h3>
             <h4>Click any word/term and from the left and click its solution on the right</h4>
             <div className={classes.examplesContainer}>
-                <ul className={classes.compareesContainer}>{examplePairs[0].map((exampleString,index)=>(<li key={index}><button onClick={() => setClickedIndex(index === clickedIndex ? null : index)} className={clickedIndex === index ? classes.selectedBtn : 'black' } disabled={disabledCompareeBtns[index]}>{exampleString}</button></li>))}</ul>
-                <ul className={classes.solutionsContainer}>{examplePairs[1].map((exampleString,index)=>(<li key={index}><button value={exampleString} onClick={(e) => handleUserChoiceBtn(clickedIndex, index, e.target.value)} disabled={disabledSolutionsBtns[index]} >{exampleString}</button></li>))}</ul>
+                <ul className={classes.compareesContainer}>{examplePairs[0].map((exampleString,index)=>(<li key={index}><button onClick={() => setLeftClickedIndex(index === leftClickedIndex ? null : index)} className={leftClickedIndex === index ? classes.selectedBtn : 'black' } disabled={disabledCompareeBtns[index]}>{exampleString}</button></li>))}</ul>
+                <ul className={classes.solutionsContainer}>{examplePairs[1].map((exampleString,index)=>(<li key={index}><button value={exampleString} onClick={(e) => {setRightClickedIndex(index === rightClickedIndex ? null : index); handleUserChoiceBtn(leftClickedIndex, index, e.target.value)}} className={rightClickedIndex === index ? classes.selectedBtn : 'black'} disabled={disabledSolutionsBtns[index]} >{exampleString}</button></li>))}</ul>
             </div>
             <>{displayResponse != null && (displayResponse === true ? <h2 className={classes.rightAnswer}>Correct!</h2> : <h2 className={classes.wrongAnswer}>Incorrect. Try Again.</h2>)}</>
             <>{displayWarning != null && (<h2 className={classes.warning}>Select from the left column first, then select it's answer from the left column</h2>)}</>

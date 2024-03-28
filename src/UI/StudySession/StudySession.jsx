@@ -7,7 +7,6 @@ import { useState } from "react";
 const StudySession = (props) => 
 {
     const[checkpointSelected, setCheckpointSelected] = useState(null);
-
     const modTitle = props.moduleData[props.moduleIndex].moduleTitle;
     const lessonTitle = props.moduleData[props.moduleIndex].lessonTitles[props.lessonIndex];
     const lessonArr =  props.moduleData[props.moduleIndex].lessons[props.lessonIndex];
@@ -24,15 +23,15 @@ const StudySession = (props) =>
             {
                 checkpointSelected != null ?
 
-                    <BeginStudySession {...lessonInfo} selectedIndex={checkpointSelected} onReturnToCheckPointSelection={()=>{setCheckpointSelected(null)}} onCompletedSession={(finishedCpIndex)=> 
+                    <BeginStudySession {...lessonInfo} selectedIndex={checkpointSelected} onReturnToCheckPointSelection={()=>{setCheckpointSelected(null)}} onSessionOver={(finishedCpIndex)=> 
                     {    
                         if(finishedCpIndex === -1)
                         {
-                            console.log("It was not finished")
+                            console.log("user did not pass.");
                         }
                         else if(progressArr[finishedCpIndex] === false)
                         {
-                            console.log("finished and updating");
+                            console.log("finished and updating user progression...");
                             progressArr[finishedCpIndex] = true;
                             props.onUpdateProgress([...progressArr]);
                         }
