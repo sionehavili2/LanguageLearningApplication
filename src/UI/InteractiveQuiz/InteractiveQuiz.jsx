@@ -58,6 +58,9 @@ const InteractiveQuiz = (props) =>
     //Tracks index of selected value
     const [valIndex, setValIndex] = useState(null);
 
+    //Tracks whether user has submitted the quiz or not
+    const[isReadyToSubmit, setIsReadyToSubmit] = useState(false);
+
     useEffect(()=>
     {
         //If BOTH key and value are selected
@@ -88,11 +91,8 @@ const InteractiveQuiz = (props) =>
             }
             else
             {
-                console.log("Youll need to extract data...")
-
+                console.log("Youll need to extract data...");
             }
-
-
 
             //N. Cleanup
             setKeyIndex(null);
@@ -127,46 +127,67 @@ const InteractiveQuiz = (props) =>
                 disableVals[thisValIndex] = false;
                 setDisableVals([...disableVals]);
 
+                setKeyIndex(null);
             }
-            setKeyIndex(null);
         }
 
     },[keyIndex,valIndex]);
 
+    useEffect(()=>
+    {
+        if(isReadyToSubmit)
+        {
+            console.log("Begin figureing out sscore....");
+        }
+
+    },[isReadyToSubmit]);
+
     return (
-    <>
-        {keys.map((stringVal, index)=>
-        (
-            <li key={index}>
-                <>{stringVal}</>
-                <button onClick={()=>{setKeyIndex(index)}}>
-                    <>{disableKeys[index] === false ? "Empty" : disableKeys[index]}</>
-                </button>
-            </li>
-        ))}
+    <>{
+        isReadyToSubmit ?
+        <>
+            <div>Submitting Results....</div>
+        </>
+
+        :
+
+        <>
+            <ul className={classes.compareesContainer}>
+                {keys.map((stringVal, index)=>
+                (
+                    <li key={index}>
+                        <>{stringVal}</>
+                        <button 
+                            onClick={()=>{setKeyIndex(index)}}
+                            className={keyIndex === index ? classes.selectedBtn : 'red' }
+                        >
+                            <>{disableKeys[index] === false ? "Empty" : disableKeys[index]}</>
+                        </button>
+                    </li>
+                ))}
+            </ul>
 
 
-        {displayValues.map((stringVal, index)=>
-        (
-            <li key={index}>
-                <button
-                    disabled={disableVals[index]}
-                    onClick={()=>{setValIndex(index)}}
-                >
-                    <>{stringVal}</>
-                </button>
-            </li>
-        ))}
+            <ul className={classes.solutionsContainer}>
+                {displayValues.map((stringVal, index)=>
+                (
+                    <li key={index}>
+                        <button
+                            disabled={disableVals[index]}
+                            onClick={()=>{setValIndex(index)}}
+                            className={valIndex === index ? classes.selectedBtn : 'red' }
 
-    </>);
+                        >
+                            <>{stringVal}</>
+                        </button>
+                    </li>
+                ))}
+            </ul>
 
+            <>{allValuesSelected(disableVals) && <h2><button onClick={()=>{setIsReadyToSubmit(true)}}>Submit Interactive Quiz</button></h2>}</>
+        </>
+    }</>
+    );
 };
 
-
 export default InteractiveQuiz;
-
-
-
-
-
-
