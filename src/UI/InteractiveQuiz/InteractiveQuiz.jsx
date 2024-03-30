@@ -61,13 +61,14 @@ const InteractiveQuiz = (props) =>
     //Tracks whether user has submitted the quiz or not
     const[isReadyToSubmit, setIsReadyToSubmit] = useState(false);
 
+    //Tracks user score to display once calculated
+    const[userScore, setUserScore] = useState(null);
+
     useEffect(()=>
     {
         //If BOTH key and value are selected
         if(keyIndex !== null && valIndex !== null)
         {
-            console.log("BOTH Key AND Value are SELECTED");
-
             //A. Check if there is anything in keyIndex position (If there is, we must return it and update value btns.
             const isKeyPositionEmpty = disableKeys[keyIndex] === false ? true : false;
 
@@ -89,15 +90,10 @@ const InteractiveQuiz = (props) =>
                 disableVals[valIndex] = true;
                 setDisableVals([...disableVals]);
             }
-            else
-            {
-                console.log("Youll need to extract data...");
-            }
 
             //N. Cleanup
             setKeyIndex(null);
             setValIndex(null);
-            console.log("Key and Val RESET...");
         }
         //If ONLY key index is selected
         else if (keyIndex !== null)
@@ -108,6 +104,7 @@ const InteractiveQuiz = (props) =>
             if(isKeyPositionEmpty)
             {
                 console.log("key position is empty");
+                console.log("use KeyValues to check if values are correct")
             }
             else
             {
@@ -137,7 +134,13 @@ const InteractiveQuiz = (props) =>
     {
         if(isReadyToSubmit)
         {
-            console.log("Begin figureing out sscore....");
+            const userAnswers = disableKeys;
+            const correctAnswers = keyValues;
+            
+            let correctCount = 0;
+            keys.forEach((keyString,index)=> {userAnswers[index] === correctAnswers[index] && correctCount++;});
+            setUserScore(correctCount);
+            props.onFinished(correctCount / keys.length >= .90 ? true : false);
         }
 
     },[isReadyToSubmit]);
@@ -146,7 +149,8 @@ const InteractiveQuiz = (props) =>
     <>{
         isReadyToSubmit ?
         <>
-            <div>Submitting Results....</div>
+            <div>{userScore !== null ? ("SCORE: " + userScore + "/" + keys.length) : "Calculating Score..."}</div>
+            <button onClick={()=>{props.onReturnToCheckPointSelection()}}>Finish challenge and return to checkpoint selection</button>
         </>
 
         :
