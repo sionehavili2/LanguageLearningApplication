@@ -7,7 +7,7 @@ import { query, collection, getDocs, setDoc, where, addDoc, doc as docRef, updat
 import UserLogStatus from "../UI/UserLogStatus/UserLogStatus";
 import StudySession from "../UI/StudySession/StudySession";
 import ContentDropdown from "../UI/ContentDropDown/ContentDropdown";
-
+import Login from "../pages/Login";
 
 //Importing Data Modules
 import Module0 from "../ModuleData/Module0";
@@ -153,6 +153,53 @@ function Dashboard()
 
     return()=>{console.log("cleanup...");}
   }, [user, loading]);
+
+  if(!user)
+  {
+    return (
+      <>
+        <Login/>
+      </>
+    );
+  }
+  else if(user) 
+  {
+
+    return (
+        <div>
+          <>
+          {userSelection === false ?
+
+            <ContentDropdown userProgress={userProgressData} moduleTitles={moduleTitles} lessonTitles={lessonTitles} onUserSelection={(moduleIndex, lessonIndex)=>setUserSelection([moduleIndex, lessonIndex])}/> 
+            : 
+            <>
+              <button onClick={()=>{setUserSelection(false)}}>Return To Main Dashboard</button>
+              <StudySession userProgress={userProgressData} moduleIndex={userSelection[0]} lessonIndex={userSelection[1]} moduleData={allModules} onUpdateProgress={(updatedArray)=>
+              {
+                  const updatedUserProgress = [...userProgressData];
+                  updatedUserProgress[userSelection[0]].moduleLessons[userSelection[1]].exercisesFinished = updatedArray;
+
+                  // Update the document in Firestore with the modified user progress data
+                  const updateProgress = async ()=>
+                  {
+                    await updateDoc(userDocRef, { userProgression: updatedUserProgress })
+                    .then(() => {console.log("User progress data updated successfully");})
+                    .catch((error) => {console.error("Error updating user progress data:", error);});
+                  }
+
+                  updateProgress();
+                  
+              }}/>
+            </>
+          }
+          </>
+
+          <UserLogStatus name={name} user={user} logout={logout}/>
+        </div>
+
+    );
+  }
+  else return <div>Error... Please check Home.jsx code</div>
 
  //User progression still need to be done for flashcard and multiple choice. 
   return (

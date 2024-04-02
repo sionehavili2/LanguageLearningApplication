@@ -17,6 +17,7 @@ function App()
 {
   return (
     <div>
+      <h1 className="titleContainer">Learning Tongan</h1>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout/>}>

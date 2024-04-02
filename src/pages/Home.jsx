@@ -43,7 +43,6 @@ const Home = () =>
   {
     return (
       <>
-        Please Sign-In
         <Login/>
       </>
     );

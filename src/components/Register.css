@@ -1,8 +1,12 @@
+.mainContainer{
+  margin: 0;
+  padding: 0;
+}
+
 .register {
-  height: 100vh;
-  width: 100vw;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
 }
 .register__container {
@@ -11,6 +15,9 @@
   text-align: center;
   background-color: #dcdcdc;
   padding: 30px;
+  background: rgb(114, 48, 43, 1);
+  background-repeat: repeat;
+  border-radius: 5px;
 }
 .register__textBox {
   padding: 10px;

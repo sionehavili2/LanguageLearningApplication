@@ -150,7 +150,9 @@ const InteractiveQuiz = (props) =>
         isReadyToSubmit ?
         <>
             <div>{userScore !== null ? ("SCORE: " + userScore + "/" + keys.length) : "Calculating Score..."}</div>
-            <button onClick={()=>{props.onReturnToCheckPointSelection()}}>Finish challenge and return to checkpoint selection</button>
+            <>{userScore && userScore / keys.length >= .90 ? <h3 className={classes.rightAnswer}>YOU PASSED! {" (Requirement: 90%)"}</h3> : <h3 className={classes.wrongAnswer}>You Did not pass the Quiz {"(Requirement: 90%)"}</h3>} </>
+
+            <button onClick={()=>{props.onReturnToCheckPointSelection()}}>Finish Quiz and return to checkpoint selection</button>
         </>
 
         :

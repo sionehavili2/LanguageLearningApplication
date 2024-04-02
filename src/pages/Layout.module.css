@@ -1,13 +1,16 @@
 .ul 
 {
-    border: 5px solid green;
+    background: rgb(114, 48, 43);
     display: flex;
     text-decoration: none;
     list-style: none;
+    margin: 0 auto;
 }
 
-.li
+.li > *
 {
     padding: 10px;
     text-decoration: none;
+    color: rgb(255, 231, 187);
 }
+
