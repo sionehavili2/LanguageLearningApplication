@@ -11,6 +11,7 @@ const ExampleUI = (props) =>
 
     const [arrayIndex, setArrayIndex] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
+    const[isDismissed, setIsDismissed] = useState(false);
 
     const exampleArr = props.lessonData.examples;
     const exampleArrLength  = props.lessonData.examples.length;
@@ -30,6 +31,14 @@ const ExampleUI = (props) =>
 
 
     useEffect(()=>{if(arrayIndex + 1 === exampleArrLength){props.onFinished(true); setIsFinished(true)}},[arrayIndex]);
+
+    useEffect(()=>{
+        if(isFinished)
+        {
+            setIsDismissed(false);
+            const timer = setTimeout(() => {setIsDismissed(true)}, 1000);
+        }
+    },[isFinished]);
     
     return (
         <>
@@ -47,12 +56,22 @@ const ExampleUI = (props) =>
                     <button className={classes.btn} onClick={()=>{setArrayIndex(currentIndex => currentIndex - 1)}} disabled={arrayIndex <= 0}>Previous</button>
                     <button className={classes.btn} onClick={()=>{setArrayIndex(currentIndex => currentIndex + 1)}}  disabled={arrayIndex >= exampleArrLength - 1}>Next</button>
                 </ul>
-                <>{isFinished &&
+                <>{isFinished && !isDismissed &&
                     <>
-                        <h2 className={classes.finishedResponse}>{props.lessonTitle} introduction has been completed!</h2>
-                        <button className={classes.returnBtn} onClick={()=>{props.onReturnToCheckPointSelection()}}>Return to Checkpoint Selection</button>
+                        <h2 className={classes.finishedResponse}>
+                            {props.lessonTitle} introduction has been completed!
+                        </h2>
+         
                     </>
                 }</>
+                
+                <button 
+                    className={ isFinished ? classes.returnBtn : classes.disabledReturnBtn} 
+                    onClick={()=>{props.onReturnToCheckPointSelection()}}
+                    disabled={!isFinished}
+                >        
+                    Return to Checkpoint Selection
+                </button>
             </div>
         </>
     );

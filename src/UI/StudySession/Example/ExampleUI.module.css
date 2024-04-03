@@ -36,6 +36,13 @@
 
 .returnBtn {
     width: 35em;
+    background-color: lightgreen;
+    color: black;
+}
+
+.disabledReturnBtn {
+    width: 35em;
+    background-color: rgb(0, 0, 0, 0.3);
 }
 .subTitles {
     background-color: rgb(255, 255, 255, 0.1);
@@ -45,6 +52,13 @@
 
 .finishedResponse {
     color: lightgreen;
+    background-color: rgb(0, 0, 0,0.6);
+    border-radius: 20px;
+    position: absolute;
+    z-index: 1;
+    align-items: center;
+    top: 57%;
+    padding:30px;
 }
 
 @media screen and (max-width: 768px) {
