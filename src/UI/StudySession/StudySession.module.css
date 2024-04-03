@@ -1,4 +1,16 @@
 .mainContainer {
-    border: 10px solid orange;
-    margin: 2em 0 2em 0;
+    margin: 0 2em 0 2em;
+    background-color:  rgb(114, 48, 43);
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .mainContainer {
+        margin: 0 auto;
+        background-color:  rgb(114, 48, 43);
+        border-radius: 5px;
+        width: 100%;
+    }
+
 }

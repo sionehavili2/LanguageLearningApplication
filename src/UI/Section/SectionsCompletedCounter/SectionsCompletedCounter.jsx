@@ -10,7 +10,7 @@ const SectionsCompletedCounter = (props) =>
     props.progressData.forEach(element => {if(element) finishedCount++;});
     // console.log(finishedCount);
 
-    return (<div className={finishedCount === props.progressData.length ? classes.isCompleted : ""}>{finishedCount}/{props.progressData.length} Lessons Completed</div>);
+    return (<div className={finishedCount === props.progressData.length ? classes.isCompleted : classes.isNotCompleted}>{finishedCount}/{props.progressData.length} Lessons Completed</div>);
 }
 
 export default SectionsCompletedCounter;

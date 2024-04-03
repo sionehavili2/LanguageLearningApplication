@@ -35,7 +35,7 @@ function Register()
     return (
       <>
         <h2>You are currently logged in as, <>{user?.email}</></h2>
-        <h4>You must logout to register a new user.</h4>
+        <h4>You must logout to sign-up a new user.</h4>
         <UserLogStatus name={name} user={user} logout={logout}/>
       </>
     );
@@ -70,13 +70,13 @@ function Register()
               placeholder="Password"
             />
             <button className="register__btn" onClick={register}>
-              Register
+              Sign-up
             </button>
             <button
               className="register__btn register__google"
               onClick={signInWithGoogle}
             >
-              Register with Google
+              Sign-up with Google
             </button>
             <div>
               Already have an account? <Link to="/">Login</Link> now.

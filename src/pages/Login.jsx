@@ -51,10 +51,10 @@ function Login()
             Login with Google
           </button>
           <div>
-            <Link to="/reset">Forgot Password</Link>
+            <Link to="/reset">Forgot/Reset Password</Link>
           </div>
           <div>
-            Don't have an account? <Link to="/register">Register</Link> now.
+            Don't have an account? <Link to="/register">Sign-up</Link> now.
           </div>
         </div>
       </div>

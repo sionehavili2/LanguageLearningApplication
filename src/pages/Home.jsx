@@ -4,7 +4,7 @@ import { auth, db, logout } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Login from "./Login";
-
+import UserLogStatus from "../UI/UserLogStatus/UserLogStatus";
 
 const Home = () => 
 {
@@ -57,11 +57,7 @@ const Home = () =>
       {/* <StringDisplayCard string={Module0[0].intro}/> */}
       <div>----</div>
       {/* <Flashcards exampleArray={Module0[0].examples}/> */}
-      <div className="dashboard">
-        <div className="dashboard__container">
-          <button className="dashboard__btn" onClick={logout}>Logout</button>
-        </div>
-      </div>
+      <UserLogStatus name={name} user={user} logout={logout}/>      
     </>
     );
   }

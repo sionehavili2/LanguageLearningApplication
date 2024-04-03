@@ -1,3 +1,10 @@
 .isCompleted {
     color: green;
+    font-size: small;
+    font-weight: 400;
+}
+
+.isNotCompleted {
+    font-size: small;
+    font-weight: 400;
 }

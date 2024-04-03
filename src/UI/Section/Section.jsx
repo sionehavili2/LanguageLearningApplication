@@ -11,10 +11,11 @@ const Section = ({progression, sectionNumber, title, subSections, isOpen, toggle
   const displaySubSections = subSections.map((str, index) => (
   
     <li className={classes.listItem} key={index}>
-      <button onClick={()=>onUserSelected(index)}>
+      <button className={classes.btn} onClick={()=>onUserSelected(index)}>
         <Link to="/Dashboard/StudySession">{str}</Link>
+        <SectionsCompletedCounter progressData={progression[index].exercisesFinished}/>
       </button>
-      <SectionsCompletedCounter progressData={progression[index].exercisesFinished}/>
+      
     </li>));
   
   return (

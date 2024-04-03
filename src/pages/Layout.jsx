@@ -20,12 +20,12 @@ const Layout = () => {
           </li>
 
           <li className={classes.li}>
-            <Link to="/Register">Register</Link>
+            <Link to="/Register">Sign-up</Link>
           </li>
 
-          <li className={classes.li}>
+          {/* <li className={classes.li}>
             <Link to="/Reset">Reset</Link>
-          </li>
+          </li> */}
 
           <li className={classes.li}>
             <Link to="/Dashboard">Dashboard</Link>
