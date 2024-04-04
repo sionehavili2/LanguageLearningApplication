@@ -23,9 +23,9 @@ const ExampleUI = (props) =>
             return (<li key={index}><h1>{string}</h1></li>);
         else 
         if (index === 1)
-            return (<li><h2>{string}</h2></li>);
+            return (<li key={index}><h2>{string}</h2></li>);
         else
-            return (<li><h3>{string}</h3></li>);
+            return (<li key={index}><h3>{string}</h3></li>);
     });
 
 
@@ -36,8 +36,9 @@ const ExampleUI = (props) =>
         if(isFinished)
         {
             setIsDismissed(false);
-            const timer = setTimeout(() => {setIsDismissed(true)}, 1000);
+            const timer = setTimeout(() => {setIsDismissed(true)}, 2000);
         }
+        
     },[isFinished]);
     
     return (
