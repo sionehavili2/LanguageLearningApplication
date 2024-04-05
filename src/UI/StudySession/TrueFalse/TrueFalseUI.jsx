@@ -58,19 +58,25 @@ const TrueFalseUI = (props) =>
 
     useEffect(()=>{setDisplayExamples(setupTrueFalse(isQuestionTrue, exampleArr, exampleIndex));},[displayExamples]);
 
-    useEffect(()=>{if(userSelected != null && userSelected === isQuestionTrue)
-    {
-        setCorrectAnswerCnt(correctAnswerCnt + 1);
-        if(exampleIndex + 1 === exampleArr.length) 
+    useEffect(()=>{
+        
+        if(userSelected != null)
         {
-            props.onFinished(correctAnswerCnt / exampleArr.length >= .75 ? true : false); 
-            setIsFinished(true);
+            userSelected === isQuestionTrue && setCorrectAnswerCnt(correctAnswerCnt + 1);
+            if(exampleIndex + 1 === exampleArr.length) 
+            {
+                console.log("It should have asked the last question i think...")
+                props.onFinished(correctAnswerCnt / exampleArr.length >= .75 ? true : false); 
+                setIsFinished(true);
+            }
+            else console.log("not the last question...?");
         }
-    }},[userSelected]);
+    },[userSelected]);
 
     useEffect(()=>{
-        if(isFinished)
+        if(isFinished === true)
         {
+            console.log("it is finished...........")
             setIsDismissed(false);
             const timer = setTimeout(() => {setIsDismissed(true)}, 1500);
             return () => {clearTimeout(timer);};
@@ -118,9 +124,9 @@ const TrueFalseUI = (props) =>
                 <>{
                 isFinished && !isDismissed &&
                 <>
-                    <h2 className={classes.finishedResponse}>
+                    <div className={classes.finishedResponse}>
                         <>{correctAnswerCnt / exampleArr.length >= .75 ? <h3 className={classes.rightAnswer}> {props.lessonTitle} Challenge PASSED</h3> : <h3 className={classes.wrongAnswer}>You Did not pass the Challenge</h3>}</>
-                    </h2>
+                    </div>
         
                 </>
             }</>
