@@ -1,15 +1,109 @@
-
 .mainContainer {
-    border: 5px solid darkblue;
-    display: flex;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+    align-items: center;
+}
+
+.mainContainer > * {
+    margin: 0 auto;
 }
 
 .unorderedList {
-    border: 5px solid wheat;
-    text-align: justify;
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  text-align: center;
+  /* height: 600px; Set a height to the container if needed */
+  perspective: 1000px; /* Perspective for 3D effect */
 }
 
-.exampleCounter {
-    border: 5px solid khaki;
+
+.card {
+  position: relative;
+  width: 35em;
+  height: 300px;
+  transform-style: preserve-3d; /* Preserve 3D transformations */
+  transition: transform 0.6s; /* Apply transition for smooth flipping */
+  background-image: url("../../../assets/flashcard.png");
+
+}
+
+.cardFront,
+.cardBack {
+  position: absolute;
+  backface-visibility: hidden; /* Hide backface of the card */
+}
+
+.cardFront {
+  color: rgb(255, 146, 106);
+}
+
+.cardBack {
+  transform: rotateY(180deg); /* Initially flip the back side */
+  color: rgb(69, 69, 252);
+}
+
+.flipped {
+  transform: rotateY(180deg); /* Flip the card when flipped state is true */
+  border: 6px solid  rgb(69, 69, 252);
+  border-radius: 5px;
+}
+
+.notFlipped {
+    border : 5px solid rgb(255, 146, 106);;
+    border-radius: 5px;
+}
+
+.flipBtnFront, .flipBtnBack {
+    border : 5px solid rgb(255, 146, 106);;
+    color: rgb(255, 146, 106);
+    margin: 0.5em;
+    width: 35em;
+    background-color: rgb(69, 69, 252);
+}
+
+.flipBtnBack {
+    border:5px solid  rgb(69, 69, 252);
+    color:  rgb(69, 69, 252);
+    background-color: rgb(255, 146, 106);
+}
+
+.flashcardContainer {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 0.75em;
+    margin: 0.5em;
+}
+
+.allBtns {
+    width: 35em;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 0.75em;
+    margin: 0.5em;
+}
+
+.allBtns > * {
+    width: 10em;
+    margin: 0.5em;
+    padding: 1.25em;
+}
+
+@media screen and (max-width: 768px) {
+
+
+    
+    .allBtns, .allBtns > * {
+        border: 5px solid darkorchid;
+        width: 90%;
+    }
+
+    .flipBtnFront, .flipBtnBack {
+        width: 90%;
+    }
+    
+    .flashcardContainer, .flashcardContainer > *{
+        width: 90%;
+        margin: 0 auto;
+    }
 }

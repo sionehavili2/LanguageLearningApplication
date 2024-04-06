@@ -61,22 +61,19 @@ const TrueFalseUI = (props) =>
     useEffect(()=>{
         
         if(userSelected != null)
-        {
+        {   console.log("running....")
             userSelected === isQuestionTrue && setCorrectAnswerCnt(correctAnswerCnt + 1);
             if(exampleIndex + 1 === exampleArr.length) 
             {
-                console.log("It should have asked the last question i think...")
                 props.onFinished(correctAnswerCnt / exampleArr.length >= .75 ? true : false); 
                 setIsFinished(true);
             }
-            else console.log("not the last question...?");
         }
     },[userSelected]);
 
     useEffect(()=>{
         if(isFinished === true)
         {
-            console.log("it is finished...........")
             setIsDismissed(false);
             const timer = setTimeout(() => {setIsDismissed(true)}, 1500);
             return () => {clearTimeout(timer);};
@@ -95,6 +92,7 @@ const TrueFalseUI = (props) =>
             
             <div>Total Correct : {correctAnswerCnt} / {exampleArr.length}</div>
             <div className={classes.mainContainer}>
+                                <div>{exampleIndex + 1}/{exampleArr.length}</div>
                 <h4>Is the following translation True or False?</h4>
                 <h2>{displayExamples ? displayExamples : "Loading..."}</h2>
                 <>
@@ -119,7 +117,6 @@ const TrueFalseUI = (props) =>
                 }
                 </>
 
-                <div>{exampleIndex + 1}/{exampleArr.length}</div>
 
                 <>{
                 isFinished && !isDismissed &&
