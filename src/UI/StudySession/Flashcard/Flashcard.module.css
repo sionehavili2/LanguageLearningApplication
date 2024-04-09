@@ -52,6 +52,7 @@
 .notFlipped {
     border : 5px solid rgb(255, 146, 106);;
     border-radius: 5px;
+
 }
 
 .flipBtnFront, .flipBtnBack {
@@ -89,18 +90,30 @@
     padding: 1.25em;
 }
 
+.returnBtn {
+    width: 35em;
+    background-color: lightgreen;
+    color: black;
+}
+
+.disabledReturnBtn {
+    width: 35em;
+    background-color: rgb(0, 0, 0, 0.3);
+}
+
 @media screen and (max-width: 768px) {
 
 
     
-    .allBtns, .allBtns > * {
-        border: 5px solid darkorchid;
+    .allBtns, .allBtns > *, .returnBtn {
         width: 90%;
     }
 
     .flipBtnFront, .flipBtnBack {
-        width: 90%;
-    }
+        width: 10%;
+        border: 6px solid hotpink;
+        margin: 10em;
+      }
     
     .flashcardContainer, .flashcardContainer > *{
         width: 90%;

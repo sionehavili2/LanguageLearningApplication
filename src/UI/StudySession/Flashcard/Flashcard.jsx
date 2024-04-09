@@ -19,6 +19,7 @@ const Flashcard = (props) => {
   const [exampleArrayIndex, setArrayIndex] = useState(0);
   const [isCardFlipped, setIsCardFlipped] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const[isDismissed, setIsDismissed] = useState(false);
 
   const exampleArr = props.lessonData.examples;
   const exampleArrLength = props.lessonData.examples.length;
@@ -31,6 +32,15 @@ const Flashcard = (props) => {
       props.onFinished(true);
     }
   }, [exampleArrayIndex]);
+
+    useEffect(()=>{
+      if(isFinished)
+      {
+          setIsDismissed(false);
+          const timer = setTimeout(() => {setIsDismissed(true)}, 2000);
+      }
+      
+  },[isFinished]);
 
   const handleFlip = () => {
     setIsCardFlipped(!isCardFlipped);
@@ -69,8 +79,27 @@ const Flashcard = (props) => {
             <button onClick={handlePrevious} disabled={exampleArrayIndex <= 0}><>&#8592;</> Previous</button>
             <button onClick={handleNext} disabled={exampleArrayIndex >= exampleArrLength - 1}>Next <>&#8594;</></button>
         </div>
-        {isFinished && <h2>You are Finished !<button onClick={() => { props.onReturnToCheckPointSelection() }}>Return to Checkpoint Selection</button></h2>}
+
+
+
       </div>
+
+      <>{isFinished && !isDismissed &&
+        <div className={classes.responseContainer}>
+            <h2 className={classes.finishedResponse}>
+                {props.lessonTitle} Flashcard Review has been completed!
+            </h2>
+        </div>
+      }</>
+
+
+      <>
+        <button 
+          className={ isFinished ? classes.returnBtn : classes.disabledReturnBtn} 
+          onClick={() => { props.onReturnToCheckPointSelection() }}
+          disabled={!isFinished}
+          >Return to Checkpoint Selection</button>
+      </>
     </>
   );
 }
