@@ -58,19 +58,31 @@ const Flashcard = (props) => {
 
   return (
     <>
-      <h2>Flashcard Component</h2>
-      <h2>Module Title : {props.moduleTitle}</h2>
-      <h3>Lesson Title : {props.lessonTitle}</h3>
-      <h4>Intro : {props.lessonData.intro}</h4>
+      
+      <h2 className={classes.title}>{props.moduleTitle}</h2>
+
+      <div className={classes.subTitles}>
+          <h2>{props.lessonTitle} Flashcard Review</h2>
+          <h4>{props.lessonData.intro}</h4>
+      </div>
 
       <div className={classes.mainContainer}>
-        
+
         <div className={classes.flashcardContainer}>
+            <div>{
+                isFinished && !isDismissed &&
+                <div className={classes.responseContainer}>
+                    <h2 className={classes.finishedResponse}>
+                        {props.lessonTitle} Flashcard Review has been completed!
+                    </h2>
+                </div>
+            }</div>
             <div className={classes.exampleCounter}>Flashcard {exampleArrayIndex + 1}/{exampleArr.length}</div>
             <ul className={`${classes.unorderedList} ${classes.card} ${isCardFlipped ? classes.flipped : classes.notFlipped}`}>
             <li className={classes.cardFront}><h2>{sidesOfCard[0]}</h2></li>
             <li className={classes.cardBack}><h2>{sidesOfCard[1]}</h2></li>
             </ul>
+            
             <button className={isCardFlipped ? classes.flipBtnBack : classes.flipBtnFront} onClick={handleFlip}>Flip</button>
         </div>
 
@@ -84,13 +96,6 @@ const Flashcard = (props) => {
 
       </div>
 
-      <>{isFinished && !isDismissed &&
-        <div className={classes.responseContainer}>
-            <h2 className={classes.finishedResponse}>
-                {props.lessonTitle} Flashcard Review has been completed!
-            </h2>
-        </div>
-      }</>
 
 
       <>
