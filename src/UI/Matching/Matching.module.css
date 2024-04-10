@@ -1,19 +1,42 @@
 
 
+.mainContainer {
+  width: 85%;
+  border-radius: 5px;
+  padding: 0.5em;
+  background-image: url("../../assets/flashcard.png");
+  background-repeat: repeat;
+  color: black;
+  margin: 0 auto;
+}
+
 .examplesContainer {
-    border: 10px solid blue;
+
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+
 }
 
 .compareesContainer {
-    border: 5px solid red;
+    background-color: rgba(79, 71, 197, 0.5);
+    border-radius: 5px;
+    margin: 0.5em;
+    padding: 0.75em;
 
 }
 
 .solutionsContainer {
-    border: 5px solid green;
+    background-color: rgb(213, 126, 45, 0.5);
+    margin: 0.5em;
+    padding: 0.75em;
+    border-radius: 5px;
 }
+
+.compareesContainer > * > *, .solutionsContainer > * > * {
+  width: 100%;
+}
+
+
 
 .unSelectedBtn
 {
@@ -34,7 +57,7 @@
 }
 
 .warning {
-    color: yellow;
+    color: orangered;
     animation: growAndShrink 0.5s ease-in-out; /* Adjust duration and timing function as needed */
 }
 
@@ -50,5 +73,74 @@
   }
 }
 
-.growShrinkText {
+.title {
+    background-color: rgb(0, 0, 0, 0.3);
+    border-radius: 5px 5px 0 0;
+    padding: 0.5em;
+    margin: 0;
+}
+
+.subTitles {
+    background-color: rgb(255, 255, 255, 0.1);
+    border-radius: 20px;
+    margin: 1em;
+}
+
+.returnBtn {
+    width: 35em;
+    background-color: lightgreen;
+    color: black;
+    margin: 0.5em;
+}
+
+.disabledReturnBtn {
+    width: 35em;
+    background-color: rgb(0, 0, 0, 0.3);
+}
+
+.responseContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10em;
+}
+
+.response{
+  border: 5px solid black;
+  width: fit-content;
+  padding: 2em 4em 2em 4em;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  margin: 0 auto;
+}
+
+.finishedResponse {
+  color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .unorderedList {
+        width: 87.5%;
+    }
+
+    .btn {
+        width: 85%;
+        margin: 0 0 1em 0;
+    }
+
+    .title {
+        margin: 0;
+    }
+
+    .subTitles {
+        margin: 0 auto;
+    }
+
+    .returnBtn, .disabledReturnBtn, .mainContainer {
+        width: 90%;
+    }
 }

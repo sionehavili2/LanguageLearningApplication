@@ -61,7 +61,7 @@ const TrueFalseUI = (props) =>
     useEffect(()=>{
         
         if(userSelected != null)
-        {   console.log("running....")
+        {   
             userSelected === isQuestionTrue && setCorrectAnswerCnt(correctAnswerCnt + 1);
             if(exampleIndex + 1 === exampleArr.length) 
             {
@@ -71,14 +71,14 @@ const TrueFalseUI = (props) =>
         }
     },[userSelected]);
 
-    useEffect(()=>{
-        if(isFinished === true)
-        {
-            setIsDismissed(false);
-            const timer = setTimeout(() => {setIsDismissed(true)}, 1500);
-            return () => {clearTimeout(timer);};
-        }
-    },[isFinished]);
+    // useEffect(()=>{
+    //     if(isFinished === true)
+    //     {
+    //         setIsDismissed(false);
+    //         // const timer = setTimeout(() => {setIsDismissed(true)}, 1500);
+    //         return () => {clearTimeout(timer);};
+    //     }
+    // },[isFinished]);
 
     return (
         
@@ -123,19 +123,20 @@ const TrueFalseUI = (props) =>
                 <>
                     <div className={classes.finishedResponse}>
                         <>{correctAnswerCnt / exampleArr.length >= .75 ? <h3 className={classes.rightAnswer}> {props.lessonTitle} Challenge PASSED</h3> : <h3 className={classes.wrongAnswer}>You Did not pass the Challenge</h3>}</>
+                        <button 
+                            className={isFinished ? classes.returnBtn : classes.disabledReturnBtn} 
+                            onClick={()=>{props.onReturnToCheckPointSelection()}}
+                            disabled={!isFinished}
+                        >        
+                Return to Checkpoint Selection
+            </button>
                     </div>
         
                 </>
             }</>
             </div>
 
-            <button 
-                className={isFinished ? classes.returnBtn : classes.disabledReturnBtn} 
-                onClick={()=>{props.onReturnToCheckPointSelection()}}
-                disabled={!isFinished}
-            >        
-                Return to Checkpoint Selection
-            </button>
+
 
 
         </div>

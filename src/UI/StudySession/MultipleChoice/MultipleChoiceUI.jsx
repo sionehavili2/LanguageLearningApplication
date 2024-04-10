@@ -100,7 +100,17 @@ const MultipleChoiceUI = (props) =>
                     <div className={result != null ? classes.responseContainer : ''}>
                         <>{result != null && !displayReturn && (result === true ? <div className={classes.rightAnswer}>"Correct!"</div> : <div className={classes.wrongAnswer}>Incorrect. Correct answer is : {answer}</div>)}</>
                         <>{result != null && (exampleIndex + 1 != exampleArr.length && <button onClick={handleNextQuestion}>Next Question</button>)}</> 
-                        {isFinished && displayReturn && <h2>You are Finished!</h2>}
+                        {isFinished && displayReturn && 
+                        
+                            <>
+                                <h2>You are Finished!</h2>            
+                                <button 
+                                    className={ isFinished ? classes.returnBtn : classes.disabledReturnBtn} 
+                                    onClick={()=>{props.onReturnToCheckPointSelection()}}
+                                    disabled={!isFinished}
+                                    >Return to Checkpoint Selection
+                                </button>   
+                            </>}
                     </div>               
                 </div>
 
@@ -110,12 +120,7 @@ const MultipleChoiceUI = (props) =>
             
      
             
-            <button 
-                className={ isFinished ? classes.returnBtn : classes.disabledReturnBtn} 
-                onClick={()=>{props.onReturnToCheckPointSelection()}}
-                disabled={!isFinished}
-                >Return to Checkpoint Selection
-            </button>        
+     
         </div>
     );
 }
