@@ -80,7 +80,7 @@
         margin: 0 auto;
     }
 
-    .returnBtn {
+    .returnBtn, .disabledReturnBtn {
         width: 90%;
     }
 }

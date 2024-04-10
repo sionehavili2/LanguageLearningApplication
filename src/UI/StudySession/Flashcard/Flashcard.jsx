@@ -69,6 +69,7 @@ const Flashcard = (props) => {
       <div className={classes.mainContainer}>
 
         <div className={classes.flashcardContainer}>
+
             <div>{
                 isFinished && !isDismissed &&
                 <div className={classes.responseContainer}>
@@ -77,6 +78,7 @@ const Flashcard = (props) => {
                     </h2>
                 </div>
             }</div>
+            
             <div className={classes.exampleCounter}>Flashcard {exampleArrayIndex + 1}/{exampleArr.length}</div>
             <ul className={`${classes.unorderedList} ${classes.card} ${isCardFlipped ? classes.flipped : classes.notFlipped}`}>
             <li className={classes.cardFront}><h2>{sidesOfCard[0]}</h2></li>

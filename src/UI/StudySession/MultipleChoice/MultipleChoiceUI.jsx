@@ -36,6 +36,9 @@ const MultipleChoiceUI = (props) =>
     const [result, setResult] = useState(null);
     const [examples, setExamples] = useState(setupMultipleChoice(exampleArr, exampleIndex));
     const [correctAnswerCnt, setCorrectAnswerCnt] = useState(0);
+    const [isFinished, setIsFinished] = useState(false);
+    const [displayReturn, setDisplayReturn] = useState(null);
+
 
 
     function handleNextQuestion()
@@ -60,26 +63,59 @@ const MultipleChoiceUI = (props) =>
     if(result != null)
     {
         if(result === true){setCorrectAnswerCnt(currntCnt => currntCnt+1)};
-        if((exampleIndex + 1) === exampleArr.length){props.onFinished(correctAnswerCnt / exampleArr.length >= .75 ? true : false);}
+        if((exampleIndex + 1) === exampleArr.length)
+        {
+            props.onFinished(correctAnswerCnt / exampleArr.length >= .75 ? true : false); 
+            setIsFinished(true);
+            const timer = setTimeout(() => {setResult(null); setDisplayReturn(true); setResult(true);}, 2200);
+            return () => {clearTimeout(timer);};
+        }
     }},[result]);
+
+    // useEffect(()=>
+    // {
+    //     if(isFinished === true)
+    //     {
+    //         // setIsDismissed(false);
+    //         // const timer = setTimeout(() => {setIsDismissed(true)}, 1500);
+    //         // return () => {clearTimeout(timer);};
+    //     }
+    // },[isFinished]);
 
     return (
         <div>
-            <h2>MultipeChoiceUI Component</h2>
-            <h2>Module Title : {props.moduleTitle}</h2>
-            <h3>Lesson Title : {props.lessonTitle}</h3>
-            <h4>Intro : {props.lessonData.intro}</h4>
-            <h3>Multiple choice. Please select the correct translation for : {comparee}</h3>
-            <div className={classes.mainContainer}>
+            <h2 className={classes.title}>{props.moduleTitle}</h2>
+            <div className={classes.subTitles}>
+                <h2>{props.lessonTitle} Introduction</h2>
+                <h4>{props.lessonData.intro}</h4>
+            </div>
 
-                <>{allSolutions && allSolutions.map((singleSolution,index) => (<li key={index}><button value={singleSolution} onClick={(e)=>{setResult(answer === e.target.value ? true : false)}} disabled={result != null}>{singleSolution}</button></li>))}</>
-                
+            <div>Total Correct : {correctAnswerCnt} / {exampleArr.length}</div>
+            <div className={classes.mainContainer}>
+                <div>{exampleIndex + 1}/{exampleArr.length}</div>
+                <h3>Multiple choice. Please select the correct translation for : </h3>
+                <span className={classes.comparee}>{comparee}</span>
+                <div className={classes.selectionContainer}>
+                    {allSolutions && allSolutions.map((singleSolution,index) => (<li key={index}><button value={singleSolution} onClick={(e)=>{setResult(answer === e.target.value ? true : false)}} disabled={result != null}>{singleSolution}</button></li>))}
+                    <div className={result != null ? classes.responseContainer : ''}>
+                        <>{result != null && !displayReturn && (result === true ? <div className={classes.rightAnswer}>"Correct!"</div> : <div className={classes.wrongAnswer}>Incorrect. Correct answer is : {answer}</div>)}</>
+                        <>{result != null && (exampleIndex + 1 != exampleArr.length && <button onClick={handleNextQuestion}>Next Question</button>)}</> 
+                        {isFinished && displayReturn && <h2>You are Finished!</h2>}
+                    </div>               
+                </div>
+
+
 
             </div>
-            <>{result != null && (result === true ? <div className={classes.rightAnswer}>"Correct!"</div> : <div className={classes.wrongAnswer}>"Incorrect. Correct answer is :"{answer}</div>)}</>
-            <>{result != null && (exampleIndex + 1 != exampleArr.length ? <button onClick={handleNextQuestion}>Next Question</button> : <button onClick={()=>{props.onReturnToCheckPointSelection()}}>Finish challenge and return to checkpoint selection</button>)}</> 
-            <div>Question {exampleIndex + 1}/{exampleArr.length}</div>
-            <div>Total Correct : {correctAnswerCnt} / {exampleArr.length}</div>
+            
+     
+            
+            <button 
+                className={ isFinished ? classes.returnBtn : classes.disabledReturnBtn} 
+                onClick={()=>{props.onReturnToCheckPointSelection()}}
+                disabled={!isFinished}
+                >Return to Checkpoint Selection
+            </button>        
         </div>
     );
 }

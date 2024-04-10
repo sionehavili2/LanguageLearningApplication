@@ -78,7 +78,6 @@
 
 .allBtns {
     width: 35em;
-    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     padding: 0.75em;
     margin: 0.5em;
@@ -137,6 +136,7 @@
     .allBtns, .allBtns > *, .returnBtn, .disabledReturnBtn {
         width: 90%;
     }
+    
 
     .flipBtnFront, .flipBtnBack {
         width: 10%;
