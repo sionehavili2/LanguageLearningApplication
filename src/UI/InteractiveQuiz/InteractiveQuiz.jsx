@@ -146,54 +146,71 @@ const InteractiveQuiz = (props) =>
     },[isReadyToSubmit]);
 
     return (
-    <>{
+    <div className={classes.mainContainer}>
+    {
         isReadyToSubmit ?
         <>
-            <div>{userScore !== null ? ("SCORE: " + userScore + "/" + keys.length) : "Calculating Score..."}</div>
-            <>{userScore && userScore / keys.length >= .90 ? <h3 className={classes.rightAnswer}>YOU PASSED! {" (Requirement: 90%)"}</h3> : <h3 className={classes.wrongAnswer}>You Did not pass the Quiz {"(Requirement: 90%)"}</h3>} </>
+            <div className={classes.userFeedback}>
+                <div>{userScore !== null ? ("SCORE: " + parseFloat(userScore / keys.length).toFixed(2) * 100 + "%") : "Calculating Score..." }</div>
+                {userScore && userScore / keys.length >= .90 ? <h4 className={classes.rightAnswer}>YOU PASSED! {" (Requirement: 90%)"}</h4> : <h4 className={classes.wrongAnswer}>You Did not pass the Quiz {"(Requirement: 90%)"}</h4>}
+                <button onClick={()=>{props.onReturnToCheckPointSelection()}}>Return to checkpoint selection</button>
+            </div>
 
-            <button onClick={()=>{props.onReturnToCheckPointSelection()}}>Finish Quiz and return to checkpoint selection</button>
         </>
 
         :
-
         <>
-            <ul className={classes.compareesContainer}>
-                {keys.map((stringVal, index)=>
-                (
-                    <li key={index}>
-                        <>{stringVal}</>
-                        <button 
-                            onClick={()=>{setKeyIndex(index)}}
-                            className={keyIndex === index ? classes.selectedBtn : 'red' }
-                        >
-                            <>{disableKeys[index] === false ? "Empty" : disableKeys[index]}</>
-                        </button>
-                    </li>
-                ))}
-            </ul>
+            <h2 className={classes.title}>{props.moduleTitle}</h2>
+            <div className={classes.subTitles}>
+                <h2>{props.lessonTitle} Mastery Quiz</h2>
+                <h4>{"Complete the Mastery Quiz to show you have gained a solid foundation of " + props.lessonTitle}.</h4>
+            </div>
+            <div className={classes.quizContainer}>
+
+                <ul className={!allValuesSelected(disableVals) ? classes.compareesContainer : classes.allCompareesSelected}>
+                    {keys.map((stringVal, index)=>
+                    (
+                        <li key={index}>
+                            <span className={classes.displayVals}>{stringVal}</span>
+                            <button 
+                                onClick={()=>{setKeyIndex(index)}}
+                                className={keyIndex === index ? classes.selectedBtn : 'red' }
+                            >
+                                <>{disableKeys[index] === false ? "Empty" : disableKeys[index]}</>
+                            </button>
+                        </li>
+                    ))}
+                </ul>
 
 
-            <ul className={classes.solutionsContainer}>
-                {displayValues.map((stringVal, index)=>
-                (
-                    <li key={index}>
-                        <button
-                            disabled={disableVals[index]}
-                            onClick={()=>{setValIndex(index)}}
-                            className={valIndex === index ? classes.selectedBtn : 'red' }
+                <ul className={!allValuesSelected(disableVals) ? classes.solutionsContainer : classes.allSolutionsSelected}>
+                    {displayValues.map((stringVal, index)=>
+                    (
+                        <li key={index}>
+                            <button
+                                disabled={disableVals[index]}
+                                onClick={()=>{setValIndex(index)}}
+                                className={valIndex === index ? classes.selectedBtn : 'red' }
 
-                        >
-                            <>{stringVal}</>
-                        </button>
-                    </li>
-                ))}
-            </ul>
-
-            <>{allValuesSelected(disableVals) && <h2><button onClick={()=>{setIsReadyToSubmit(true)}}>Submit Interactive Quiz</button></h2>}</>
+                            >
+                                <>{stringVal}</>
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <>{<h2>
+                <button 
+                onClick={()=>{setIsReadyToSubmit(true)}} 
+                disabled={!allValuesSelected(disableVals)}
+                className={!allValuesSelected(disableVals) ? classes.disableBtn : classes.enableBtn}
+                >Submit Interactive Quiz
+                
+                </button>
+            </h2>}</>
         </>
-    }</>
-    );
+       
+    }</div>);
 };
 
 export default InteractiveQuiz;

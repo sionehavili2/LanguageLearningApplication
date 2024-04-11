@@ -64,8 +64,6 @@ const Matching = (props) =>
         let secondIndex = getIndexes(thisArr)[1];
         let actualValue = thisArr[secondIndex];
 
-        console.log(thisArr);
-
         if(userSelectedValue === actualValue)
         {
             const newCompareeBtns = [...disabledCompareeBtns];
@@ -99,7 +97,7 @@ const Matching = (props) =>
         <>
             <h2 className={classes.title}>{props.moduleTitle}</h2>
             <div className={classes.subTitles}>
-                <h2>{props.lessonTitle} Match Quiz</h2>
+                <h2>{props.lessonTitle} Practice Quiz</h2>
                 <h4>{props.lessonData.intro}</h4>
             </div>
 

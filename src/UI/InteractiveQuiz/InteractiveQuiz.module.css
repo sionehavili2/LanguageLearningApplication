@@ -1,17 +1,56 @@
+.mainContainer {
+    /* border: 10px solid pink; */
+    padding: 1em;
+}
+.quizContainer {
+    display: flex;
+    justify-content: stretch;
+    background-image: url("../../assets/flashcard.png");
+    background-repeat: repeat;
+    margin: 0 auto;
+    color: black;
+    width: 90%;
+    border-radius: 5px;
+}
+
+.quizContainer > * {
+    width: 100%;
+    height: 100%;
+    margin: 1em;
+    border-radius: 5px;
+}
 
 .examplesContainer {
-    border: 10px solid blue;
     display: flex;
     justify-content: space-between;
 }
 
 .compareesContainer {
-    border: 5px solid red;
+    /* border: 5px solid red; */
+    background-color: rgba(79, 71, 197, 0.7);
 
 }
 
+.compareesContainer > * {
+    border: 5px solid  rgba(79, 71, 197, 0.7);;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+}
+
 .solutionsContainer {
-    border: 5px solid green;
+    background-color: rgba(213, 51, 45, 0.5);
+    height: 100%;
+}
+
+.solutionsContainer > * {
+    border: 5px solid rgba(213, 51, 45, 0.5);
+    padding: 0.5em;
+}
+
+.solutionsContainer > * > * {
+    width: 100%;
 }
 
 .selectedSolutionsContainer {
@@ -40,6 +79,81 @@
     color: yellow;
     animation: growAndShrink 0.5s ease-in-out; /* Adjust duration and timing function as needed */
 }
+
+.displayVals {
+    font-weight:bolder;
+    font-size: large;
+}
+
+.title {
+    background-color: rgb(0, 0, 0, 0.3);
+    border-radius: 5px 5px 0 0;
+    padding: 0.5em;
+    margin: 0;
+}
+
+.subTitles {
+    background-color: rgb(255, 255, 255, 0.1);
+    border-radius: 20px;
+    margin: 1em;
+}
+
+.returnBtn {
+    width: 35em;
+    background-color: lightgreen;
+    color: black;
+    margin: 0.5em;
+}
+
+.disabledReturnBtn {
+    width: 35em;
+    background-color: rgb(0, 0, 0, 0.3);
+}
+
+.mainQuizContainer {
+    border: 5px solid purple;
+}
+
+.disableBtn {
+    background-color: rgb(0, 0, 0, 0.3);
+}
+
+.enableBtn {
+    background-color: lightgreen;
+    color: black;
+}
+
+.allCompareesSelected, .allSolutionsSelected {
+    background-color: rgb(144, 238, 144, 0.6);
+}
+
+.allCompareesSelected > * {
+    border: 5px solid  rgba(79, 71, 197, 0.7);;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.allSolutionsSelected > * {
+    border: 5px solid rgba(213, 51, 45, 0.5);
+    padding: 0.5em;
+}
+
+.allSolutionsSelected > * > * {
+    width: 100%;
+}
+
+.userFeedback {
+    border: 5px solid black;
+    width: 80%;
+    margin: 1em auto;
+    background-color: rgb(255, 255, 255, 0.7);
+    color: black;
+    padding: 0.5em;
+    border-radius: 5px;
+}
+
 
 @keyframes growAndShrink {
   0% {
