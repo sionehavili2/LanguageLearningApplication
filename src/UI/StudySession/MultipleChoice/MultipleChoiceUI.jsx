@@ -21,7 +21,7 @@ function setupMultipleChoice (allExamples, allExamplesIndex)
     {
         currentIndex < allExamples.length - 1 ? currentIndex++ : currentIndex = 0;
         let newVal = allExamples[currentIndex];
-        singleExampleArr.push(newVal[secondIndex])
+        singleExampleArr.push(newVal[secondIndex]);
     }
     return [...singleExampleArr];
 }
@@ -38,8 +38,6 @@ const MultipleChoiceUI = (props) =>
     const [correctAnswerCnt, setCorrectAnswerCnt] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
     const [displayReturn, setDisplayReturn] = useState(null);
-
-
 
     function handleNextQuestion()
     {
@@ -92,6 +90,7 @@ const MultipleChoiceUI = (props) =>
 
             <div>Total Correct : {correctAnswerCnt} / {exampleArr.length}</div>
             <div className={classes.mainContainer}>
+                
                 <div>{exampleIndex + 1}/{exampleArr.length}</div>
                 <h3>Multiple choice. Please select the correct translation for : </h3>
                 <span className={classes.comparee}>{comparee}</span>
@@ -113,8 +112,6 @@ const MultipleChoiceUI = (props) =>
                             </>}
                     </div>               
                 </div>
-
-
 
             </div>
             

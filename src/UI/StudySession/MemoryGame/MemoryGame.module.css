@@ -1,0 +1,11 @@
+.mainContainer {
+    display: flex;
+}
+
+.mainContainer > * > *{
+    border: 5px solid blue;
+}
+
+
+
+
