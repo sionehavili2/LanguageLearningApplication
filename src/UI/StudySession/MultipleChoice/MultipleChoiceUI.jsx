@@ -70,15 +70,6 @@ const MultipleChoiceUI = (props) =>
         }
     }},[result]);
 
-    // useEffect(()=>
-    // {
-    //     if(isFinished === true)
-    //     {
-    //         // setIsDismissed(false);
-    //         // const timer = setTimeout(() => {setIsDismissed(true)}, 1500);
-    //         // return () => {clearTimeout(timer);};
-    //     }
-    // },[isFinished]);
 
     return (
         <div>

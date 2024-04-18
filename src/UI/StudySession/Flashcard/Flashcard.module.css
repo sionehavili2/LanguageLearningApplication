@@ -56,17 +56,19 @@
 }
 
 .flipBtnFront, .flipBtnBack {
-    border : 5px solid rgb(255, 146, 106);;
-    color: rgb(255, 146, 106);
+
+
     margin: 0.5em;
     width: 35em;
-    background-color: rgb(69, 69, 252);
-}
-
-.flipBtnBack {
     border:5px solid  rgb(69, 69, 252);
     color:  rgb(69, 69, 252);
     background-color: rgb(255, 146, 106);
+}
+
+.flipBtnBack {
+  border : 5px solid rgb(255, 146, 106);;
+  color: rgb(255, 146, 106);
+  background-color: rgb(69, 69, 252);
 }
 
 .flashcardContainer {

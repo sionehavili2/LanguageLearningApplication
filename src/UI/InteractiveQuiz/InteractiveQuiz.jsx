@@ -2,7 +2,6 @@
 import { useState, useEffect} from "react";
 import classes from "./InteractiveQuiz.module.css";
 import  shuffle  from "lodash/shuffle";
-import { values } from "lodash";
 
 function getIndexes(exampleArray)
 {
@@ -72,7 +71,7 @@ const InteractiveQuiz = (props) =>
 
             if(isKeyPositionEmpty)
             {
-                console.log("key position empty....");
+                // console.log("key position empty....");
                 //1. Extract Value string
                 const displayStr = displayValues[valIndex];
 
@@ -101,12 +100,12 @@ const InteractiveQuiz = (props) =>
 
             if(isKeyPositionEmpty)
             {
-                console.log("key position is empty");
-                console.log("use KeyValues to check if values are correct")
+                // console.log("key position is empty");
+                // console.log("use KeyValues to check if values are correct")
             }
             else
             {
-                console.log("Key position is not empty!")
+                // console.log("Key position is not empty!")
                 //1. Reset Key button to empty
                 disableKeys[keyIndex] = false;
                 setDisableKeys([...disableKeys]);
@@ -173,7 +172,7 @@ const InteractiveQuiz = (props) =>
                                 <span className={classes.displayVals}>{stringVal}</span>
                                 <button 
                                     onClick={()=>{setKeyIndex(index)}}
-                                    className={keyIndex === index ? classes.selectedBtn : 'red' }
+                                    className={(keyIndex === index ? classes.selectedBtn : '') +" "+(disableKeys[index] === false ? classes.emptyBtn : '') }
                                 >
                                 <>{disableKeys[index] === false ? "Empty" : disableKeys[index]}</>
                                 </button>
@@ -188,7 +187,7 @@ const InteractiveQuiz = (props) =>
                                     <button
                                         disabled={disableVals[index]}
                                         onClick={()=>{setValIndex(index)}}
-                                        className={valIndex === index ? classes.selectedBtn : 'red' }
+                                        className={valIndex === index ? classes.selectedBtn : '' }
                                     >
                                     <>{stringVal}</>
                                 </button>

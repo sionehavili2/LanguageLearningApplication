@@ -57,6 +57,10 @@
     border: 5px dotted red;
 }
 
+.emptyBtn {
+    background-color: rgb(128, 128, 128, 0.8);
+}
+
 .unSelectedBtn
 {
     background-color: purple;
@@ -166,3 +170,4 @@
     transform: scale(1);
   }
 }
+

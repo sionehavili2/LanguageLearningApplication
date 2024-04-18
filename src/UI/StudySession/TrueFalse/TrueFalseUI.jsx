@@ -35,7 +35,6 @@ function setupTrueFalse(isQuestionTrue, allExamples, allExamplesIndex)
 }
 
 
-
 const TrueFalseUI = (props) => 
 {
     //1. Get Random Number to determine whether the question is true or false
@@ -70,15 +69,6 @@ const TrueFalseUI = (props) =>
             }
         }
     },[userSelected]);
-
-    // useEffect(()=>{
-    //     if(isFinished === true)
-    //     {
-    //         setIsDismissed(false);
-    //         // const timer = setTimeout(() => {setIsDismissed(true)}, 1500);
-    //         return () => {clearTimeout(timer);};
-    //     }
-    // },[isFinished]);
 
     return (
         

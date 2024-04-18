@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import  shuffle  from "lodash/shuffle";
 import classes from "./MemoryGame.module.css";
 import PlayingCard from "./PlayingCard/PlayingCard.jsx"
-import { conforms } from "lodash";
-import { push, ref } from "firebase/database";
 
 //checks the offset within the moduleData to use the proper index
 function getIndexValues(singleExampleArr)
@@ -79,20 +77,20 @@ const MemoryGame = (props) =>
         //if no previous card has been selected, this is the first card
         if(userSelect === null)
         {
-            console.log("1st card selected. setting to userselect");
+            // console.log("1st card selected. setting to userselect");
             setUserSelect([index,matchIndex]);
         }
         //else another card has already been selected you are ready to compare
         else
         {
-            console.log("2nd card selected READY TO COMPARE");
+            // console.log("2nd card selected READY TO COMPARE");
 
             let firstIndex = userSelect[0];
             let firstMatchIndex = userSelect[1];
             //if match is correct, set cards to null (empty)
             if(firstMatchIndex === matchIndex)
             {
-                console.log("CORRECT MATCH!!!");
+                // console.log("CORRECT MATCH!!!");
 
                 deckState[index] = null;
                 deckState[firstIndex] = null;
@@ -104,7 +102,7 @@ const MemoryGame = (props) =>
             //else if match is incorrect set cards to false (unflip)
             else
             {
-                console.log("incorrect match!....");
+                // console.log("incorrect match!....");
                 deckState[index] = false;
                 deckState[firstIndex] = false;
                 //false = display will show user isincorrect

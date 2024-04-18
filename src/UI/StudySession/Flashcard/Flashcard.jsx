@@ -81,8 +81,8 @@ const Flashcard = (props) => {
             
             <div className={classes.exampleCounter}>Flashcard {exampleArrayIndex + 1}/{exampleArr.length}</div>
             <ul className={`${classes.unorderedList} ${classes.card} ${isCardFlipped ? classes.flipped : classes.notFlipped}`}>
-            <li className={classes.cardFront}><h2>{sidesOfCard[0]}</h2></li>
-            <li className={classes.cardBack}><h2>{sidesOfCard[1]}</h2></li>
+            <li className={classes.cardFront}><h1>{sidesOfCard[0]}</h1></li>
+            <li className={classes.cardBack}><h1>{sidesOfCard[1]}</h1></li>
             </ul>
             
             <button className={isCardFlipped ? classes.flipBtnBack : classes.flipBtnFront} onClick={handleFlip}>Flip</button>

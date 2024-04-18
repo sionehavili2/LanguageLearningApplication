@@ -2,10 +2,6 @@ import { count } from "firebase/firestore";
 import classes from "./ExampleUI.module.css"
 import { useState, useEffect } from "react";
 
-function isInteger(arg) {
-  return typeof arg === 'number' && Number.isInteger(arg);
-}
-
 const ExampleUI = (props) => 
 {    
 
@@ -20,12 +16,9 @@ const ExampleUI = (props) =>
     const mapExamples = exampleArr[arrayIndex].map((string, index)=>
     {
         if(index === 0)
-            return (<li key={index}><h1>{string}</h1></li>);
+            return (<li className={classes.comparee} key={index}><h2>{string}</h2></li>);
         else 
-        if (index === 1)
-            return (<li key={index}><h2>{string}</h2></li>);
-        else
-            return (<li key={index}><h3>{string}</h3></li>);
+            return (<li className={classes.compareeSolution} key={index}><h2>{string}</h2></li>);
     });
 
 

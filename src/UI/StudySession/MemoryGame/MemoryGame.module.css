@@ -1,11 +1,11 @@
 .mainContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content:center;
 }
 
-/* .mainContainer > * {
-    border: 10px solid blue;
+/* .mainContainer > * > * {
+    border: 20px solid blue;
 } */
 
 .feedbackContainer {

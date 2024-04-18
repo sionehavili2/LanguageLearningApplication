@@ -98,14 +98,14 @@ function Dashboard()
       //   // If the query doesn't return any documents, it means the user document doesn't exist yet
       //   // Create a new user document with the provided data
       //   await setDoc(docRef(db, "users", user?.uid), { userProgression: progressStruct });
-      //   console.log("New user document created with user progression data");
+      //   // console.log("New user document created with user progression data");
       // } 
       // else 
       // {
       //   // If the query returns a document, update the existing user document with the provided data
       //   const userDocRef = doc.docs[0].ref;
       //   await updateDoc(userDocRef, { userProgression: progressStruct });
-      //   console.log("User progression data updated successfully");
+      //   // console.log("User progression data updated successfully");
       // }
       // setUserProgressData(progressStruct);
 
@@ -151,7 +151,7 @@ function Dashboard()
     if (user && userSelection) return navigateStartSession();
     fetchUserData();
 
-    return()=>{console.log("cleanup...");}
+    // return()=>{console.log("cleanup...");}
   }, [user, loading]);
 
   if(!user)
