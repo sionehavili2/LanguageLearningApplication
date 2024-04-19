@@ -11,7 +11,7 @@ const Module1 =
         "Farewells",
         "Simple Greeting Exchange",
         "Simple Greeting Exchange Part 2",
-        "Vocabulary",
+        "Simple Greeting Exchange Basic Vocabulary",
     ],
 
     lessons :

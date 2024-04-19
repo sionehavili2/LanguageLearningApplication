@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, setDoc, where, addDoc, doc as docRef, updateDoc} from "firebase/firestore";
-import UserLogStatus from "../UI/UserLogStatus/UserLogStatus";
 import StudySession from "../UI/StudySession/StudySession";
 import ContentDropdown from "../UI/ContentDropDown/ContentDropdown";
 import Login from "../pages/Login";
@@ -13,8 +12,9 @@ import Login from "../pages/Login";
 import Module0 from "../ModuleData/Module0";
 import Module1 from "../ModuleData/Module1";
 import Module2 from "../ModuleData/Module2";
+import Module3 from "../ModuleData/Module3";
 
-const allModules = [Module0,Module1,Module2];
+const allModules = [Module0,Module1,Module2,Module3];
 const moduleTitles = allModules.map((module)=>(module.moduleTitle));
 const lessonTitles = allModules.map((module)=>(module.lessonTitles));
 
@@ -76,6 +76,19 @@ const progressStruct =
     moduleLessons : 
     [
       {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+    ]
+  }, 
+  
+  {
+    moduleLessons : 
+    [
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
+      {exercisesFinished : [false,false,false,false,false,false,false]},
     ]
   },
   
@@ -103,46 +116,46 @@ function Dashboard()
       setName(userData.name);
       setUserDocRef(doc.docs[0].ref);
 
-      if (doc.empty) 
-      {
-        // If the query doesn't return any documents, it means the user document doesn't exist yet
-        // Create a new user document with the provided data
-        await setDoc(docRef(db, "users", user?.uid), { userProgression: progressStruct });
-        // console.log("New user document created with user progression data");
-      } 
-      else 
-      {
-        // If the query returns a document, update the existing user document with the provided data
-        const userDocRef = doc.docs[0].ref;
-        await updateDoc(userDocRef, { userProgression: progressStruct });
-        // console.log("User progression data updated successfully");
-      }
-      setUserProgressData(progressStruct);
-
-      // if(userData && userData.userProgression) 
+      // if (doc.empty) 
       // {
-      //   let tempArr = [];
-      //   userData.userProgression.forEach(element => {tempArr.push(element)});
-      //   setUserProgressData([...tempArr]);
-      // }
+      //   // If the query doesn't return any documents, it means the user document doesn't exist yet
+      //   // Create a new user document with the provided data
+      //   await setDoc(docRef(db, "users", user?.uid), { userProgression: progressStruct });
+      //   // console.log("New user document created with user progression data");
+      // } 
       // else 
       // {
-      //   if (doc.empty) 
-      //   {
-      //     // If the query doesn't return any documents, it means the user document doesn't exist yet
-      //     // Create a new user document with the provided data
-      //     await setDoc(docRef(db, "users", user?.uid), { userProgression: progressStruct });
-      //     console.log("New user document created with user progression data");
-      //   } 
-      //   else 
-      //   {
-      //     // If the query returns a document, update the existing user document with the provided data
-      //     const userDocRef = doc.docs[0].ref;
-      //     await updateDoc(userDocRef, { userProgression: progressStruct });
-      //     console.log("User progression data updated successfully");
-      //   }
-      //   setUserProgressData(progressStruct);
+      //   // If the query returns a document, update the existing user document with the provided data
+      //   const userDocRef = doc.docs[0].ref;
+      //   await updateDoc(userDocRef, { userProgression: progressStruct });
+      //   // console.log("User progression data updated successfully");
       // }
+      // setUserProgressData(progressStruct);
+
+      if(userData && userData.userProgression) 
+      {
+        let tempArr = [];
+        userData.userProgression.forEach(element => {tempArr.push(element)});
+        setUserProgressData([...tempArr]);
+      }
+      else 
+      {
+        if (doc.empty) 
+        {
+          // If the query doesn't return any documents, it means the user document doesn't exist yet
+          // Create a new user document with the provided data
+          await setDoc(docRef(db, "users", user?.uid), { userProgression: progressStruct });
+          console.log("New user document created with user progression data");
+        } 
+        else 
+        {
+          // If the query returns a document, update the existing user document with the provided data
+          const userDocRef = doc.docs[0].ref;
+          await updateDoc(userDocRef, { userProgression: progressStruct });
+          console.log("User progression data updated successfully");
+        }
+        setUserProgressData(progressStruct);
+      }
     } 
     catch (err) 
     {
