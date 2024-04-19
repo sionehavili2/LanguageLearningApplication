@@ -48,12 +48,10 @@ const Flashcard = (props) => {
 
   const handlePrevious = () => {
     setArrayIndex(prevIndex => prevIndex - 1);
-    setIsCardFlipped(false);
   };
 
   const handleNext = () => {
     setArrayIndex(prevIndex => prevIndex + 1);
-    setIsCardFlipped(false);
   };
 
   return (

@@ -9,7 +9,8 @@ const Module0 =
         "Lengthened Vowel Contrast",
         "Consonants",
         "Glottal Stop",
-        "Word Stress",
+        "Glottal Stop Part 2",
+        // "Word Stress",
     ],
 
     lessons :     
@@ -54,7 +55,7 @@ const Module0 =
             [
                ["mānava : breathe, breath","manava : womb"],
                ["māvae : to depart","mavae : to wean"],
-               ["kaka : to climb", "kakā : parrot","kākā : deceit, to decieve"],
+               ["kaka : to climb -- kakā : parrot","kākā : deceit, to decieve"],
                ["langa : to build, built, pain", "langā : to be in labor with a child"],
             ]
         },

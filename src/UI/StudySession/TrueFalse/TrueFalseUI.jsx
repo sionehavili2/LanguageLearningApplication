@@ -31,7 +31,7 @@ function setupTrueFalse(isQuestionTrue, allExamples, allExamplesIndex)
     }
     else console.log("Error! [TrueFalseUI.jsx] function setupTrueFalse() passed argument IsQuestionTrue is producing an unexpected result");
     
-    return singleExampleArr[firstIndex] + " : " + comparee;
+    return singleExampleArr[firstIndex] + " - " + comparee;
 }
 
 

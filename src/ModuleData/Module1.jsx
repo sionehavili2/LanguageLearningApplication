@@ -7,9 +7,11 @@ const Module1 =
     [
         "Common Greetings", 
         "(Classroom) Expressions",
+        "(Classroom) Expressions Part 2",
         "Farewells",
         "Simple Greeting Exchange",
         "Simple Greeting Exchange Part 2",
+        "Vocabulary",
     ],
 
     lessons :
@@ -46,6 +48,13 @@ const Module1 =
                 ["Kātaki fakamolemole!", "Please be patient (empathetic)!"],
                 ["Tali mai!", "Answer me!"],
                 ["Toe 'ai!", "Repeat!"],
+            ]
+        },          
+        
+        {
+            intro : "Remember to concentrate on the meaning as well that the pronunciation",
+            examples : 
+            [
                 ["'Ai fakataha!", "Say it together!"],
                 ["Kātaki toe 'ai!", "Please repeat!"],
                 ["Ki'i tahataha hake!", "A little louder!"],
@@ -93,6 +102,22 @@ const Module1 =
                 ["'Io","is the appropriate response for all greetings, compliments, and farewells. It may standalone or accompany a more specific response."],
                 ["Nofo ā ē", "is good-bye, said to the person who is about to stay."],
                 ["'Alu ā ē ","is good-bye, said to the person who is about to leave. Note the sharp rising intonation of the 'ē' at the end"],
+            ],
+        },
+
+        {
+            intro : "Review Vocabulary",
+            examples : 
+            [
+                ["'alu" ,"go"],
+                ["fēfē" , "how, how about"],
+                ["hake", "idiomatic with fēfē"],
+                ["'io","yes"],             
+                ["leilei","good, well"],             
+                ["mālō", "thanks, congragulations"],             
+                ["pē","postposed modifier - just, only, merely"],             
+                ["sai", "fine, well, good"],             
+                ["nofo","stay, remain, live"],             
             ],
         },
     ],
