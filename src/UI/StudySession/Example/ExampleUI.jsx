@@ -1,13 +1,14 @@
 import { count } from "firebase/firestore";
 import classes from "./ExampleUI.module.css"
 import { useState, useEffect } from "react";
+import PracticeBankBtn from "../../PracticeBankBtn/PracticeBankBtn";
 
 const ExampleUI = (props) => 
 {    
 
     const [arrayIndex, setArrayIndex] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
-    const[isDismissed, setIsDismissed] = useState(false);
+    const [isDismissed, setIsDismissed] = useState(false);
 
     const exampleArr = props.lessonData.examples;
     const exampleArrLength  = props.lessonData.examples.length;
@@ -31,7 +32,6 @@ const ExampleUI = (props) =>
             setIsDismissed(false);
             const timer = setTimeout(() => {setIsDismissed(true)}, 2000);
         }
-        
     },[isFinished]);
     
     return (
@@ -66,6 +66,8 @@ const ExampleUI = (props) =>
                 >        
                     Return to Checkpoint Selection
                 </button>
+                <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]);}} currentExample={exampleArr[arrayIndex]}/>
+                {/* <button onClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]); setHasAdded(true);}}>Add Example to Personal Practice Bank</button> */}
             </div>
         </>
     );

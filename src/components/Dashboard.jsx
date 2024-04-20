@@ -100,6 +100,7 @@ function Dashboard()
   const [name, setName] = useState("");
   const [userSelection, setUserSelection] = useState(false);
   const [userProgressData, setUserProgressData] = useState();
+  const [personalPracticeBank, setPersonalPracticeBank] = useState();
   const [userDocRef, setUserDocRef] = useState();
   const navigate = useNavigate("/Login");
   const navigateStartSession = useNavigate("/Dashboard/StudySession");
@@ -120,15 +121,21 @@ function Dashboard()
       // {
       //   // If the query doesn't return any documents, it means the user document doesn't exist yet
       //   // Create a new user document with the provided data
-      //   await setDoc(docRef(db, "users", user?.uid), { userProgression: progressStruct });
-      //   // console.log("New user document created with user progression data");
+      //   // await setDoc(docRef(db, "users", user?.uid), { userProgression: progressStruct });
+      //   //await setDoc(docRef(db, "users", user?.uid), { personalPracticeBank : [] });        \
+      //   await setDoc(docRef(db, "users", user?.uid), { personalPracticeBank : {pairs:[]} });
+
+      //   console.log("New user document created with user progression data");
       // } 
       // else 
       // {
       //   // If the query returns a document, update the existing user document with the provided data
       //   const userDocRef = doc.docs[0].ref;
-      //   await updateDoc(userDocRef, { userProgression: progressStruct });
-      //   // console.log("User progression data updated successfully");
+      //   // await updateDoc(userDocRef, { personalPracticeBank : [] });
+        // await updateDoc(docRef(db, "users", user?.uid), { personalPracticeBank : {pairs:[]} }).then(console.log("pairs should be set..."));
+          // await setDoc(docRef(db, "users", user?.uid), { personalPracticeBank : {pairs:[]} }).then(console.log("pairs should be set..."))
+
+      //   console.log("User progression data updated successfully");
       // }
       // setUserProgressData(progressStruct);
 
@@ -156,6 +163,31 @@ function Dashboard()
         }
         setUserProgressData(progressStruct);
       }
+
+      if(userData && userData.personalPracticeBank)
+      {
+        setPersonalPracticeBank(userData.personalPracticeBank);
+      }
+      else
+      {
+        if (doc.empty) 
+        {
+          // If the query doesn't return any documents, it means the user document doesn't exist yet
+          // Create a new user document with the provided data
+          // await setDoc(docRef(db, "users", user?.uid), { userProgression: progressStruct });
+          //await setDoc(docRef(db, "users", user?.uid), { personalPracticeBank : [] });        \
+          await setDoc(docRef(db, "users", user?.uid),  { personalPracticeBank : {keys:[], values:[]}}).then(console.log("pairs should be set..."));
+
+          console.log("New user document created with user progression data");
+        } 
+        else 
+        {
+          // If the query returns a document, update the existing user document with the provided data
+          // await updateDoc(userDocRef, { personalPracticeBank : [] });
+          await updateDoc(userDocRef, { personalPracticeBank : {keys:[], values:[]}}).then(console.log("pairs should be set..."));
+          console.log("User progression data updated successfully");
+        }
+      }
     } 
     catch (err) 
     {
@@ -163,7 +195,7 @@ function Dashboard()
       alert("An error occured while fetching user data [Dashboard.jsx]");
     }
   };
-
+ 
 
   //Use Efffect for loading info from backend
   useEffect(() => 
@@ -197,22 +229,41 @@ function Dashboard()
             : 
             <>
               <div className="mainDashboardBtnContainer"><button className="mainDashboardBtn"  onClick={()=>{setUserSelection(false)}}>Return To Main Dashboard</button></div>
-              <StudySession userProgress={userProgressData} moduleIndex={userSelection[0]} lessonIndex={userSelection[1]} moduleData={allModules} onUpdateProgress={(updatedArray)=>
-              {
-                  const updatedUserProgress = [...userProgressData];
-                  updatedUserProgress[userSelection[0]].moduleLessons[userSelection[1]].exercisesFinished = updatedArray;
+              <StudySession 
+                userProgress={userProgressData} 
+                moduleIndex={userSelection[0]} 
+                lessonIndex={userSelection[1]} 
+                moduleData={allModules}
+                practiceBank={personalPracticeBank}
+                onAddToPersonalPracticeBank={(addToBank)=>
+                {
+                    console.log("Dashbaord has received this to be added to practice bank: " + addToBank);
+                    // Update the document in Firestore with the modified user progress data
+                    const updateProgress = async ()=>
+                    {
+                      //push data to personal practice bank
+                      personalPracticeBank.keys.push(addToBank[0]);
+                      personalPracticeBank.values.push(addToBank[1]);
+                      setPersonalPracticeBank(personalPracticeBank);
 
-                  // Update the document in Firestore with the modified user progress data
-                  const updateProgress = async ()=>
-                  {
+                      await updateDoc(userDocRef, { personalPracticeBank: personalPracticeBank })
+                      .then(() => {console.log("Practice Bank updated successfully");})
+                      .catch((error) => {console.error("Error updating practice bank:", error);});
+                    }
+
+                    updateProgress();
+                }} 
+                onUpdateProgress={ async (updatedArray)=>
+                {
+                    const updatedUserProgress = [...userProgressData];
+                    updatedUserProgress[userSelection[0]].moduleLessons[userSelection[1]].exercisesFinished = updatedArray;
+
                     await updateDoc(userDocRef, { userProgression: updatedUserProgress })
                     .then(() => {console.log("User progress data updated successfully");})
                     .catch((error) => {console.error("Error updating user progress data:", error);});
-                  }
 
-                  updateProgress();
-                  
-              }}/>
+                }}
+                />
             </>
           }
           </>

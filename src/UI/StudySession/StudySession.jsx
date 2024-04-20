@@ -23,20 +23,28 @@ const StudySession = (props) =>
             {
                 checkpointSelected != null ?
 
-                    <BeginStudySession {...lessonInfo} selectedIndex={checkpointSelected} onReturnToCheckPointSelection={()=>{setCheckpointSelected(null)}} onSessionOver={(finishedCpIndex)=> 
-                    {    
-                        if(finishedCpIndex === -1)
-                        {
-                            console.log("user did not pass.");
-                        }
-                        else if(progressArr[finishedCpIndex] === false)
-                        {
-                            console.log("finished and updating user progression...");
-                            progressArr[finishedCpIndex] = true;
-                            props.onUpdateProgress([...progressArr]);
-                        }
-                        else console.log("section is already finished");
-                    }}/>
+                    <>
+                        <BeginStudySession {...lessonInfo} selectedIndex={checkpointSelected} onReturnToCheckPointSelection={()=>{setCheckpointSelected(null)}} 
+                            onSessionOver={(finishedCpIndex)=> 
+                            {    
+                                if(finishedCpIndex === -1)
+                                {
+                                    console.log("user did not pass.");
+                                }
+                                else if(progressArr[finishedCpIndex] === false)
+                                {
+                                    console.log("finished and updating user progression...");
+                                    progressArr[finishedCpIndex] = true;
+                                    props.onUpdateProgress([...progressArr]);
+                                }
+                                else console.log("section is already finished");
+                            }}
+
+                            onAddToPracticeBank={(addToPB)=>{props.onAddToPersonalPracticeBank(addToPB);}}
+
+                            practiceBank={props.practiceBank}
+                        />
+                    </>
                 :
                     <CheckpointUI progressData={progressArr} onSelectedCheckpoint={(cpIndex)=>{setCheckpointSelected(cpIndex)}}/>
             }
