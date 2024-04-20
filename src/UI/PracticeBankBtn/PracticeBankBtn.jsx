@@ -18,21 +18,21 @@ const PracticeBankBtn = (props) =>
         {
             if(exampleKey === keys[i] && exampleValue === values[i])
             {
-                console.log("it is already here!");
                 setIsAdded(true);
             }
         }
     },[props.currentExample]);
 
-    return <button 
+    return( 
+        <button 
             {...props} 
             onClick={()=>{props.handleOnClick(props.exampleValue); setIsAdded(true)}} 
             className={isAdded ? classes.isAdded : classes.isNotAdded}
             disabled={isAdded}
         >
-        {isAdded ? "Added to Bank" : "Add to Personal Practice Bank"}
-    
-    </button>
+            {isAdded ? "Added to Bank" : "Add to Personal Practice Bank"}
+        </button>
+    );
 }
 
-export default PracticeBankBtn;
+export default PracticeBankBtn;7

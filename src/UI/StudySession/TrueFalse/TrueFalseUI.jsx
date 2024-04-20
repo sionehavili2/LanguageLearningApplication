@@ -2,6 +2,7 @@ import { useHref } from "react-router-dom";
 import classes from "./TrueFalseUI.module.css";
 import { useState, useEffect} from "react";
 import { getRandomInt } from "../../../computeFunctions";
+import PracticeBankBtn from "../../PracticeBankBtn/PracticeBankBtn";
 
 function setupTrueFalse(isQuestionTrue, allExamples, allExamplesIndex)
 {
@@ -108,7 +109,7 @@ const TrueFalseUI = (props) =>
                 </>
 
 
-                <>{
+            <>{
                 isFinished && !isDismissed &&
                 <>
                     <div className={classes.finishedResponse}>
@@ -118,12 +119,13 @@ const TrueFalseUI = (props) =>
                             onClick={()=>{props.onReturnToCheckPointSelection()}}
                             disabled={!isFinished}
                         >        
-                Return to Checkpoint Selection
-            </button>
+                            Return to Checkpoint Selection
+                        </button>
                     </div>
-        
                 </>
             }</>
+
+            {displayExamples && <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(displayExamples);}} currentExample={displayExamples}/>}
             </div>
 
 

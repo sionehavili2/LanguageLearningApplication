@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classes from "./Flashcard.module.css";
+import PracticeBankBtn from '../../PracticeBankBtn/PracticeBankBtn';
 
 function getSides(exampleArray) {
   let side1 = null;
@@ -81,11 +82,12 @@ const Flashcard = (props) => {
             <ul className={`${classes.unorderedList} ${classes.card} ${isCardFlipped ? classes.flipped : classes.notFlipped}`}>
             <li className={classes.cardFront}><h1>{sidesOfCard[0]}</h1></li>
             <li className={classes.cardBack}><h1>{sidesOfCard[1]}</h1></li>
-            </ul>
             
+            </ul>
             <button className={isCardFlipped ? classes.flipBtnBack : classes.flipBtnFront} onClick={handleFlip}>Flip</button>
+            <div>{sidesOfCard && <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(sidesOfCard);}} currentExample={sidesOfCard}/>}</div>
+            
         </div>
-
 
         <div className={classes.allBtns}>
             <button onClick={handlePrevious} disabled={exampleArrayIndex <= 0}><>&#8592;</> Previous</button>

@@ -49,6 +49,7 @@ const ExampleUI = (props) =>
                     <>{mapExamples}</>
                     <button className={classes.btn} onClick={()=>{setArrayIndex(currentIndex => currentIndex - 1)}} disabled={arrayIndex <= 0}>Previous</button>
                     <button className={classes.btn} onClick={()=>{setArrayIndex(currentIndex => currentIndex + 1)}}  disabled={arrayIndex >= exampleArrLength - 1}>Next</button>
+                    <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]);}} currentExample={exampleArr[arrayIndex]}/>
                 </ul>
                 <>{isFinished && !isDismissed &&
                     <>
@@ -66,8 +67,6 @@ const ExampleUI = (props) =>
                 >        
                     Return to Checkpoint Selection
                 </button>
-                <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]);}} currentExample={exampleArr[arrayIndex]}/>
-                {/* <button onClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]); setHasAdded(true);}}>Add Example to Personal Practice Bank</button> */}
             </div>
         </>
     );
