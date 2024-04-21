@@ -5,12 +5,15 @@ import { useNavigate, Link } from "react-router-dom";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Login from "./Login";
 import UserLogStatus from "../UI/UserLogStatus/UserLogStatus";
+import PracticeBank from "../UI/PracticeBank/PracticeBank";
 
 const Home = () => 
 {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate("/Login");
+  const [practiceBankData, setPracticeBankData] = useState(null);
+  const [isPractice, setIsPractice] = useState(false);
 
   //Fetch username to display
   const fetchUserName = async () => 
@@ -19,8 +22,13 @@ const Home = () =>
     {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setName(data.name);
+      const userData = doc.docs[0].data();
+      setName(userData.name);
+      
+      if(userData && userData.personalPracticeBank)
+      {
+        setPracticeBankData(userData.personalPracticeBank);
+      }
     } 
     catch (err) 
     {
@@ -39,7 +47,12 @@ const Home = () =>
 
   }, [user, loading]);
 
-  if(!user)
+  
+  if(practiceBankData !== null && isPractice === true)
+  {
+     return(<PracticeBank practiceBankData={practiceBankData}/>)
+  }
+  else if(!user)
   {
     return (
       <>
@@ -54,6 +67,7 @@ const Home = () =>
     <>
       <h2>You are on the Home Page Welcome, <>{user?.email}</></h2>
       <div>Head to the <Link to="/Dashboard"> Dashboard </Link>to begin learning!</div>
+      <button onClick={()=>{setIsPractice(true)}}>Access Practice Bank</button>
       {/* <StringDisplayCard string={Module0[0].intro}/> */}
       <div>----</div>
       {/* <Flashcards exampleArray={Module0[0].examples}/> */}

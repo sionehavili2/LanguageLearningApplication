@@ -1,14 +1,13 @@
-import ExampleUI from "./Example/ExampleUI.jsx";
-import Flashcard from "./Flashcard/Flashcard.jsx";
-import TrueFalseUI from "./TrueFalse/TrueFalseUI.jsx";
-import MultipleChoiceUI from "./MultipleChoice/MultipleChoiceUI.jsx";
+import ExampleUI from "../StudySession/Example/ExampleUI.jsx";
+import Flashcard from "../StudySession/Flashcard/Flashcard.jsx";
+import TrueFalseUI from "../StudySession/TrueFalse/TrueFalseUI.jsx";
+import MultipleChoiceUI from "../StudySession/MultipleChoice/MultipleChoiceUI.jsx";
 import Matching from "../Matching/Matching.jsx";
 import InteractiveQuiz from "../InteractiveQuiz/InteractiveQuiz.jsx";
-import MemoryGame from "./MemoryGame/MemoryGame.jsx";
+import MemoryGame from "../../UI/StudySession/MemoryGame/MemoryGame.jsx";
 
-const BeginStudySession = (props) => 
+const CustomStudySession = (props) => 
 {
-    // console.log(props);
     switch(props.selectedIndex)
     {
         case 0 : return <ExampleUI {...props} onFinished={(isFinished)=>{props.onSessionOver(isFinished ? props.selectedIndex : -1)}}/>
@@ -22,4 +21,4 @@ const BeginStudySession = (props) =>
     };
 };
 
-export default BeginStudySession;
+export default CustomStudySession;

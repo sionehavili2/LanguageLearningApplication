@@ -6,7 +6,13 @@ const CheckpointUI = (props) =>
     return (
         <div className={classes.mainContainer}>
             <h3>Select a checkpoint to begin</h3>
-            <ul>{props.progressData.map((isCompleted,index)=>(<li key={index}><button onClick={()=>{props.onSelectedCheckpoint(index)}} className={isCompleted ? classes.isCompleted : classes.isNotCompleted}>{index + 1}. {lessonNames[index]}</button></li>))}</ul>
+            {
+                props.progressData === null 
+                ?
+                    <ul>{lessonNames.map((nameString, index)=>(<li key={index}><button onClick={()=>{props.onSelectedCheckpoint(index)}} className={classes.isNotCompleted}>{nameString}</button></li>))}</ul>
+                :
+                    <ul>{props.progressData.map((isCompleted,index)=>(<li key={index}><button onClick={()=>{props.onSelectedCheckpoint(index)}} className={isCompleted ? classes.isCompleted : classes.isNotCompleted}>{index + 1}. {lessonNames[index]}</button></li>))}</ul>
+            }
         </div>
     );
 }

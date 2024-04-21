@@ -10,10 +10,15 @@ const ExampleUI = (props) =>
     const [isFinished, setIsFinished] = useState(false);
     const [isDismissed, setIsDismissed] = useState(false);
 
-    const exampleArr = props.lessonData.examples;
-    const exampleArrLength  = props.lessonData.examples.length;
+    console.log(props.lessonData);
 
+    const exampleArr = props.lessonData.examples;
+    const exampleArrLength  = props.lessonData.examples.length ? props.lessonData.examples.length : 1;
+
+    // const exampleArr = props.customLessonData ? props.customLessonData : props.lessonData.examples;
+    // const exampleArrLength  = props.customLessonData ? props.customLessonData.length : props.lessonData.examples.length;
     // const mapExamples = exampleArr[arrayIndex].map((string, index)=>(<li key={index}>{string}</li>));
+
     const mapExamples = exampleArr[arrayIndex].map((string, index)=>
     {
         if(index === 0)
@@ -49,7 +54,7 @@ const ExampleUI = (props) =>
                     <>{mapExamples}</>
                     <button className={classes.btn} onClick={()=>{setArrayIndex(currentIndex => currentIndex - 1)}} disabled={arrayIndex <= 0}>Previous</button>
                     <button className={classes.btn} onClick={()=>{setArrayIndex(currentIndex => currentIndex + 1)}}  disabled={arrayIndex >= exampleArrLength - 1}>Next</button>
-                    <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]);}} currentExample={exampleArr[arrayIndex]}/>
+                    {props.practiceBank &&                     <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]);}} currentExample={exampleArr[arrayIndex]}/>}
                 </ul>
                 <>{isFinished && !isDismissed &&
                     <>
