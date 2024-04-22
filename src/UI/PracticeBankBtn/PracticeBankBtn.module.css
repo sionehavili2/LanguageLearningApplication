@@ -1,12 +1,26 @@
 
 .isAdded {
     background-color: rgb(0, 0, 0, 0.5);
-    margin: 0.5em;
+    margin: 0.75em;
 }
 
 .isNotAdded {
     border: 5px solid white;
     color: white;
     background-color: rgb(0, 102, 255,0.7);
-    margin: 0.5em;
+    margin: 0.75em;
+}
+
+.removeBtn {
+    border: 5px solid red;
+    color: red;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 1em 0 0 0;
+    transition: border 0.5s ease-in;
+}
+
+.removeBtn:hover {
+    color: white;;
+    background-color: red;
+    margin: 1em 0 0 0;
 }

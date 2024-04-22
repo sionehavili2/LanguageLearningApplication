@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, logout } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { query, collection, getDocs, where, updateDoc } from "firebase/firestore";
 import Login from "./Login";
 import UserLogStatus from "../UI/UserLogStatus/UserLogStatus";
 import PracticeBank from "../UI/PracticeBank/PracticeBank";
-import classes from "./Home.module.css";
 
 const Home = () => 
 {
@@ -15,6 +14,7 @@ const Home = () =>
   const navigate = useNavigate("/Login");
   const [practiceBankData, setPracticeBankData] = useState(null);
   const [isPractice, setIsPractice] = useState(false);
+  const [userDocRef, setUserDocRef] = useState();
 
   //Fetch username to display
   const fetchUserName = async () => 
@@ -25,9 +25,11 @@ const Home = () =>
       const doc = await getDocs(q);
       const userData = doc.docs[0].data();
       setName(userData.name);
-      
+      setUserDocRef(doc.docs[0].ref);
+
       if(userData && userData.personalPracticeBank)
       {
+        console.log(userData.personalPracticeBank);
         setPracticeBankData(userData.personalPracticeBank);
       }
     } 
@@ -51,7 +53,22 @@ const Home = () =>
   
   if(practiceBankData !== null && isPractice === true)
   {
-     return(<PracticeBank practiceBankData={practiceBankData}/>)
+     return(
+      <PracticeBank 
+        practiceBankData={practiceBankData}
+        onUpdatePracticeBank={async (newPracticeBank)=>
+        {
+          const newKeyValObject = 
+          {
+            values: newPracticeBank[0],
+            keys: newPracticeBank[1],
+          };
+
+          await updateDoc(userDocRef, { personalPracticeBank : newKeyValObject})
+          .then(() => {console.log("Practice Bank updated successfully"); setPracticeBankData(newKeyValObject);})
+          .catch((error) => {console.error("Error updating practice bank:", error);});
+        }}
+      />)
   }
   else if(!user)
   {
@@ -65,15 +82,15 @@ const Home = () =>
   {
 
     return (
-    <div className={classes.mainDashboardBtnContainer}>
-      <h3>You are on the Home Page Welcome, {user?.email}</h3>
+    <>
+      <h2>You are on the Home Page Welcome, <>{user?.email}</></h2>
       <div>Head to the <Link to="/Dashboard"> Dashboard </Link>to begin learning!</div>
-      <button className={classes.bankBtn} onClick={()=>{setIsPractice(true)}}>Access Practice Bank</button>
+      <button onClick={()=>{setIsPractice(true)}}>Access Practice Bank</button>
       {/* <StringDisplayCard string={Module0[0].intro}/> */}
       <div>----</div>
       {/* <Flashcards exampleArray={Module0[0].examples}/> */}
       <UserLogStatus name={name} user={user} logout={logout}/>      
-    </div>
+    </>
     );
   }
   else return <div>Error... Please check Home.jsx code</div>

@@ -81,7 +81,7 @@ const Flashcard = (props) => {
             
             </ul>
             <button className={isCardFlipped ? classes.flipBtnBack : classes.flipBtnFront} onClick={handleFlip}>Flip</button>
-            <div>{sidesOfCard && props.practiceBank && <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(sidesOfCard);}} currentExample={exampleArr[exampleArrayIndex]}/>}</div>
+            <div>{sidesOfCard && <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(sidesOfCard);}} currentExample={sidesOfCard}/>}</div>
             
         </div>
 
