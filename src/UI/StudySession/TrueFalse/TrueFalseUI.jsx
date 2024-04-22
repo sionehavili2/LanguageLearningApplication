@@ -125,7 +125,7 @@ const TrueFalseUI = (props) =>
                 </>
             }</>
 
-            {displayExamples && props.practiceBank && <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(displayExamples);}} currentExample={displayExamples}/>}
+            {displayExamples && <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(displayExamples);}} currentExample={displayExamples}/>}
             </div>
 
 

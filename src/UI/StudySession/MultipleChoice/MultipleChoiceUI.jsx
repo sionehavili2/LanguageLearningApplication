@@ -88,7 +88,7 @@ const MultipleChoiceUI = (props) =>
                 <span className={classes.comparee}>{comparee}</span>
                 <div className={classes.selectionContainer}>
                     {allSolutions && allSolutions.map((singleSolution,index) => (<li key={index}><button value={singleSolution} onClick={(e)=>{setResult(answer === e.target.value ? true : false)}} disabled={result != null}>{singleSolution}</button></li>))}
-                    {props.practiceBank && <div className={classes.practiceBankContainer}><PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank([comparee,answer]);}} currentExample={[comparee,answer]}/></div>}
+                    <div className={classes.practiceBankContainer}><PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank([comparee,answer]);}} currentExample={[comparee,answer]}/></div>
                     <div className={result != null ? classes.responseContainer : ''}>
                         <>{result != null && !displayReturn && (result === true ? <div className={classes.rightAnswer}>"Correct!"</div> : <div className={classes.wrongAnswer}>Incorrect. Correct answer is : {answer}</div>)}</>
                         <>{result != null && (exampleIndex + 1 != exampleArr.length && <button onClick={handleNextQuestion}>Next Question</button>)}</> 
