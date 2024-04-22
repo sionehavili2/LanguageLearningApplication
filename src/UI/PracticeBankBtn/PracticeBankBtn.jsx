@@ -16,10 +16,19 @@ const PracticeBankBtn = (props) =>
         setIsAdded(false);
         for(let i = 0; i < keys.length; i++)
         {
+            console.log(exampleKey);
+            console.log(keys[i]);
+            console.log("-----")
+            console.log(exampleValue);
+            console.log(values[i]);
+            
             if(exampleKey === keys[i] && exampleValue === values[i])
             {
+        
                 setIsAdded(true);
+                console.log("it is already here!");
             }
+            console.log("is added is " + (isAdded ? "true" : "false"));
         }
     },[props.currentExample]);
 

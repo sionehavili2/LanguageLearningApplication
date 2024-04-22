@@ -32,7 +32,7 @@ function setupTrueFalse(isQuestionTrue, allExamples, allExamplesIndex)
     }
     else console.log("Error! [TrueFalseUI.jsx] function setupTrueFalse() passed argument IsQuestionTrue is producing an unexpected result");
     
-    return singleExampleArr[firstIndex] + " - " + comparee;
+    return [singleExampleArr[firstIndex], comparee];
 }
 
 
@@ -40,24 +40,28 @@ const TrueFalseUI = (props) =>
 {
     //1. Get Random Number to determine whether the question is true or false
     const [isQuestionTrue, setIsQuestionTrue] = useState(getRandomInt(0,1) === 0 ? false : true);
-    const [userSelected, setUserSelected] = useState(null);
-    const [exampleIndex, setExampleIndex] = useState(0);
-    const [displayExamples, setDisplayExamples] = useState();
-    const [correctAnswerCnt, setCorrectAnswerCnt] = useState(0);
     const [exampleArr] = useState(props.lessonData.examples);
+    const [exampleIndex, setExampleIndex] = useState(0);
+
+    const [userSelected, setUserSelected] = useState(null);
+    const [correctAnswerCnt, setCorrectAnswerCnt] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
     const [isDismissed, setIsDismissed] = useState(false);
 
+    const [displayExamples, setDisplayExamples] = useState(setupTrueFalse(isQuestionTrue, exampleArr, exampleIndex));
+
+
     function handleNextQuestion() 
     {
-        setIsQuestionTrue(getRandomInt(0,1) === 0 ? false : true);
-        setExampleIndex(currIndex => currIndex+1);
+        const isNewQuestionTrue = getRandomInt(0,1) === 0 ? false : true;
+        const nextExampleIndex = exampleIndex + 1;
+
+        setIsQuestionTrue(isNewQuestionTrue);
+        setExampleIndex(nextExampleIndex);
+        setDisplayExamples(setupTrueFalse(isNewQuestionTrue, exampleArr, nextExampleIndex));   
         setUserSelected(null);
-        setDisplayExamples(null);
     }
-
-    useEffect(()=>{setDisplayExamples(setupTrueFalse(isQuestionTrue, exampleArr, exampleIndex));},[displayExamples]);
-
+    
     useEffect(()=>{
         
         if(userSelected != null)
@@ -85,7 +89,7 @@ const TrueFalseUI = (props) =>
             <div className={classes.mainContainer}>
                                 <div>{exampleIndex + 1}/{exampleArr.length}</div>
                 <h4>Is the following translation True or False?</h4>
-                <h2>{displayExamples ? displayExamples : "Loading..."}</h2>
+                <h2>{displayExamples ? displayExamples[0] +"--"+ displayExamples[1] : "Loading..."}</h2>
                 <>
                 {
                     userSelected === null ?
@@ -125,7 +129,6 @@ const TrueFalseUI = (props) =>
                 </>
             }</>
 
-            {displayExamples && props.practiceBank && <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(displayExamples);}} currentExample={displayExamples}/>}
             </div>
 
 

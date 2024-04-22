@@ -5,13 +5,9 @@ import PracticeBankBtn from '../../PracticeBankBtn/PracticeBankBtn';
 function getSides(exampleArray) {
   let side1 = null;
   let side2 = null;
-  if (exampleArray.length === 3) {
-    side1 = (<><li>{exampleArray[0]}</li><li>{exampleArray[1]}</li></>);
-    side2 = (<><li>{exampleArray[0]}</li><li>{exampleArray[2]}</li></>);
-  } else if (exampleArray.length === 2) {
-    side1 = (<li>{exampleArray[0]}</li>);
-    side2 = (<li>{exampleArray[1]}</li>);
-  } else console.log("getSides() function error: Array length does not match any expected sizes");
+
+  side1 = (<li>{exampleArray[0]}</li>);
+  side2 = (<li>{exampleArray[1]}</li>);
 
   return [side1, side2];
 }
@@ -85,7 +81,7 @@ const Flashcard = (props) => {
             
             </ul>
             <button className={isCardFlipped ? classes.flipBtnBack : classes.flipBtnFront} onClick={handleFlip}>Flip</button>
-            <div>{sidesOfCard && props.practiceBank && <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(sidesOfCard);}} currentExample={sidesOfCard}/>}</div>
+            <div>{sidesOfCard && props.practiceBank && <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(sidesOfCard);}} currentExample={exampleArr[exampleArrayIndex]}/>}</div>
             
         </div>
 
