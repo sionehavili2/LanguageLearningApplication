@@ -1,16 +1,16 @@
 
 const PracticeBankModuleTemplate = 
 {
-    moduleTitle : "Personal PB",
+    moduleTitle : "Practice Bank",
     lessonTitles : 
     [
-        "custom study"
+        "Custom Study"
     ],
 
     lessons :     
     [
         {
-            intro : "(intro here)",
+            intro : "Study examples you have added to your practice bank!",
             examples:
             [
                 "(examples array here)"

@@ -1,10 +1,10 @@
 import { useState, useEffect} from "react";
 import CheckpointUI from "../Checkpoint/CheckpointUI";
-import CustomStudySession from "../CustomStudySession/CustomStudySession";
 import BeginStudySession from "../StudySession/BeginStudySession";
 import classes from "./PracticeBank.module.css";
 import PracticeBankModuleTemplate from "../../ModuleData/PracticeBankModuleTemplate";
 import { connectStorageEmulator } from "firebase/storage";
+import ManagePracticeBank from "../ManagePracticeBank/ManagePracticeBank";
 
 function getExamplesReady(newData) 
 {
@@ -59,63 +59,50 @@ const PracticeBank = (props) =>
 {
     const [checkpointSelected, setCheckpointSelected] = useState(null);
     const [moduleData, setModuleData] = useState(setupModuleData(props.practiceBankData));
+    const [isManageBank, setIsManageBank] = useState(false);
 
     const modTitle = moduleData.moduleTitle;
     const lessonTitle = moduleData.lessonTitles;
     const lessonArr =  moduleData.lessons[0];
 
-    // console.log(modTitle);
-    // console.log(lessonTitle);
-    // console.log(lessonArr);
-
     const lessonInfo = { moduleTitle:modTitle, lessonTitle:lessonTitle, lessonData:lessonArr};
-
-    useEffect(()=>{setModuleData(setupModuleData(props.practiceBankData))},[props.practiceBankData]);
-
+    
     return(
         <div className={classes.mainContainer}>
-            <h2 className={classes.title}>Personal Practice Bank</h2>
-            {
-                checkpointSelected === null 
-                ?
-                    <>
-                        <CheckpointUI progressData={null} onSelectedCheckpoint={(cpIndex)=>{ console.log("check point selected"); setCheckpointSelected(cpIndex)}}/>
-                    </>
-                :
-                    <>
-                        {/* <CustomStudySession customLessonData={isDataReady} selectedIndex={checkpointSelected}/> */}
-                        <BeginStudySession {...lessonInfo} selectedIndex={checkpointSelected} onReturnToCheckPointSelection={()=>{setCheckpointSelected(null)}} 
-                            onSessionOver={(finishedCpIndex)=> 
-                            {    
-                                // if(finishedCpIndex === -1)
-                                // {
-                                //     console.log("user did not pass.");
-                                // }
-                                // else if(progressArr[finishedCpIndex] === false)
-                                // {
-                                //     console.log("finished and updating user progression...");
-                                //     progressArr[finishedCpIndex] = true;
-                                //     props.onUpdateProgress([...progressArr]);
-                                // }
-                                // else console.log("section is already finished");
-                                console.log("no need to do anything")
-                            }}
-
-                            onAddToPracticeBank={(addToPB)=>{props.onAddToPersonalPracticeBank(addToPB);}}
-
-                            handleRemoveFromPracticebank={(exampleIndex)=>
-                            {
-                                const updatedPracticeBank = removeExampleFromPBank(exampleIndex, moduleData);
-                                const updatedExamples = updatedPracticeBank.lessons[0].examples;
-                                const keyVals = extractKeysAndValues(updatedExamples);
-                                console.log(keyVals);
-                                props.onUpdatePracticeBank(keyVals);
-                            }}
-
-                            practiceBank={props.practiceBank}
-                        />
-                    </>
-            }
+        {
+            isManageBank === true ?
+            <>
+                <ManagePracticeBank 
+                    practiceBank={props.practiceBankData}
+                    onSelectedCheckpoint={(cpIndex)=>{setCheckpointSelected(cpIndex); setIsManageBank(false);}}
+                    onNewPracticeBank={(newBankArr)=>{props.onUpdatePracticeBank(newBankArr)}}
+                />
+            </>
+            :
+            <>
+                <h2 className={classes.title}>Personal Practice Bank</h2>
+                {
+                    checkpointSelected === null 
+                    ?
+                        <>
+                            <CheckpointUI examplesArrayLength={moduleData.lessons[0].examples.length} progressData={null} onSelectedCheckpoint={(cpIndex)=>{ console.log("check point selected"); setCheckpointSelected(cpIndex)}}/>
+                            <button onClick={()=>{setIsManageBank(true)}}>Manage Practice Bank</button>
+                        </>
+                    :
+                        <>
+                            <BeginStudySession 
+                                {...lessonInfo}
+                                selectedIndex={checkpointSelected} 
+                                onReturnToCheckPointSelection={()=>{setCheckpointSelected(null)}} 
+                                onSessionOver={(finishedCpIndex)=>{console.log("no need to do anything")}}
+                                onAddToPracticeBank={(addToPB)=>{props.onAddToPersonalPracticeBank(addToPB);}}
+                                practiceBank={props.practiceBank}
+                                isPracticeBankOn={false}
+                            />
+                        </>
+                }
+            </>
+        }
         </div>
     )
 };

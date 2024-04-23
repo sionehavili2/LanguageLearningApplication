@@ -2,6 +2,7 @@ import { count } from "firebase/firestore";
 import classes from "./ExampleUI.module.css"
 import { useState, useEffect } from "react";
 import PracticeBankBtn from "../../PracticeBankBtn/PracticeBankBtn";
+import { conforms } from "lodash";
 
 const ExampleUI = (props) => 
 {    
@@ -10,17 +11,12 @@ const ExampleUI = (props) =>
     const [isFinished, setIsFinished] = useState(false);
     const [isDismissed, setIsDismissed] = useState(false);
 
-    const [exampleArr, setExampleArr] = useState(...props.lessonData.examples);
-    const exampleArrLength  = props.lessonData.examples.length ? props.lessonData.examples.length : 1;
-
+    const [exampleArr, setExampleArr] = useState(props.lessonData.examples);
+    const exampleArrLength  = props.lessonData.examples.length;
+    console.log(props.isPracticeBankOn);
     // const exampleArr = props.customLessonData ? props.customLessonData : props.lessonData.examples;
     // const exampleArrLength  = props.customLessonData ? props.customLessonData.length : props.lessonData.examples.length;
     // const mapExamples = exampleArr[arrayIndex].map((string, index)=>(<li key={index}>{string}</li>));
-
-    console.log(exampleArr);
-    console.log(arrayIndex);
-    //this should be a single array with 2 values, the key and index
-    console.log(exampleArr[arrayIndex]);
 
     const mapExamples = exampleArr[arrayIndex].map((string, index)=>
     {
@@ -29,8 +25,6 @@ const ExampleUI = (props) =>
         else 
             return (<li className={classes.compareeSolution} key={index}><h2>{string}</h2></li>);
     });
-
-
 
     useEffect(()=>{if(arrayIndex + 1 === exampleArrLength){props.onFinished(true); setIsFinished(true)}},[arrayIndex]);
 
@@ -42,7 +36,7 @@ const ExampleUI = (props) =>
         }
     },[isFinished]);
 
-    useEffect(()=>{setExampleArr([...props.lessonData.examples])},[props.lessonData.examples])
+    // useEffect(()=>{setExampleArr([...props.lessonData.examples])},[props.lessonData.examples])
     
     return (
         <>
@@ -59,7 +53,7 @@ const ExampleUI = (props) =>
                     <>{mapExamples}</>
                     <button className={classes.btn} onClick={()=>{setArrayIndex(currentIndex => currentIndex - 1)}} disabled={arrayIndex <= 0}>Previous</button>
                     <button className={classes.btn} onClick={()=>{setArrayIndex(currentIndex => currentIndex + 1)}}  disabled={arrayIndex >= exampleArrLength - 1}>Next</button>
-                    {props.practiceBank &&                     <PracticeBankBtn practiceBank={props.practiceBank} handleOnClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]);}} currentExample={exampleArr[arrayIndex]}/>}
+                    {props.isPracticeBankOn === true &&<PracticeBankBtn practiceBank={props.practiceBank} onRemoveFromPracticeBank={()=>{console.log("remove it"); props.handleRemoveFromPracticebank(arrayIndex)}} handleOnClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]);}} currentExample={exampleArr[arrayIndex]} exampleArrayLength={exampleArrLength}/>}
                 </ul>
                 <>{isFinished && !isDismissed &&
                     <>

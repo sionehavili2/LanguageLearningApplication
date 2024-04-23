@@ -18,38 +18,27 @@ const PracticeBankBtn = (props) =>
 
             setIsAdded(false);
             for(let i = 0; i < keys.length; i++)
-            {
+            {   
                 if(exampleKey === keys[i] && exampleValue === values[i])
                 {
+            
                     setIsAdded(true);
+                    // console.log("it is already here!");
                 }
+                // console.log("is added is " + (isAdded ? "true" : "false"));
             }
         }
-        else{setIsRemoveBtn(true)}
     },[props.currentExample]);
 
     return( 
-        <>
-        {
-            isRemoveBtn === true 
-            ?
-                <button 
-                    className={classes.removeBtn}
-                    onClick={(exampleToRemove)=>{props.handleRemoveFromPracticebank(exampleToRemove)}}
-                >
-                    Remove From Practice Bank
-                </button>
-            :
-                <button 
-                    {...props} 
-                    onClick={()=>{props.handleOnClick(props.exampleValue); setIsAdded(true)}} 
-                    className={isAdded ? classes.isAdded : classes.isNotAdded}
-                    disabled={isAdded}
-                >
-                    {isAdded ? "Added to Bank" : "Add to Personal Practice Bank"}
-                </button>
-        }
-        </>
+        <button 
+            {...props} 
+            onClick={()=>{props.handleOnClick(props.exampleValue); setIsAdded(true)}} 
+            className={isAdded ? classes.isAdded : classes.isNotAdded}
+            disabled={isAdded}
+        >
+            {isAdded ? "Added to Bank" : "Add to Personal Practice Bank"}
+        </button>
     );
 }
 
