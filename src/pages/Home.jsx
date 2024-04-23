@@ -29,7 +29,6 @@ const Home = () =>
 
       if(userData && userData.personalPracticeBank)
       {
-        console.log(userData.personalPracticeBank);
         setPracticeBankData(userData.personalPracticeBank);
       }
     } 

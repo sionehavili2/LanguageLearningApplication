@@ -85,7 +85,7 @@ const PracticeBank = (props) =>
                     checkpointSelected === null 
                     ?
                         <>
-                            <CheckpointUI progressData={null} onSelectedCheckpoint={(cpIndex)=>{ console.log("check point selected"); setCheckpointSelected(cpIndex)}}/>
+                            <CheckpointUI examplesArrayLength={moduleData.lessons[0].examples.length} progressData={null} onSelectedCheckpoint={(cpIndex)=>{ console.log("check point selected"); setCheckpointSelected(cpIndex)}}/>
                             <button onClick={()=>{setIsManageBank(true)}}>Manage Practice Bank</button>
                         </>
                     :
@@ -97,6 +97,7 @@ const PracticeBank = (props) =>
                                 onSessionOver={(finishedCpIndex)=>{console.log("no need to do anything")}}
                                 onAddToPracticeBank={(addToPB)=>{props.onAddToPersonalPracticeBank(addToPB);}}
                                 practiceBank={props.practiceBank}
+                                isPracticeBankOn={false}
                             />
                         </>
                 }

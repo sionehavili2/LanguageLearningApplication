@@ -1,21 +1,6 @@
 import { useState } from "react";
 import classes from "./ManagePracticeBank.module.css";
 
-function extractKeysAndValues(exampleArr)
-{
-
-    let allKeys = [];
-    let allVals = [];
-
-    for(let i = 0 ; i < exampleArr.length ; i++)
-    {
-        let singleArr = exampleArr[i];
-        allKeys.push(singleArr[0]);
-        allVals.push(singleArr[1]);
-    }
-    return [allKeys,allVals];
-}
-
 const ManagePracticeBank = (props) => 
 {
     const [keys, setKeys] = useState(props.practiceBank.keys);

@@ -24,20 +24,24 @@ const StudySession = (props) =>
                 checkpointSelected != null ?
 
                     <>
-                        <BeginStudySession {...lessonInfo} selectedIndex={checkpointSelected} onReturnToCheckPointSelection={()=>{setCheckpointSelected(null)}} 
+                        <BeginStudySession 
+                            {...lessonInfo} 
+                            selectedIndex={checkpointSelected} 
+                            onReturnToCheckPointSelection={()=>{setCheckpointSelected(null)}}
+                            isPracticeBankOn={true} 
                             onSessionOver={(finishedCpIndex)=> 
                             {    
                                 if(finishedCpIndex === -1)
                                 {
-                                    console.log("user did not pass.");
+                                    // console.log("user did not pass.");
                                 }
                                 else if(progressArr[finishedCpIndex] === false)
                                 {
-                                    console.log("finished and updating user progression...");
+                                    // console.log("finished and updating user progression..."); 
                                     progressArr[finishedCpIndex] = true;
                                     props.onUpdateProgress([...progressArr]);
                                 }
-                                else console.log("section is already finished");
+                                // else console.log("section is already finished");
                             }}
 
                             onAddToPracticeBank={(addToPB)=>{props.onAddToPersonalPracticeBank(addToPB);}}

@@ -2,6 +2,7 @@ import { count } from "firebase/firestore";
 import classes from "./ExampleUI.module.css"
 import { useState, useEffect } from "react";
 import PracticeBankBtn from "../../PracticeBankBtn/PracticeBankBtn";
+import { conforms } from "lodash";
 
 const ExampleUI = (props) => 
 {    
@@ -12,7 +13,7 @@ const ExampleUI = (props) =>
 
     const [exampleArr, setExampleArr] = useState(props.lessonData.examples);
     const exampleArrLength  = props.lessonData.examples.length;
-
+    console.log(props.isPracticeBankOn);
     // const exampleArr = props.customLessonData ? props.customLessonData : props.lessonData.examples;
     // const exampleArrLength  = props.customLessonData ? props.customLessonData.length : props.lessonData.examples.length;
     // const mapExamples = exampleArr[arrayIndex].map((string, index)=>(<li key={index}>{string}</li>));
@@ -24,8 +25,6 @@ const ExampleUI = (props) =>
         else 
             return (<li className={classes.compareeSolution} key={index}><h2>{string}</h2></li>);
     });
-
-
 
     useEffect(()=>{if(arrayIndex + 1 === exampleArrLength){props.onFinished(true); setIsFinished(true)}},[arrayIndex]);
 
@@ -54,7 +53,7 @@ const ExampleUI = (props) =>
                     <>{mapExamples}</>
                     <button className={classes.btn} onClick={()=>{setArrayIndex(currentIndex => currentIndex - 1)}} disabled={arrayIndex <= 0}>Previous</button>
                     <button className={classes.btn} onClick={()=>{setArrayIndex(currentIndex => currentIndex + 1)}}  disabled={arrayIndex >= exampleArrLength - 1}>Next</button>
-                    {<PracticeBankBtn practiceBank={props.practiceBank} onRemoveFromPracticeBank={()=>{console.log("remove it"); props.handleRemoveFromPracticebank(arrayIndex)}} handleOnClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]);}} currentExample={exampleArr[arrayIndex]} exampleArrayLength={exampleArrLength}/>}
+                    {props.isPracticeBankOn === true &&<PracticeBankBtn practiceBank={props.practiceBank} onRemoveFromPracticeBank={()=>{console.log("remove it"); props.handleRemoveFromPracticebank(arrayIndex)}} handleOnClick={()=>{props.onAddToPracticeBank(exampleArr[arrayIndex]);}} currentExample={exampleArr[arrayIndex]} exampleArrayLength={exampleArrLength}/>}
                 </ul>
                 <>{isFinished && !isDismissed &&
                     <>
