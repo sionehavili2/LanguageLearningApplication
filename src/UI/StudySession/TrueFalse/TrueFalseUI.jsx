@@ -80,7 +80,12 @@ const TrueFalseUI = (props) =>
             <div className={classes.mainContainer}>
                                 <div>{exampleIndex + 1}/{exampleArr.length}</div>
                 <h4>Is the following translation True or False?</h4>
-                <h2>{displayExamples ? displayExamples[0] +"--"+ displayExamples[1] : "Loading..."}</h2>
+                    <h2 className={classes.example}>{displayExamples ? <div>
+                                                                            <span className={classes.firstExample}>{displayExamples[0]}</span>
+                                                                            <br/>
+                                                                            <span className={classes.secondExample}>{displayExamples[1]}</span>
+            
+                                                                        </div> : "Loading..."}</h2>
                 <>
                 {
                     userSelected === null ?
