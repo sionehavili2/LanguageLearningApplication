@@ -125,12 +125,9 @@ const MemoryGame = (props) =>
     },[matchCount])
 
     return (
-        <>
-            <h2 className={classes.title}>{props.moduleTitle}</h2>
-            <div className={classes.subTitles}>
-                <h2>{props.lessonTitle} Memory Game</h2>
-                <h4>{"Play a game of Memory! Select a card and its translation"}</h4>
-            </div>
+        <div className={classes.container}>
+
+            <h4>{"Play a game of Memory! Select a card and its translation"}</h4>
             <div className={classes.quizContainer}></div>
 
             <div>Matches {matchCount} / {totalMatches}</div>
@@ -150,7 +147,7 @@ const MemoryGame = (props) =>
                 <>{deck.map((cardArray, index) => (<PlayingCard key={index} keyIndex={index} matchIndex={cardArray[0]} displayText={cardArray[1]} isFlipped={deckState[index]} onSelected={(index,matchIndex)=>{handleSelected(index,matchIndex)}} />))}</>
             </div>
 
-        </>
+        </div>
     );
 }
 

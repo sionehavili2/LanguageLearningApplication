@@ -1,6 +1,6 @@
 import CheckpointUI from "../Checkpoint/CheckpointUI.jsx";
 import BeginStudySession from "./BeginStudySession.jsx";
-
+import TitleAndSection from "../TitleAndSection/TitleAndSection.jsx";
 import classes from "./StudySession.module.css";
 import { useState } from "react";
 
@@ -20,6 +20,7 @@ const StudySession = (props) =>
         
         <>
             <div className={classes.mainContainer}>
+            <TitleAndSection {...lessonInfo} />
             {
                 checkpointSelected != null ?
 
@@ -50,7 +51,10 @@ const StudySession = (props) =>
                         />
                     </>
                 :
-                    <CheckpointUI progressData={progressArr} onSelectedCheckpoint={(cpIndex)=>{setCheckpointSelected(cpIndex)}}/>
+                    <>
+                        {/* <h2 className={classes.title}>{modTitle}</h2> */}
+                        <CheckpointUI progressData={progressArr} onSelectedCheckpoint={(cpIndex)=>{setCheckpointSelected(cpIndex)}}/>
+                    </>
             }
             </div>
         </>

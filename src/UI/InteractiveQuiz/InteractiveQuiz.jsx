@@ -158,11 +158,7 @@ const InteractiveQuiz = (props) =>
             :
 
             <>
-                <h2 className={classes.title}>{props.moduleTitle}</h2>
-                <div className={classes.subTitles}>
-                    <h2>{props.lessonTitle} Mastery Quiz</h2>
-                    <h4>{"Complete the Mastery Quiz to show you have gained a solid foundation of " + props.lessonTitle}.</h4>
-                </div>
+                <h4>{"Complete the Mastery Quiz to show you have gained a solid foundation of " + props.lessonTitle}.</h4>
                 <div className={classes.quizContainer}>
 
                     <ul className={!allValuesSelected(disableVals) ? classes.compareesContainer : classes.allCompareesSelected}>

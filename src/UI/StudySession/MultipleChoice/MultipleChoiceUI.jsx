@@ -74,12 +74,6 @@ const MultipleChoiceUI = (props) =>
 
     return (
         <div>
-            <h2 className={classes.title}>{props.moduleTitle}</h2>
-            <div className={classes.subTitles}>
-                <h2>{props.lessonTitle} Introduction</h2>
-                <h4>{props.lessonData.intro}</h4>
-            </div>
-
             <div>Total Correct : {correctAnswerCnt} / {exampleArr.length}</div>
             <div className={classes.mainContainer}>
                 

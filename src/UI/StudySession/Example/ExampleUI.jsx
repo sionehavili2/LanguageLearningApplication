@@ -1,8 +1,6 @@
-import { count } from "firebase/firestore";
 import classes from "./ExampleUI.module.css"
 import { useState, useEffect } from "react";
 import PracticeBankBtn from "../../PracticeBankBtn/PracticeBankBtn";
-import { conforms } from "lodash";
 
 const ExampleUI = (props) => 
 {    
@@ -13,7 +11,6 @@ const ExampleUI = (props) =>
 
     const [exampleArr, setExampleArr] = useState(props.lessonData.examples);
     const exampleArrLength  = props.lessonData.examples.length;
-    console.log(props.isPracticeBankOn);
     // const exampleArr = props.customLessonData ? props.customLessonData : props.lessonData.examples;
     // const exampleArrLength  = props.customLessonData ? props.customLessonData.length : props.lessonData.examples.length;
     // const mapExamples = exampleArr[arrayIndex].map((string, index)=>(<li key={index}>{string}</li>));
@@ -36,16 +33,10 @@ const ExampleUI = (props) =>
         }
     },[isFinished]);
 
-    // useEffect(()=>{setExampleArr([...props.lessonData.examples])},[props.lessonData.examples])
+    useEffect(()=>{setExampleArr([...props.lessonData.examples])},[props.lessonData.examples])
     
     return (
-        <>
-            <h2 className={classes.title}>{props.moduleTitle}</h2>
-            <div className={classes.subTitles}>
-                <h2>{props.lessonTitle} Introduction</h2>
-                <h4>{props.lessonData.intro}</h4>
-            </div>
-            
+        <>            
             <div className={classes.mainContainer}>
                 <span className={classes.exampleCounter}>Example {arrayIndex + 1}/{exampleArr.length}</span>
                 <ul className={classes.unorderedList}>

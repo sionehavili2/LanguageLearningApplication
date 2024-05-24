@@ -1,8 +1,6 @@
-import { useHref } from "react-router-dom";
 import classes from "./TrueFalseUI.module.css";
 import { useState, useEffect} from "react";
 import { getRandomInt } from "../../../computeFunctions";
-import PracticeBankBtn from "../../PracticeBankBtn/PracticeBankBtn";
 
 function setupTrueFalse(isQuestionTrue, allExamples, allExamplesIndex)
 {
@@ -77,14 +75,7 @@ const TrueFalseUI = (props) =>
 
     return (
         
-        <div className={classes.rootContainer}>
-            <h2 className={classes.title}>{props.moduleTitle}</h2>
-            <div className={classes.subTitles}>
-                <h2>{props.lessonTitle} T/F Challenge</h2>
-                <h4>{props.lessonData.intro}</h4>
-            </div>
-
-            
+        <div className={classes.rootContainer}>            
             <div>Total Correct : {correctAnswerCnt} / {exampleArr.length}</div>
             <div className={classes.mainContainer}>
                                 <div>{exampleIndex + 1}/{exampleArr.length}</div>

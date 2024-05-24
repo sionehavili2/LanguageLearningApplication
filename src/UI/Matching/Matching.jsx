@@ -95,14 +95,6 @@ const Matching = (props) =>
     
     return (
         <>
-            <h2 className={classes.title}>{props.moduleTitle}</h2>
-            <div className={classes.subTitles}>
-                <h2>{props.lessonTitle} Practice Quiz</h2>
-                <h4>{props.lessonData.intro}</h4>
-            </div>
-
-
-
             <div className={classes.mainContainer}>
                 <h2>Select any word/term and from the left and click its solution on the right</h2>
 

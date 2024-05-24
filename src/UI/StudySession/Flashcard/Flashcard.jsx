@@ -54,13 +54,6 @@ const Flashcard = (props) => {
   return (
     <>
       
-      <h2 className={classes.title}>{props.moduleTitle}</h2>
-
-      <div className={classes.subTitles}>
-          <h2>{props.lessonTitle} Flashcard Review</h2>
-          <h4>{props.lessonData.intro}</h4>
-      </div>
-
       <div className={classes.mainContainer}>
 
         <div className={classes.flashcardContainer}>

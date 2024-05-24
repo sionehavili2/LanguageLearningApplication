@@ -1,0 +1,14 @@
+.title {
+    background-color: rgb(0, 0, 0, 0.3);
+    border-radius: 5px 5px 0 0;
+    padding: 0.5em;
+    margin: 0;
+    color: rgb(218, 115, 77);
+}
+
+.subTitles {
+    background-color: rgb(255, 255, 255, 0.1);
+    border-radius: 20px;
+    margin: 1em;
+    color: lightyellow;
+}

@@ -26,7 +26,6 @@
 }
 
 .compareesContainer {
-    /* border: 5px solid red; */
     background-color: rgba(79, 71, 197, 0.7);
 
 }
@@ -37,6 +36,27 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.5em;
+    flex-shrink: 20em;
+}
+@media screen and (max-width: 500px) {
+    .quizContainer {
+        width: 100%;
+    }
+
+    .compareesContainer, .solutionsContainer {
+        border: 5px solid pink;
+        margin: 0 auto;
+    }
+
+
+    .compareesContainer > * {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        margin: 0.25;
+    }
+
+
 }
 
 .solutionsContainer {

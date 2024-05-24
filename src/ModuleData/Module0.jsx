@@ -16,7 +16,7 @@ const Module0 =
     lessons :     
     [
         {
-            intro : "Tongan spelling is phonemic. That is, Tongan words are spelled the way they are pronounced and pronounced the way they are spelled. We will begin by going over the alphabet",
+            intro : "Tongan words are spelled the way they are pronounced and pronounced the way they are spelled (Phonemic).",
             examples : 
             [
                 ["a - The 'a' sound in 'father' (only shorter).","fala, mate, pato"],
@@ -25,9 +25,9 @@ const Module0 =
                 ["ē - e̱ sound lengthened", "pehē, ko ē"],
                 ["i - i as in machine", "liku, piko, taki"],
                 ["ī - i̱ sound lengthened", "kulī"],
-                ["o - o as in born. (pronounced a little further back in the throat)", "fono, pito"],
+                ["o - o as in born.", "fono, pito"],
                 ["ō - o̱ sound lengthened", "pō, kokō"],
-                ["u - u as in root (only shorter and without offglide", "lotu, muka"],
+                ["u - u as in root (only shorter and without offglide)", "lotu, muka"],
                 ["ū - u̱ sound lengthened", "pūluhi, fufū"],
             
             ],
