@@ -1,16 +1,28 @@
 .rightAnswer {
-    color: green;
+    color: white;
+    background-color:green;
 }
 
 .wrongAnswer {
-    color: red;
+    background-color:red;
+}
+
+.rightAnswer, .wrongAnswer, .answerBtn {
+    border-radius: 5px;
+    color: white;
+    font-weight: bolder;
+    width: 80%;
+    margin: 0.5em;
+
 }
 
 .rootContainer {
-    /* border:5px solid orange; */
+    margin: 1em;
+    background-color: rgba(165, 99, 99, 0.3);
+    border-radius: 15px;
+    padding: 0 0 1em 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .rootContainer > * {
@@ -21,13 +33,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: stretch;
     background-image: url("../../../assets/flashcard.png");
     background-repeat: repeat;
-    color: darkblue;
+    color: rgb(49, 59, 52);
     text-align: center;
     padding: 1em;
-    margin: 1em auto;
+    border-radius: 5px;
 }
+
+
 
 
 
@@ -39,11 +54,14 @@
 }
 
 .title {
-    background-color: rgb(0, 0, 0, 0.3);
-    border-radius: 5px 5px 0 0;
-    padding: 0.5em;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px 15px 0 0;
     margin: 0;
+    padding: 1em 0 1em 0;
+
+    font-weight: bolder;
 }
+
 
 .btn {
     width: 12em;
@@ -77,6 +95,9 @@
     position: absolute;
     z-index: 1;
     padding:30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .btnContainer {
@@ -101,10 +122,13 @@
 
 .firstExample {
     color: orangered;
+    font-size: 2em;
+
 }
 
 .secondExample {
     color: blue;
+    font-size: 2em;
 }
 
 
@@ -127,9 +151,14 @@
         margin: 0 auto;
     }
 
-    .returnBtn, .disabledReturnBtn, .mainContainer{
+    .returnBtn, .disabledReturnBtn {
         width: 90%;
     }
+
+    .mainContainer {
+        margin: 0 auto;
+    }
+
 
     .btnContainer {
         width: 90%;

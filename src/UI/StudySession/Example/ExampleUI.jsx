@@ -15,12 +15,10 @@ const ExampleUI = (props) =>
     // const exampleArrLength  = props.customLessonData ? props.customLessonData.length : props.lessonData.examples.length;
     // const mapExamples = exampleArr[arrayIndex].map((string, index)=>(<li key={index}>{string}</li>));
 
+    console.log(exampleArr[arrayIndex]);
     const mapExamples = exampleArr[arrayIndex].map((string, index)=>
     {
-        if(index === 0)
-            return (<li className={classes.comparee} key={index}><h2>{string}</h2></li>);
-        else 
-            return (<li className={classes.compareeSolution} key={index}><h2>{string}</h2></li>);
+        return (<li className={index === 0 ? classes.comparee : classes.compareeSolution} key={index}><h2>{string}</h2></li>);
     });
 
     useEffect(()=>{if(arrayIndex + 1 === exampleArrLength){props.onFinished(true); setIsFinished(true)}},[arrayIndex]);
@@ -38,6 +36,7 @@ const ExampleUI = (props) =>
     return (
         <>            
             <div className={classes.mainContainer}>
+                <div className={classes.title}>Learn and familiarize yourself with the terms/vocabulary for this module </div>
                 <span className={classes.exampleCounter}>Example {arrayIndex + 1}/{exampleArr.length}</span>
                 <ul className={classes.unorderedList}>
                     <>{props.lessonData.exampleTitles && <li>{props.lessonData.exampleTitles[arrayIndex]}</li>}</>

@@ -75,56 +75,62 @@ const TrueFalseUI = (props) =>
 
     return (
         
-        <div className={classes.rootContainer}>            
+        <div className={classes.rootContainer}>
+            <div className={classes.title}>Determine whether the following translation/vocabulary is true or false</div>            
             <div>Total Correct : {correctAnswerCnt} / {exampleArr.length}</div>
-            <div className={classes.mainContainer}>
-                                <div>{exampleIndex + 1}/{exampleArr.length}</div>
-                <h4>Is the following translation True or False?</h4>
-                    <h2 className={classes.example}>{displayExamples ? <div>
-                                                                            <span className={classes.firstExample}>{displayExamples[0]}</span>
-                                                                            <br/>
-                                                                            <span className={classes.secondExample}>{displayExamples[1]}</span>
-            
-                                                                        </div> : "Loading..."}</h2>
-                <>
-                {
-                    userSelected === null ?
+            <div>
+                <div className={classes.mainContainer}>
+                    <div>{exampleIndex + 1}/{exampleArr.length}</div>
+                    <h4>True or False?</h4>
+                        <h2 className={classes.example}>{displayExamples 
+                        ? 
+                        <div>
+                            <span className={classes.firstExample}>{displayExamples[0]}</span>
+                            <br/>
+                            <span className={classes.secondExample}>{displayExamples[1]}</span>
+                        </div> 
+                        : "Loading..."}
+                        </h2>
+                    <>
+                    {
+                        userSelected === null ?
 
-                        <div className={classes.btnContainer}>
-                            <button className={classes.trueBtn} onClick={()=>{setUserSelected(true)}}>True</button>
-                            <button className={classes.falseBtn} onClick={()=>{setUserSelected(false)}}>False</button>
+                            <div className={classes.btnContainer}>
+                                <button className={classes.trueBtn} onClick={()=>{setUserSelected(true)}}>True</button>
+                                <button className={classes.falseBtn} onClick={()=>{setUserSelected(false)}}>False</button>
+                            </div>
+                        : 
+                            <>
+                                <>{userSelected === isQuestionTrue ? <div className={classes.rightAnswer}>CORRECT!</div> : <div className={classes.wrongAnswer}>That is NOT Correct</div>}</>
+                                <>{exampleIndex < exampleArr.length - 1 && <button className={classes.answerBtn} onClick={handleNextQuestion}>Next Question</button>}</>
+                                <>{exampleIndex === exampleArr.length - 1 && 
+
+                                    <>
+                                    </>
+
+                                }</>
+                            </>
+                    }
+                    </>
+
+
+                <>{
+                    isFinished && !isDismissed &&
+                    <>
+                        <div className={classes.finishedResponse}>
+                            <>{correctAnswerCnt / exampleArr.length >= .75 ? <h3 className={classes.rightAnswer}> {props.lessonTitle} Challenge PASSED!</h3> : <h3 className={classes.wrongAnswer}>You did not pass the Challenge.</h3>}</>
+                            <button 
+                                className={isFinished ? classes.returnBtn : classes.disabledReturnBtn} 
+                                onClick={()=>{props.onReturnToCheckPointSelection()}}
+                                disabled={!isFinished}
+                            >        
+                                Return to Checkpoint Selection
+                            </button>
                         </div>
-                    : 
-                        <>
-                            <>{userSelected === isQuestionTrue ? <div className={classes.rightAnswer}>CORRECT</div> : <div className={classes.wrongAnswer}>That is NOT Correct</div>}</>
-                            <>{exampleIndex < exampleArr.length - 1 && <button onClick={handleNextQuestion}>Next Question</button>}</>
-                            <>{exampleIndex === exampleArr.length - 1 && 
+                    </>
+                }</>
 
-                                <>
-                                </>
-
-                            }</>
-                        </>
-                }
-                </>
-
-
-            <>{
-                isFinished && !isDismissed &&
-                <>
-                    <div className={classes.finishedResponse}>
-                        <>{correctAnswerCnt / exampleArr.length >= .75 ? <h3 className={classes.rightAnswer}> {props.lessonTitle} Challenge PASSED</h3> : <h3 className={classes.wrongAnswer}>You Did not pass the Challenge</h3>}</>
-                        <button 
-                            className={isFinished ? classes.returnBtn : classes.disabledReturnBtn} 
-                            onClick={()=>{props.onReturnToCheckPointSelection()}}
-                            disabled={!isFinished}
-                        >        
-                            Return to Checkpoint Selection
-                        </button>
-                    </div>
-                </>
-            }</>
-
+                </div>
             </div>
 
 

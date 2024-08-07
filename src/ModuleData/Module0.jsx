@@ -40,12 +40,18 @@ const Module0 =
             intro : "Dipthong is when a sound is formed by the combination of two vowels in a single syllable. Each vowel sound in any combination of vowel sounds must be recognized and distinctly pronounced. Examples either contrast the 'i' and 'e' or contrast The 'u' and  'o'. Sound out the difference in pronunication.",
             examples : 
             [
-                ["feitu'u : place", "fetu'u : star"],
-                ["vai : water", "vae : divide"],
-                ["toi : hide", "toe : again"],
-                ["lao : law", "lau : read"],
-                ["pou : post, pole" ,"pō : night"],
-                ["kaokao : The side of a boat", "kaukau : bathe"],
+                ["feitu'u", "place"],
+                ["fetu'u", "star"],
+                ["vai", "water"],
+                ["vae", "divide"],
+                ["toi", "hide"],
+                ["toe", "again"],
+                ["lao", "law"],
+                ["lau","read"],
+                ["pou","post, pole"],
+                ["pō","night"],
+                ["kaokao","The side of a boat"],
+                ["kaukau","bathe"],
             ]
         },        
         
