@@ -20,7 +20,7 @@ const Flashcard = (props) => {
 
   const exampleArr = props.lessonData.examples;
   const exampleArrLength = props.lessonData.examples.length;
-
+  console.log(props.lessonData.examples[exampleArrayIndex])
   const sidesOfCard = getSides(props.lessonData.examples[exampleArrayIndex]);
 
   useEffect(() => {

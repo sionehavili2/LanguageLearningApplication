@@ -14,7 +14,7 @@ const PlayingCard = (props) => {
 
   return (
     <div className={classes.cardSpot +" "+ `${classes.unorderedList} ${classes.card} ${isFlipped ? classes.flipped : classes.notFlipped}`}>
-      {isFlipped === false && (<div onClick={()=>{props.onSelected(props.keyIndex, props.matchIndex)}} className={classes.cardFront}>{props.matchIndex}</div>)}
+      {isFlipped === false && (<div onClick={()=>{props.onSelected(props.keyIndex, props.matchIndex)}} className={classes.cardFront}></div>)}
       {isFlipped === true && (<div className={classes.cardBack}>{props.displayText}</div>)}
       {isFlipped === null && <div className={classes.noCard}>{props.displayText}</div>}
     </div>

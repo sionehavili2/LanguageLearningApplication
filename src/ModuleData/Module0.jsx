@@ -34,10 +34,8 @@ const Module0 =
             outro: "In Tongan, all consonants are separated by a vowel. All words end in a vowel",
         },
 
-        //if length is less
-
         {
-            intro : "Dipthong is when a sound is formed by the combination of two vowels in a single syllable. Each vowel sound in any combination of vowel sounds must be recognized and distinctly pronounced. Examples either contrast the 'i' and 'e' or contrast The 'u' and  'o'. Sound out the difference in pronunication.",
+            intro : "Dipthong is when a sound is formed by the combination of two vowels in a single syllable. Each vowel sound in any combination of vowel sounds must be recognized and distinctly pronounced. Examples either contrast the 'i' and 'e' or contrast The 'u' and  'o'. Be sure to sound out the difference in pronunication.",
             examples : 
             [
                 ["feitu'u", "place"],
@@ -59,15 +57,20 @@ const Module0 =
             intro : "Distinguish carefully between the long and the short vowel. Contrast the difference in pronunciation ",
             examples : 
             [
-               ["mānava : breathe, breath","manava : womb"],
-               ["māvae : to depart","mavae : to wean"],
-               ["kaka : to climb -- kakā : parrot","kākā : deceit, to decieve"],
-               ["langa : to build, built, pain", "langā : to be in labor with a child"],
+               ["mānava","breathe, breath"],
+               ["manava","womb"],
+               ["māvae","to depart"],
+               ["mavae","to wean"],
+               ["kaka","to climb"],
+               ["kakā","parrot"],
+               ["kākā","deceit, to decieve"],
+               ["langa","to build, built, pain"],
+               ["langā","to be in labor with a child"],
             ]
         },
 
         {
-            intro : "We will now go over all consonants used in the Tongan language",
+            intro : "This module will go over all consonants used in the Tongan language",
             examples : 
             [
               ["'f' as in father", "fai, fekau"],
@@ -88,25 +91,38 @@ const Module0 =
             intro : "The glottal stop (') is a very important useful phoneme but is often difficult for English speakers to recognize and pronounce. However, it is not a new sound. A common glottal stop used by English speakrs is 'nuh uh' or 'uh uh' which is used when expressing disagreement or disapproval. the abrupt (sharp) sound in between is a glottal stop. it may sound as if you were sounding out a letter than came a brief stop. The glottal stop is used very often within the Tongan language and should be practiced throughout your learning experience. Early mastery of the glottal stops will ensure proper pronunciation and ensure learners do not mispronounce or say something with a completely different meaning. Distinguish between the following examples",
             examples : 
             [
-                ["'anga : shark", "anga : dispostion"],
-                ["'ono : barricuda","ono : six"],
-                ["'uma : kiss","uma : shoulder"],
-                ["'au : a current in the ocean or any body of water.","au : me"],
-                ["'omi : bring","omi : come"],
-                ["'utu : draw (water)","utu : harvest"],
+                ["'anga","shark"],
+                ["anga","dispostion"],
+                ["'ono","barricuda"],
+                ["ono","six"],
+                ["'uma","kiss"],
+                ["uma","shoulder"],
+                ["'au","a current in the ocean or any body of water."],
+                ["au","me"],
+                ["'omi","bring"],
+                ["omi","come"],
+                ["'utu","draw (water)"],
+                ["utu ","harvest"],
             ]
         },        
         {
             intro : "The glottal stop (') is a very important useful phoneme but is often difficult for English speakers to recognize and pronounce. However, it is not a new sound. A common glottal stop used by English speakrs is 'nuh uh' or 'uh uh' which is used when expressing disagreement or disapproval. the abrupt (sharp) sound in between is a glottal stop. it may sound as if you were sounding out a letter than came a brief stop. The glottal stop is used very often within the Tongan language and should be practiced throughout your learning experience. Early mastery of the glottal stops will ensure proper pronunciation and ensure learners do not mispronounce or say something with a completely different meaning. Medial glottal stops (minimal contrast)",
             examples : 
             [
-                ["ma'u : get", "mau : we (exclusive)"],
-                ["va'e : foot", "vae : divide"],
-                ["ta'o : bake", "tao : spear"],
-                ["ta'u : year", "tau : war"],
-                ["to'a : brave", "toa : ironwood tree"],
-                ["to'i : drip", "toi : hide"],
-                ["fu'u : large", "fū : clap (of hands in a kava ceremony)"],
+                ["ma'u","get"],
+                ["mau","we (exclusive)"],
+                ["va'e","foot"],
+                ["vae","divide"],
+                ["ta'o","bake"],
+                ["tao","spear"],
+                ["ta'u","year"],
+                ["tau","war"],
+                ["to'a","brave"],
+                ["toa","ironwood tree"],
+                ["to'i","drip"],
+                ["toi","hide"],
+                ["fu'u","large"],
+                ["fū","clap (of hands in a kava ceremony)"],
             ]
         },
         

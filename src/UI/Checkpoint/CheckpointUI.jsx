@@ -4,7 +4,7 @@ const CheckpointUI = (props) =>
 {
     const lessonNames = ["Introduction", "True or False Challenge", "Flashcard Review", "Multiple Choice Challenge", "Match Review", "Quiz Mastery", "Memory Mini Game"];
     const disabledSections = [1,2,1,4,2,2,2];
-    console.log(props.examplesArrayLength);
+    // console.log(props.examplesArrayLength);
     return (
         <div className={classes.mainContainer}>
             <h3>Select a checkpoint to begin</h3>
