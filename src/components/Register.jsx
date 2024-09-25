@@ -72,12 +72,12 @@ function Register()
             <button className="register__btn" onClick={register}>
               Sign-up
             </button>
-            <button
+            {/* <button
               className="register__btn register__google"
               onClick={signInWithGoogle}
             >
               Sign-up with Google
-            </button>
+            </button> */}
             <div>
               Already have an account? <Link to="/">Login</Link> now.
             </div>
